@@ -1,8 +1,6 @@
 local set = vim.opt
 local g = vim.g
 
-HOME = os.getenv('HOME')
-
 -- autosave
 g.auto_save_silent = 1
 g.auto_save = 1
@@ -41,7 +39,11 @@ set.incsearch = true
 set.swapfile = false
 set.backup = false
 set.undofile = true
-set.undodir = HOME .. '/.cache/nvim/undodir'
+
+HOME = os.getenv('HOME')
+if (HOME ~= nil) then
+    set.undodir = HOME .. '/.cache/nvim/undodir'
+end
 
 set.termguicolors = true
 set.scrolloff = 50
