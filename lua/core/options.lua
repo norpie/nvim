@@ -15,6 +15,7 @@ set.encoding = 'utf8'
 vim.wo.fillchars = 'eob: '
 
 set.relativenumber = true
+set.signcolumn = 'yes'
 set.hlsearch = true
 set.hidden = true
 set.errorbells = false
