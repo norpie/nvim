@@ -122,16 +122,17 @@ local plugins = {
 
     -- Multi dependancies
     'MunifTanjim/nui.nvim',
-    { 'rcarriga/nvim-notify' },
-    { 'nvim-lua/popup.nvim' },
-    { 'nvim-lua/plenary.nvim' },
-    { 'kyazdani42/nvim-web-devicons' },
+    'rcarriga/nvim-notify',
+    'nvim-lua/popup.nvim',
+    'nvim-lua/plenary.nvim',
+    'kyazdani42/nvim-web-devicons',
 
     -- netrw
-    { 'tpope/vim-vinegar' },
+    'tpope/vim-vinegar',
 
     -- Startup
-    { 'lewis6991/impatient.nvim' }
+    'lewis6991/impatient.nvim',
+    'https://github.com/dstein64/vim-startuptime',
     -- TODO: add alpha
 }
 

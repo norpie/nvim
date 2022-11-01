@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
     local on_attach = function(client, bufnr)
-        require("aerial").on_attach(client, bufnr)
+        -- require("aerial").on_attach(client, bufnr)
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
         vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
             vim.lsp.diagnostic.on_publish_diagnostics, {
