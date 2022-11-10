@@ -47,7 +47,7 @@ if (HOME ~= nil) then
 end
 
 set.termguicolors = true
-set.scrolloff = 0
+set.scrolloff = 50
 set.cmdheight = 0
 set.updatetime = 25
 set.spelllang = 'nl,en'
