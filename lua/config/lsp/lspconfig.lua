@@ -39,9 +39,11 @@ function M.setup()
         if vim.fn.filereadable(vim.fn.stdpath "config" .. "/lua/config/lsp/servers/" .. server .. ".lua") == 1 then
             local settings = require('config.lsp.servers.' .. server).settings()
             local filetypes = require('config.lsp.servers.' .. server).filetypes()
+            local cmd = require('config.lsp.servers.' .. server).cmd()
             lspconfig[server].setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
+                cmd = cmd,
                 settings = settings,
                 filetypes = filetypes
             }

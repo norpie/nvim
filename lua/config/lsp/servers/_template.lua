@@ -10,4 +10,9 @@ function M.filetypes()
     return filetypes
 end
 
+function M.cmd()
+    local cmd = {""}
+    return cmd
+end
+
 return M

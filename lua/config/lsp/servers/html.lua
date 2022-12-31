@@ -14,4 +14,9 @@ function M.filetypes()
     return filetypes
 end
 
+function M.cmd()
+    local cmd = { "vscode-html-language-server", "--stdio" }
+    return cmd
+end
+
 return M

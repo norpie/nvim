@@ -10,4 +10,8 @@ function M.filetypes()
     return filetypes
 end
 
+function M.cmd()
+    local cmd = "emmet-ls"
+end
+
 return M

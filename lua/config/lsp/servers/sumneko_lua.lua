@@ -31,8 +31,14 @@ function M.settings()
     return settings
 end
 
+
+function M.cmd()
+    local cmd = { "lua-language-server" }
+    return cmd
+end
+
 function M.filetypes()
-    local filetypes = {'lua'}
+    local filetypes = { 'lua' }
     return filetypes
 end
 
