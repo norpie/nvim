@@ -15,7 +15,7 @@ function M.setup()
         ensure_installed = {
             "sumneko_lua"
         },
-        automatic_installation = true
+        automatic_installation = false
     }
     require("mason").setup(mason_options)
     require("mason-lspconfig").setup(mason_lspconfig_options)
