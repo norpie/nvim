@@ -112,6 +112,7 @@ local plugins = {
             'RRethy/nvim-treesitter-textsubjects', --TODO: config
             'mfussenegger/nvim-treehopper',
         },
+        run = ':TSUpdate',
         config = function()
             require('config/treesitter').setup()
         end
