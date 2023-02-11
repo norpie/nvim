@@ -8,7 +8,15 @@ function M.setup()
     --require("tint").setup({})
     require('scrollbar').setup()
     require('noice').setup()
-    require('nvim-tree').setup()
+    require('project_nvim').setup()
+    require('nvim-tree').setup({
+        sync_root_with_cwd = true,
+        respect_buf_cwd = true,
+        update_focused_file = {
+            enable = true,
+            update_root = true
+        },
+    })
 end
 
 return M

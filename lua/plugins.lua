@@ -33,6 +33,7 @@ local plugins = {
     'abecodes/tabout.nvim',
     'matze/vim-move',
     'godlygeek/tabular',
+    'ahmedkhalf/project.nvim',
 
     -- Move+
     'phaazon/hop.nvim',
