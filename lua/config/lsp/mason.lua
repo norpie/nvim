@@ -13,7 +13,7 @@ function M.setup()
 
     local mason_lspconfig_options = {
         ensure_installed = {
-            "sumneko_lua"
+            "lua-language-server"
         },
         automatic_installation = true
     }
