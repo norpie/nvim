@@ -25,6 +25,8 @@ map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
+map('n', '<C-s>', ':wa<CR>:%bd|e#<CR>')
+
 map('n', '<C-Up>', ':resize +2<CR>')
 map('n', '<C-Down>', ':resize -2<CR>')
 map('n', '<C-Left>', ':vertical resize -2<CR>')
