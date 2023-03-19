@@ -48,7 +48,7 @@ end
 
 set.termguicolors = true
 set.scrolloff = 50
-set.cmdheight = 0
+set.cmdheight = 1
 set.updatetime = 25
 set.spelllang = 'nl,en'
 set.laststatus = 3

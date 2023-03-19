@@ -31,7 +31,8 @@ function M.setup()
         'clangd',
         'vimls',
         --'rust_analyzer',
-        'lua_ls'
+        'lua_ls',
+        'sqls'
     }
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lspconfig = require('lspconfig')
