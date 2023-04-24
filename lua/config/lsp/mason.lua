@@ -12,9 +12,7 @@ function M.setup()
     }
 
     local mason_lspconfig_options = {
-        ensure_installed = {
-            "lua-language-server"
-        },
+        ensure_installed = {},
         automatic_installation = true
     }
     require("mason").setup(mason_options)

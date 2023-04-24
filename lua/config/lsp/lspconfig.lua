@@ -29,6 +29,7 @@ function M.setup()
         'pyright',
         'texlab',
         'clangd',
+        'volar',
         'vimls',
         --'rust_analyzer',
         'lua_ls',
