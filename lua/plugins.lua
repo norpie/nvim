@@ -16,7 +16,7 @@ local plugins = {
     'RRethy/vim-illuminate',
     'nacro90/numb.nvim',
     'folke/zen-mode.nvim',
-    --'levouh/tint.nvim',
+    'levouh/tint.nvim',
     'folke/twilight.nvim',
     'petertriho/nvim-scrollbar',
     'folke/noice.nvim',
@@ -84,6 +84,14 @@ local plugins = {
         end
     },
 
+    -- Snippets
+    {
+        'L3MON4D3/LuaSnip',
+        config = function()
+            require('config/luasnip').setup()
+        end
+    },
+
     -- cmp
     {
         'hrsh7th/nvim-cmp',
@@ -92,7 +100,6 @@ local plugins = {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
-            'L3MON4D3/LuaSnip',
             'onsails/lspkind.nvim'
         },
         config = function()
@@ -110,7 +117,7 @@ local plugins = {
             'm-demare/hlargs.nvim',
             'RRethy/nvim-treesitter-endwise',
             'nvim-treesitter/nvim-treesitter-textobjects', --TODO: config
-            'RRethy/nvim-treesitter-textsubjects', --TODO: config
+            'RRethy/nvim-treesitter-textsubjects',         --TODO: config
             'mfussenegger/nvim-treehopper',
         },
         run = ':TSUpdate',

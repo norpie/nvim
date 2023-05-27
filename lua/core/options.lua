@@ -17,7 +17,7 @@ vim.wo.fillchars = 'eob: '
 set.relativenumber = true
 set.signcolumn = 'yes'
 set.hlsearch = true
-set.hidden = true
+set.hidden = false
 set.errorbells = false
 
 set.tabstop = 4
@@ -48,9 +48,9 @@ end
 
 set.termguicolors = true
 set.scrolloff = 50
-set.cmdheight = 1
+set.cmdheight = 0
 set.updatetime = 25
-set.spelllang = 'nl,en'
+set.spelllang = 'fi,fr,nl,en'
 set.laststatus = 3
 set.showmode = false
 set.conceallevel = 0
