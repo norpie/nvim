@@ -145,6 +145,42 @@ function M.rust()
             t({ "", "\ttodo!()", "" }),
             t("}"),
         }),
+        s("match", {
+            t("match "),
+            c(1, {
+                sn(nil, {
+                    i(1),
+                    t({ " {", "" }),
+                    t({ "\tOk(_) => {todo!()}", "\t" }),
+                    t("Err(_) => {todo!()}"),
+                }),
+                sn(nil, {
+                    i(1),
+                    t({ " {", "" }),
+                    t({ "\tSome(_) => {todo!()}", "\t" }),
+                    t("None => {todo!()}"),
+                }),
+                sn(nil, {
+                    i(1),
+                    t({ " {", "" }),
+                    t("\t_ => {todo!()}"),
+                })
+            }),
+            t({ "", "}" }),
+            i(0),
+        }),
+        s("?test", {
+            t({"#[cfg(test)]", ""}),
+            t({"mod tests {", ""}),
+            t({"\t#[test]", ""}),
+            t({"\tfn "}),
+            i(1),
+            t({"() {", "\t\t"}),
+            i(0),
+            t({"","\t\tassert_eq!(true, true);", ""}),
+            t({"\t}", ""}),
+            t({"}"}),
+        })
     }, {
         key = "rust",
         type = "autosnippets"
