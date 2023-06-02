@@ -17,7 +17,7 @@ vim.wo.fillchars = 'eob: '
 set.relativenumber = true
 set.signcolumn = 'yes'
 set.hlsearch = true
-set.hidden = false
+set.hidden = true
 set.errorbells = false
 
 set.tabstop = 4
