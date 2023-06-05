@@ -1,10 +1,6 @@
 local create_augroup = vim.api.nvim_create_augroup
 local create_autocmd = vim.api.nvim_create_autocmd
 
-local packer_user_config = 'packer_user_config'
-create_augroup(packer_user_config, { clear = true })
-create_autocmd('BufWritePost', { command = 'luafile <afile>', pattern = '*/plugins/init.lua', group = packer_user_config })
-
 local save_file_group = 'writegroup'
 create_augroup(save_file_group, { clear = true })
 create_autocmd('BufWritePost', { pattern = '*.lua', command = 'source %' , group = save_file_group })

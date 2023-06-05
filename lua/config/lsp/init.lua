@@ -4,7 +4,6 @@ function M.setup()
     -- Own
     require('config.lsp.mason').setup()
     require('config.lsp.lspconfig').setup()
-    require('config.lsp.keymaps').setup()
     -- General
     require('trouble').setup()
     require('nvim-lightbulb').setup({ autocmd = { enabled = true } })

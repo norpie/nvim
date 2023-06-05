@@ -4,17 +4,20 @@ function M.setup()
     local on_attach = function(client, bufnr)
         -- require("aerial").on_attach(client, bufnr)
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+        if client.server_capabilities.documentSymbolProvider then
+            require("nvim-navic").attach(client, bufnr)
+        end
         vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
             vim.lsp.diagnostic.on_publish_diagnostics, {
-            -- disable virtual text
-            virtual_text = true;
+                -- disable virtual text
+                virtual_text = true,
 
-            -- show signs
-            signs = true,
+                -- show signs
+                signs = true,
 
-            -- show_diagnostic_autocmds = { "BufWritePost" },
-            show_diagnostic_autocmds = { "InsertLeave", "CursorHoldI" },
-        }
+                -- show_diagnostic_autocmds = { "BufWritePost" },
+                show_diagnostic_autocmds = { "InsertLeave", "CursorHoldI" },
+            }
         )
     end
 

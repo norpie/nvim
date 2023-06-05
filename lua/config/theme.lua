@@ -1,15 +1,34 @@
 local M = {}
 
 function M.setup()
-    require("catppuccin").setup {
-        flavour = "macchiato" -- mocha, macchiato, frappe, latte
-    }
-    vim.api.nvim_command "colorscheme catppuccin-macchiato"
-    local highlight = require('util').highlight
+    M.overrides()
+    M.set()
+end
 
-    highlight(0, 'VertSplit', {
-        fg = '#202233'
+function M.overrides()
+    require("catppuccin").setup({
+        integrations = {
+            cmp = true,
+            gitsigns = true,
+            nvimtree = true,
+            telescope = true,
+            notify = false,
+            mini = false,
+        },
+        color_overrides = {
+            macchiato = {
+                crust = '#202233'
+            }
+        }
     })
+end
+
+function M.palette()
+    return require("catppuccin.palettes").get_palette "macchiato"
+end
+
+function M.set()
+    vim.cmd.colorscheme 'catppuccin-macchiato'
 end
 
 return M
