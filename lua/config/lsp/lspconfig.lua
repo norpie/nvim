@@ -27,7 +27,7 @@ function M.setup()
         'html',
         'jdtls',
         'jsonls',
-        'tsserver',
+        'vtsls',
         'pylsp',
         'pyright',
         'texlab',

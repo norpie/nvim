@@ -1,8 +1,13 @@
 return {
     'neovim/nvim-lspconfig',
     dependencies = {
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
+        {
+            'williamboman/mason.nvim',
+            lazy = false,
+            dependencies = {
+                'williamboman/mason-lspconfig.nvim',
+            }
+        },
         'jose-elias-alvarez/null-ls.nvim', -- TODO: more research
         --'mfussenegger/nvim-jdtls', -- TODO: java
         'simrat39/rust-tools.nvim',
