@@ -11,6 +11,7 @@ return {
         'jose-elias-alvarez/null-ls.nvim', -- TODO: more research
         --'mfussenegger/nvim-jdtls', -- TODO: java
         'simrat39/rust-tools.nvim',
+        'mfussenegger/nvim-jdtls',
         'simrat39/symbols-outline.nvim',
         'weilbith/nvim-code-action-menu',
         'folke/trouble.nvim',
