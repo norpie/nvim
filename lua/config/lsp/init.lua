@@ -14,7 +14,7 @@ function M.setup()
 
     -- General
     require('trouble').setup()
-    require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
+    --require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
     require('symbols-outline').setup()
     require('crates').setup()
     --

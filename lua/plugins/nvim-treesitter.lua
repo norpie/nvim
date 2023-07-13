@@ -10,6 +10,7 @@ return -- Treesitter
         'nvim-treesitter/nvim-treesitter-textobjects',     --TODO: config
         'RRethy/nvim-treesitter-textsubjects',             --TODO: config
         'mfussenegger/nvim-treehopper',
+        'dariuscorvus/tree-sitter-surrealdb.nvim',
     },
     build = ':TSUpdate',
     config = function()

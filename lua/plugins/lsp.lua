@@ -16,7 +16,7 @@ return {
         'weilbith/nvim-code-action-menu',
         'folke/trouble.nvim',
         'saecki/crates.nvim',
-        'kosayoda/nvim-lightbulb',
+        --'kosayoda/nvim-lightbulb', -- Lag?
         'glepnir/lspsaga.nvim',        -- TODO: Figure out if iterests
         'nvim-tree/nvim-web-devicons',
         {

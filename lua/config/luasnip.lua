@@ -183,7 +183,6 @@ function M.rust()
         })
     }, {
         key = "rust",
-        type = "autosnippets"
     })
 end
 

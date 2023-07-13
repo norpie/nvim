@@ -34,6 +34,7 @@ function M.setup()
         'clangd',
         'volar',
         'vimls',
+        'taplo',
         --'rust_analyzer',
         'lua_ls',
         --'sqls'

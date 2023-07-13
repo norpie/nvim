@@ -42,6 +42,7 @@ function M.setup()
         }
     }
     require('aerial').setup()
+    require("tree-sitter-surrealdb").setup()
 end
 
 return M
