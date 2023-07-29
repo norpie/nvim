@@ -88,8 +88,8 @@ function M.rust()
         }),
         s("struct", {
             c(1, {
-                t({ "#[derive(Debug, Clone, Copy)]", "" }),
-                t({ "#[derive(Debug, Clone, Copy, Serialize, Deserialize)]", "" }),
+                t({ "#[derive(Debug, Clone)]", "" }),
+                t({ "#[derive(Debug, Clone, Serialize, Deserialize)]", "" }),
             }),
             c(2, {
                 sn(nil, {
@@ -98,6 +98,25 @@ function M.rust()
                 }),
                 sn(nil, {
                     t({ "pub struct " }),
+                    i(1)
+                })
+            }),
+            t({ " {", "\t" }),
+            i(0),
+            t({ "", "}" }),
+        }),
+        s("enum", {
+            c(1, {
+                t({ "#[derive(Debug, Clone)]", "" }),
+                t({ "#[derive(Debug, Clone, Serialize, Deserialize)]", "" }),
+            }),
+            c(2, {
+                sn(nil, {
+                    t({ "enum " }),
+                    i(1)
+                }),
+                sn(nil, {
+                    t({ "pub enum " }),
                     i(1)
                 })
             }),
@@ -170,16 +189,17 @@ function M.rust()
             i(0),
         }),
         s("?test", {
-            t({"#[cfg(test)]", ""}),
-            t({"mod tests {", ""}),
-            t({"\t#[test]", ""}),
-            t({"\tfn "}),
+            t({ "#[cfg(test)]", "" }),
+            t({ "mod tests {", "" }),
+            t({ "\tuse super::*;", "" }),
+            t({ "\t#[test]", "" }),
+            t({ "\tfn " }),
             i(1),
-            t({"() {", "\t\t"}),
+            t({ "() {", "\t\t" }),
             i(0),
-            t({"","\t\tassert_eq!(true, true);", ""}),
-            t({"\t}", ""}),
-            t({"}"}),
+            t({ "", "\t\tassert_eq!(true, true);", "" }),
+            t({ "\t}", "" }),
+            t({ "}" }),
         })
     }, {
         key = "rust",
