@@ -1,5 +1,8 @@
 return {
-    'wellle/targets.vim',
+    {
+        'wellle/targets.vim',
+        event = 'VeryLazy'
+    },
     {
         'matze/vim-move',
         keys = {
@@ -7,8 +10,6 @@ return {
             { '<A-k>', '<Plug>MoveBlockUp' }
         }
     },
-    --'junegunn/vim-easy-align',
-    --'godlygeek/tabular',
     {
         'kylechui/nvim-surround',
         event = "VeryLazy",
@@ -31,14 +32,15 @@ return {
     {
         'abecodes/tabout.nvim',
         event = "InsertEnter",
+        priority = 49,
         config = function()
-            require('config/tabout').setup()
-        end
+            require('tabout').setup({})
+        end,
     },
     {
         'ahmedkhalf/project.nvim',
         config = function()
-            require('project_nvim').setup()
+            require('project_nvim').setup({})
         end
     },
 }

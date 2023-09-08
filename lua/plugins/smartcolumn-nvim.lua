@@ -8,5 +8,6 @@ return {
             scope = "window",
         })
     end,
+    event = 'VeryLazy',
     opts = {}
 }

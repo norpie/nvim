@@ -35,10 +35,4 @@ return {
             })
         end
     },
-    {
-        'tiagovla/scope.nvim',
-        dependencies = {
-            'nvim-lualine/lualine.nvim',
-        }
-    }
 }
