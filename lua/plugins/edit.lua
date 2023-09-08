@@ -1,30 +1,36 @@
 return {
     'wellle/targets.vim',
-    'AndrewRadev/splitjoin.vim',
-    'tpope/vim-repeat',
-    'matze/vim-move',
-    'junegunn/vim-easy-align',
-    'godlygeek/tabular',
+    {
+        'matze/vim-move',
+        keys = {
+            { '<A-j>', '<Plug>MoveBlockDown' },
+            { '<A-k>', '<Plug>MoveBlockUp' }
+        }
+    },
+    --'junegunn/vim-easy-align',
+    --'godlygeek/tabular',
     {
         'kylechui/nvim-surround',
+        event = "VeryLazy",
         config = function()
-            require('nvim-surround').setup()
+            require('nvim-surround').setup({})
         end
     },
     {
         'windwp/nvim-autopairs',
-        config = function()
-            require('nvim-autopairs').setup()
-        end
+        event = "InsertEnter",
+        opts = {}
     },
     {
         'McAuleyPenney/tidy.nvim',
+        event = "VeryLazy",
         config = function()
             require('tidy').setup()
         end
     },
     {
         'abecodes/tabout.nvim',
+        event = "InsertEnter",
         config = function()
             require('config/tabout').setup()
         end

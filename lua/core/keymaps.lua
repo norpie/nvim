@@ -71,29 +71,12 @@ map('v', '<C-C>', '"+y')
 -- Ctrl-Shift-V is paste from clipboard
 map('i', '<C-V>', '<Esc>"+pa')
 
--- Open some plugin ui's
-map('n', '<Leader>os', ':SymbolsOutline<CR>')
-map('n', '<Leader>oa', ':AerialToggle!<CR>')
-map('n', '<Leader>gb', ':Flogsplit<CR>')
-map('n', '<Leader>gm', ':GitMessenger<CR>')
-map('n', '<Leader>n', ':Navbuddy<CR>')
-
--- Enter zen
-map('n', '<Leader>z', ':ZenMode<CR>', { silent = true })
-
 -- Lsp keys
 map('n', '<Leader>d', ':lua vim.lsp.buf.definition()<CR>')
 map('n', '<Leader>p', ':lua vim.lsp.buf.type_definition()<CR>')
 map('n', '<Leader>h', ':lua vim.lsp.buf.hover()<CR>')
 map('n', '<Leader>f', ':lua vim.lsp.buf.format()<CR>')
 map('n', '<Leader>r', ':lua vim.lsp.buf.rename()<CR>')
-map('n', '<Leader>q', ':CodeActionMenu<CR>')
-
--- Trouble keys
-map('n', '<Leader>tt', ':TroubleToggle<CR>')
-map('n', '<Leader>tq', ':TroubleToggle quickfix<CR>')
-map('n', '<Leader>tw', ':TroubleToggle workspace_diagnostics<CR>')
-map('n', '<Leader>td', ':TroubleToggle document_diagnostics<CR>')
 
 -- Snippets
 map('n', '<Leader>se', ':edit! ~/.config/nvim/lua/config/luasnip.lua<CR>')
@@ -108,7 +91,7 @@ vim.cmd [[
 ]]
 
 -- git -> Git
-vim.cmd('cnoreabbrev Git git')
+vim.cmd('cnoreabbrev git Git')
 
 -- :Write to not care about permissions
 vim.cmd('cnoreabbrev Write w !sudo tee %')

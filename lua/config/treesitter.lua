@@ -18,16 +18,11 @@ function M.setup()
             -- `false` will disable the whole extension
             enable = true,
 
-            -- list of language that will be disabled
-            disable = {
-                'markdown',
-            },
-
             -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
             -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
             -- Using this option may slow down your editor, and you may see some duplicate highlights.
             -- Instead of true it can also be a list of languages
-            additional_vim_regex_highlighting = 'latex'
+            additional_vim_regex_highlighting = { 'latex', 'markdown' }
         },
         endwise = {
             enable = true,
@@ -41,8 +36,6 @@ function M.setup()
             max_file_lines = nil, -- Do not enable for files with more than n lines, int
         }
     }
-    require('aerial').setup()
-    require("tree-sitter-surrealdb").setup()
 end
 
 return M

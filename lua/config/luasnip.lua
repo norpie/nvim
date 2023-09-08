@@ -190,8 +190,8 @@ function M.rust()
         }),
         s("?test", {
             t({ "#[cfg(test)]", "" }),
-            t({ "mod tests {", "" }),
-            t({ "\tuse super::*;", "" }),
+            t({ "mod tests {", "", "" }),
+            t({ "\tuse super::*;", "", "" }),
             t({ "\t#[test]", "" }),
             t({ "\tfn " }),
             i(1),

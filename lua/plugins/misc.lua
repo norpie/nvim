@@ -1,7 +1,17 @@
 return {
-    'folke/neodev.nvim',
-    'nvim-lua/plenary.nvim',
-    'tpope/vim-vinegar',
+    {
+        'folke/neodev.nvim',
+        ft = 'lua',
+    },
+    {
+        'nvim-lua/plenary.nvim',
+        lazy = true
+    },
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
     {
         'ethanholz/nvim-lastplace',
         init = function()

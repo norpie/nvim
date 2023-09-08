@@ -2,21 +2,14 @@ local M = {}
 
 function M.setup()
     M.config()
-    M.maps()
     M.extensions()
     M.theme()
-end
-
-function M.maps()
-    local map = require('util').map
-    map('n', '<C-p>', ':Telescope find_files<cr>', { silent = true })
-    map('n', '<Leader>oc', ':Telescope cder<CR>')
 end
 
 function M.extensions()
     local telescope = require("telescope")
     telescope.load_extension("noice")
-    telescope.load_extension('cder')
+    --telescope.load_extension('cder')
     telescope.load_extension('fzy_native')
 end
 
@@ -34,7 +27,7 @@ function M.config()
                 }
             },
             sorting_strategy = 'ascending',
-            prompt_prefix = "   ",
+            prompt_prefix = "   ",
             selection_caret = "  ",
             entry_prefix = "  ",
         },

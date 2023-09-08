@@ -1,8 +1,4 @@
-local present, impatient = pcall(require, "impatient")
-
-if present then
-    impatient.enable_profile()
-end
+vim.loader.enable()
 
 local core_modules = {
     "core.options",

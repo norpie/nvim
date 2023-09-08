@@ -10,6 +10,6 @@ return {
         "rcarriga/nvim-notify",
     },
     config = function()
-        require("config/noice-nvim")
+        require("config.noice-nvim")
     end
 }

@@ -1,7 +1,6 @@
 return {
     "m4xshen/smartcolumn.nvim",
-    lazy = false,
-    init = function()
+    config = function()
         require("smartcolumn").setup({
             colorcolumn = "100",
             disabled_filetypes = { "help", "text", "markdown", "lazy" },
