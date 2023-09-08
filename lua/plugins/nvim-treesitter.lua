@@ -10,6 +10,7 @@ return -- Treesitter
             'David-Kunz/markid',
         },
         build = ':TSUpdate',
+        event = 'VeryLazy',
         config = function()
             require('config.treesitter').setup()
         end

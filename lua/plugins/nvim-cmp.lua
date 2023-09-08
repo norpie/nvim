@@ -15,7 +15,7 @@ return {
         config = function()
             require('config/cmp').setup()
         end,
-        event = 'InsertEnter'
+        event = { 'InsertEnter', 'CmdlineEnter' }
     },
     {
         'L3MON4D3/LuaSnip',

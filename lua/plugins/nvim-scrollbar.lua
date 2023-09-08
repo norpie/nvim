@@ -1,6 +1,6 @@
 return {
     'petertriho/nvim-scrollbar',
-    lazy = false,
+    event = 'VeryLazy',
     dependencies = {
         'lewis6991/gitsigns.nvim',
         'kevinhwang91/nvim-hlslens'

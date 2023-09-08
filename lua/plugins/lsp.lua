@@ -11,6 +11,7 @@ return {
     {
         "utilyre/barbecue.nvim",
         name = "barbecue",
+        event = 'VeryLazy',
         version = "*",
         dependencies = {
             "SmiteshP/nvim-navic",
@@ -36,6 +37,7 @@ return {
     },
     {
         'kosayoda/nvim-lightbulb',
+        event = 'VeryLazy',
         config = function()
             require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
         end,
@@ -104,6 +106,7 @@ return {
     },
     {
         'williamboman/mason-lspconfig.nvim',
+        event = 'VeryLazy',
         dependencies = { 'williamboman/mason.nvim' },
         config = function()
             require("mason-lspconfig").setup()
