@@ -106,7 +106,7 @@ return {
     },
     {
         'williamboman/mason-lspconfig.nvim',
-        event = 'VeryLazy',
+        --event = 'VeryLazy',
         dependencies = { 'williamboman/mason.nvim' },
         config = function()
             require("mason-lspconfig").setup()
@@ -135,6 +135,7 @@ return {
     },
     {
         'williamboman/mason.nvim',
+        dependencies = { 'neovim/nvim-lspconfig' },
         config = function()
             require("mason").setup({
                 ui = {

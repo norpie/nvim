@@ -8,12 +8,23 @@ function M.settings()
     --    }
     --}
     --rt.setup(opts)
-    local settings = {}
+    local settings = {
+        ["rust-analyzer"] = {
+            check     = {
+                command = "clippy",
+                extraArgs = { "--all", "--no-deps", "--", "-W", "clippy::all" },
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+
+    }
     return settings
 end
 
 function M.cmd()
-    local cmd = { "ra-multiplex" }
+    local cmd = { "rust_analyzer" }
     return cmd
 end
 
