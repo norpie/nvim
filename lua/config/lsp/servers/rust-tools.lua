@@ -15,11 +15,11 @@ function M.setup()
                 ["rust-analyzer"] = {
                     check = {
                         command = "clippy",
-                        extraArgs = { "--all", "--no-deps", "--", "-W", "clippy::all" },
+                        extraArgs = { "--all", "--", "-W", "clippy::all" },
                     },
-                    procMacro = {
-                        enable = true
-                    },
+                    --procMacro = {
+                    --    enable = true
+                    --},
                 }
             }
         },
