@@ -30,16 +30,8 @@ return {
         end
     },
     {
-        'abecodes/tabout.nvim',
-        event = "InsertEnter",
-        priority = 49,
-        config = function()
-            require('tabout').setup({})
-        end,
-    },
-    {
         'ahmedkhalf/project.nvim',
-        event = 'VeryLazy',
+        event = 'UIEnter',
         config = function()
             require('project_nvim').setup({})
         end

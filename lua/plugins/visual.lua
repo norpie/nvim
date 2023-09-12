@@ -21,10 +21,6 @@ return {
         end
     },
     {
-        'RRethy/vim-illuminate',
-        event = 'VeryLazy'
-    },
-    {
         'norcalli/nvim-colorizer.lua',
         event = 'VeryLazy',
         config = function()

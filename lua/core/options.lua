@@ -1,16 +1,14 @@
 local set = vim.opt
-local g = vim.g
+
+HOME = os.getenv('HOME')
+if (HOME ~= nil) then
+    set.undodir = HOME .. '/.cache/nvim/undodir'
+end
 
 -- leader
 vim.g.mapleader = ' '
 
--- autosave
-g.auto_save_silent = 1
-g.auto_save = 1
-
 set.encoding = 'utf8'
-
---set.completeopt = {'menu', 'menuone', 'noselect'}
 
 vim.wo.fillchars = 'eob: '
 
@@ -24,6 +22,7 @@ set.errorbells = false
 
 set.splitright = true
 set.splitbelow = true
+set.splitkeep = 'screen'
 
 set.tabstop = 4
 set.softtabstop = 4
@@ -46,18 +45,10 @@ set.swapfile = false
 set.backup = false
 set.undofile = true
 
---set.wildmenu = true
---set.wildmode = 'list:full'
-
-HOME = os.getenv('HOME')
-if (HOME ~= nil) then
-    set.undodir = HOME .. '/.cache/nvim/undodir'
-end
-
 set.termguicolors = true
 set.scrolloff = 50
+set.updatetime = 4000
 set.cmdheight = 1
-set.updatetime = 25
 set.spelllang = 'fi,fr,nl,en'
 set.laststatus = 3
 set.showmode = false

@@ -33,13 +33,11 @@ end
 
 
 function M.cmd()
-    local cmd = { "lua-language-server" }
-    return cmd
+    return { "lua-language-server" }
 end
 
 function M.filetypes()
-    local filetypes = { 'lua' }
-    return filetypes
+    return { 'lua' }
 end
 
 return M

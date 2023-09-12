@@ -15,6 +15,18 @@ create_autocmd('VimEnter', {
     group = custom_events
 })
 
+local misc_events = 'miscgroup'
+create_augroup(misc_events, { clear = true })
+create_autocmd("BufHidden", {
+    desc = "Delete [No Name] buffers",
+    callback = function(event)
+        if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
+            vim.schedule(function() pcall(vim.api.nvim_buf_delete, event.buf, {}) end)
+        end
+    end,
+    group = misc_events
+})
+
 local save_file_group = 'writegroup'
 create_augroup(save_file_group, { clear = true })
 create_autocmd('BufWritePost', { pattern = '*.lua', command = 'source %', group = save_file_group })

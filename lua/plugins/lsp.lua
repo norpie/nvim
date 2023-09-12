@@ -4,6 +4,12 @@ return {
         dependencies = {
             'nvim-tree/nvim-web-devicons',
         },
+        keys = {
+            { '<leader>f', function() vim.lsp.buf.format({ async = true }) end, desc = 'lsp format' },
+            { '<leader>h', function() vim.lsp.buf.hover() end },
+            { 'gd',        function() vim.lsp.buf.definition() end },
+            { 'gD',        function() vim.lsp.buf.declaration() end },
+        },
         config = function()
             require('config/lsp').setup()
         end
@@ -17,8 +23,6 @@ return {
             "SmiteshP/nvim-navic",
             "nvim-tree/nvim-web-devicons",
         },
-        opts = {
-        },
     },
     {
         'SmiteshP/nvim-navbuddy',
@@ -28,7 +32,7 @@ return {
             }
         },
         keys = {
-            { '<Leader>n', '<cmd>Navbuddy<CR>' }
+            { '<leader>n', '<cmd>Navbuddy<CR>' }
         },
         dependencies = {
             'SmiteshP/nvim-navic',
@@ -65,10 +69,10 @@ return {
             'TroubleToggle'
         },
         keys = {
-            { '<Leader>tt', '<cmd>TroubleToggle<CR>' },
-            { '<Leader>tq', '<cmd>TroubleToggle quickfix<CR>' },
-            { '<Leader>tw', '<cmd>TroubleToggle workspace_diagnostics<CR>' },
-            { '<Leader>td', '<cmd>TroubleToggle document_diagnostics<CR>' }
+            { '<leader>tt', '<cmd>TroubleToggle<CR>' },
+            { '<leader>tq', '<cmd>TroubleToggle quickfix<CR>' },
+            { '<leader>tw', '<cmd>TroubleToggle workspace_diagnostics<CR>' },
+            { '<leader>td', '<cmd>TroubleToggle document_diagnostics<CR>' }
         },
     },
     {
@@ -78,7 +82,7 @@ return {
             'neovim/nvim-lspconfig'
         },
         keys = {
-            { '<Leader>q', '<cmd>CodeActionMenu<CR>' }
+            { '<leader>q', '<cmd>CodeActionMenu<CR>' }
         }
     },
     {
@@ -87,9 +91,33 @@ return {
         dependencies = {
             'neovim/nvim-lspconfig'
         },
-        ft = {
-            'rust'
-        }
+        event = { "BufReadPost *.rs" },
+        config = function()
+            local rt = require("rust-tools")
+            local opts = {
+                server = {
+                    cmd = { "ra-multiplex", "client" },
+                    on_attach = function(_, bufnr)
+                        vim.keymap.set("n", "<leader>h", rt.hover_actions.hover_actions, { buffer = bufnr })
+                        vim.keymap.set("n", "<leader>q", rt.code_action_group.code_action_group, { buffer = bufnr })
+                        vim.keymap.set("n", "<leader>oc", rt.open_cargo_toml.open_cargo_toml, { buffer = bufnr })
+                        vim.keymap.set("n", "<leader>op", rt.parent_module.parent_module, { buffer = bufnr })
+                    end,
+                    settings = {
+                        ["rust-analyzer"] = {
+                            check = {
+                                command = "clippy",
+                                extraArgs = { "--all", "--", "-W", "clippy::all" },
+                            },
+                            --procMacro = {
+                            --    enable = true
+                            --},
+                        }
+                    }
+                },
+            }
+            rt.setup(opts)
+        end,
     },
     {
         'simrat39/symbols-outline.nvim',

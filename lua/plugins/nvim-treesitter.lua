@@ -3,16 +3,39 @@ return -- Treesitter
     {
         'nvim-treesitter/nvim-treesitter',
         dependencies = {
-            'p00f/nvim-ts-rainbow',
-            'm-demare/hlargs.nvim',
+            'David-Kunz/markid',
             'nvim-treesitter/nvim-treesitter-textobjects', -- TODO: config
             'RRethy/nvim-treesitter-textsubjects',         -- TODO: config
-            'David-Kunz/markid',
+            'RRethy/vim-illuminate',
+            'RRethy/nvim-treesitter-endwise',
+            {
+                'abecodes/tabout.nvim',
+                config = function()
+                    require('tabout').setup()
+                end,
+            },
         },
         build = ':TSUpdate',
-        event = 'VeryLazy',
+        event = { 'VeryLazy' },
         config = function()
-            require('config.treesitter').setup()
+            require('nvim-treesitter.configs').setup {
+                ensure_installed = "all",
+                sync_install = false,
+                ignore_install = {},
+                autotag = {
+                    enable = true,
+                },
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = { 'latex', 'markdown' }
+                },
+                markid = {
+                    enable = true
+                },
+                endwise = {
+                    enable = true,
+                },
+            }
         end
     },
     {
@@ -26,28 +49,12 @@ return -- Treesitter
         end
     },
     {
-        'RRethy/nvim-treesitter-endwise',
-        ft = {
-            'ruby', 'lua', 'vimscript', 'bash', 'elixir', 'fish'
-        }
-    },
-    {
         'windwp/nvim-ts-autotag',
-        ft = {
-            'astro',
-            'glimmer',
-            'handlebars',
-            'html',
-            'javascript',
-            'jsx',
-            'markdown',
-            'php',
-            'rescript',
-            'svelte',
-            'tsx',
-            'typescript',
-            'vue',
-            'xml'
+        ft = { 'astro', 'glimmer', 'handlebars',
+            'html', 'javascript', 'jsx',
+            'markdown', 'php', 'rescript',
+            'svelte', 'tsx', 'typescript',
+            'vue', 'xml'
         }
     }
 }

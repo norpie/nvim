@@ -14,6 +14,20 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     {
+        'famiu/bufdelete.nvim',
+        keys = {
+            { '<leader>bd', '<cmd>Bdelete<cr>' },
+            { '<leader>bw', '<cmd>Bwipeout<cr>' },
+            { 'bd', 'Bdelete', mode = 'ca', },
+            { 'bw', 'Bwipeout', mode = 'ca',  }
+
+        },
+        cmd = {
+            'Bdelete',
+            'Bwipeout'
+        }
+    },
+    {
         'ethanholz/nvim-lastplace',
         init = function()
             require 'nvim-lastplace'.setup {
@@ -25,6 +39,10 @@ return {
     },
     {
         'google/executor.nvim',
+        config = function()
+            require("executor").setup({})
+        end,
+        cmd = '',
         keys = {
             { '<leader>es', '<cmd>ExecutorSetCommand<cr>', desc = 'Set executor command' },
             {
