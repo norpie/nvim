@@ -9,7 +9,7 @@ return {
                 gitsigns = true,
                 nvimtree = true,
                 telescope = true,
-                notify = false,
+                notify = true,
                 mini = false,
             },
             color_overrides = {
@@ -22,6 +22,9 @@ return {
         -- Highlight groups for menu
         -- Customization for Pmenu
         local colors = require('config.theme').palette()
+        if not colors then
+            return
+        end
         vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#282C34", fg = "NONE" })
         vim.api.nvim_set_hl(0, "Pmenu", { fg = "#C5CDD9", bg = colors.crust }) -- "#22252A"
 

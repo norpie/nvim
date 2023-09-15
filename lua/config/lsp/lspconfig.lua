@@ -63,7 +63,6 @@ function M.setup()
             }
         end
     end
-    require('config.lsp.servers.rust-tools').setup()
-    end
+end
 
 return M
