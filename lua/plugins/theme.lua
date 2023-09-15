@@ -21,7 +21,7 @@ return {
         vim.cmd.colorscheme 'catppuccin-mocha'
         -- Highlight groups for menu
         -- Customization for Pmenu
-        local colors = require('config.theme').palette()
+        local colors = require('util').palette()
         if not colors then
             return
         end

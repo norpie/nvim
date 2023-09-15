@@ -41,7 +41,7 @@ return {
         --telescope.load_extension('cder')
         telescope.load_extension('fzy_native')
 
-        local colors = require('config.theme').palette()
+        local colors = require('util').palette()
         if not colors then
             return
         end
