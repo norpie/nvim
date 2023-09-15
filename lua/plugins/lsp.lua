@@ -11,7 +11,7 @@ return {
             { 'gD',        function() vim.lsp.buf.declaration() end },
         },
         config = function()
-            require('config/lsp').setup()
+            require('lsp').setup()
         end
     },
     {

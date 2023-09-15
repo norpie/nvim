@@ -29,11 +29,4 @@ return {
             require('tidy').setup()
         end
     },
-    {
-        'ahmedkhalf/project.nvim',
-        event = 'UIEnter',
-        config = function()
-            require('project_nvim').setup({})
-        end
-    },
 }

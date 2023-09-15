@@ -42,10 +42,10 @@ function M.setup()
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lspconfig = require('lspconfig')
     for _, server in pairs(servers) do
-        if vim.fn.filereadable(vim.fn.stdpath "config" .. "/lua/config/lsp/servers/" .. server .. ".lua") == 1 then
-            local settings = require('config.lsp.servers.' .. server).settings()
-            local filetypes = require('config.lsp.servers.' .. server).filetypes()
-            local cmd = require('config.lsp.servers.' .. server).cmd()
+        if vim.fn.filereadable(vim.fn.stdpath "config" .. "/lua/lsp/servers/" .. server .. ".lua") == 1 then
+            local settings = require('lsp.servers.' .. server).settings()
+            local filetypes = require('lsp.servers.' .. server).filetypes()
+            local cmd = require('lsp.servers.' .. server).cmd()
             lspconfig[server].setup {
                 on_attach = on_attach,
                 capabilities = capabilities,

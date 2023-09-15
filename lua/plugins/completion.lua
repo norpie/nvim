@@ -147,5 +147,9 @@ return {
                 }
             })
         end,
-    }
+    },
+    {
+        'folke/neodev.nvim',
+        ft = 'lua',
+    },
 }

@@ -1,9 +1,9 @@
 vim.loader.enable()
 
 local core_modules = {
-    "core.options",
-    "core.autocmd",
-    "core.keymaps",
+    "config.options",
+    "config.autocmd",
+    "config.keymaps",
 }
 
 for _, module in ipairs(core_modules) do

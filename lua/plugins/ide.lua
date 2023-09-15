@@ -1,33 +1,5 @@
 return {
     {
-        'folke/neodev.nvim',
-        ft = 'lua',
-    },
-    {
-        'nvim-lua/plenary.nvim',
-        lazy = true
-    },
-    {
-        'stevearc/oil.nvim',
-        event = 'User DirEnter',
-        opts = {},
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-    },
-    {
-        'famiu/bufdelete.nvim',
-        keys = {
-            { '<leader>bd', '<cmd>Bdelete<cr>' },
-            { '<leader>bw', '<cmd>Bwipeout<cr>' },
-            { 'bd', 'Bdelete', mode = 'ca', },
-            { 'bw', 'Bwipeout', mode = 'ca',  }
-
-        },
-        cmd = {
-            'Bdelete',
-            'Bwipeout'
-        }
-    },
-    {
         'ethanholz/nvim-lastplace',
         init = function()
             require 'nvim-lastplace'.setup {
@@ -51,5 +23,12 @@ return {
                 desc = 'Run executor command, if not set prompt'
             },
         },
-    }
+    },
+    {
+        'ahmedkhalf/project.nvim',
+        event = 'UIEnter',
+        config = function()
+            require('project_nvim').setup({})
+        end
+    },
 }

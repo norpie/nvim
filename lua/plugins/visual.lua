@@ -10,17 +10,6 @@ return {
         }
     },
     {
-        'stevearc/dressing.nvim',
-        event = 'VeryLazy',
-        config = function()
-            require("dressing").setup({
-                input = {
-                    start_in_insert = false,
-                }
-            })
-        end
-    },
-    {
         'norcalli/nvim-colorizer.lua',
         event = 'VeryLazy',
         config = function()
