@@ -134,7 +134,7 @@ return {
     },
     {
         'williamboman/mason-lspconfig.nvim',
-        event = 'UIEnter',
+        event = 'BufReadPost',
         dependencies = { 'williamboman/mason.nvim' },
         config = function()
             require("mason-lspconfig").setup()
