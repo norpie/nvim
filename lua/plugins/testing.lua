@@ -14,4 +14,11 @@ return {
     --         })
     --     end
     -- } -- TODO: Enable later
+    {
+        'michaelb/sniprun',
+        build = 'sh install.sh',
+        keys = {
+            { '<leader>r', function() vim.cmd("'<,'>SnipRun") end },
+        }
+    }
 }
