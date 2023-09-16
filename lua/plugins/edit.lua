@@ -26,6 +26,18 @@ return {
         },
     },
     {
+        'terrortylor/nvim-comment',
+        keys = {
+            { '<leader>c', '<cmd>CommentToggle<cr>'},
+            { '<leader>c', ':<C-u>call CommentOperator(visualmode())<CR>', mode = 'x' }
+        },
+        config = function()
+            require('nvim_comment').setup({
+                create_mappings = false,
+            })
+        end
+    },
+    {
         'McAuleyPenney/tidy.nvim',
         event = "VeryLazy",
         config = function()
