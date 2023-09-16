@@ -17,6 +17,12 @@ return {
         end
     },
     {
+        'utilyre/sentiment.nvim',
+        event = 'VeryLazy',
+        version = "*",
+        config = true,
+    },
+    {
         'folke/todo-comments.nvim',
         event = 'VeryLazy',
         dependencies = {

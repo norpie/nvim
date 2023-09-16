@@ -22,5 +22,11 @@ return {
         keys = {
             { '<leader>gm', '<cmd>GitMessenger' }
         }
-    }
+    },
+    --{ -- TODO: Enable later, maybe
+    --    'lewis6991/gitsigns.nvim'
+    --},
+    -- { -- TODO: Enable later, when needed
+    --     'pwntester/octo.nvim',
+    -- }
 }
