@@ -103,10 +103,6 @@ map('n', '<C-s-l>', ':vertical resize +2<CR>')
 map('n', '<tab>', ':bnext<CR>')
 map('n', '<s-tab>', ':bprev<CR>')
 
--- splitting
-map('n', '<Leader>sh', ':split<CR>')
-map('n', '<Leader>sv', ':vsplit<CR>')
-
 -- Ctrl-backspace deletes words bakwards in insert
 noremap('i', '<C-H>', '<Esc>cvb')
 
