@@ -22,4 +22,28 @@ return {
             { 'b', function() require('spider').motion('b') end, mode = 'x' },
         }
     },
+    {
+        'jinh0/eyeliner.nvim',
+        event = 'VeryLazy',
+        config = function()
+            require('eyeliner').setup {
+                highlight_on_key = false, -- show highlights only after keypress
+                dim = false    -- dim all other characters if set to true (recommended!)
+            }
+        end
+    },
+    {
+        "ghillb/cybu.nvim",
+        requires = {
+            "nvim-tree/nvim-web-devicons",
+            "nvim-lua/plenary.nvim",
+        },
+        keys = {
+            { "<s-tab>", "<cmd>CybuPrev<cr>" },
+            { "<tab>",   "<cmd>CybuNext<cr>" }
+        },
+        config = function()
+            require('cybu').setup()
+        end,
+    }
 }
