@@ -12,11 +12,16 @@ return {
     },
     {
         'AndrewRadev/splitjoin.vim',
-        lazy = false,
         keys = {
             { 'J', '<cmd>SplitjoinJoin<cr>' },
             { 'K', '<cmd>SplitjoinSplit<cr>' },
         }
+    },
+    {
+        'AndrewRadev/switch.vim',
+        keys = {
+            { '<leader>s', '<cmd>Switch<cr>' }
+        },
     },
     {
         'kylechui/nvim-surround',
@@ -36,7 +41,7 @@ return {
     {
         'terrortylor/nvim-comment',
         keys = {
-            { '<leader>c', '<cmd>CommentToggle<cr>'},
+            { '<leader>c', '<cmd>CommentToggle<cr>' },
             { '<leader>c', ':<C-u>call CommentOperator(visualmode())<CR>', mode = 'x' }
         },
         config = function()
