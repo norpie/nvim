@@ -11,6 +11,14 @@ return {
         }
     },
     {
+        'AndrewRadev/splitjoin.vim',
+        lazy = false,
+        keys = {
+            { 'J', '<cmd>SplitjoinJoin<cr>' },
+            { 'K', '<cmd>SplitjoinSplit<cr>' },
+        }
+    },
+    {
         'kylechui/nvim-surround',
         event = "VeryLazy",
         config = function()
