@@ -1,5 +1,21 @@
 return {
     {
+        'andrewferrier/debugprint.nvim',
+        version = "*",
+        event = 'VeryLazy',
+        keys = {
+            { '<leader>da', function() return require('debugprint').debugprint({ above = true }) end, expr = true },
+            { '<leader>du', function() return require('debugprint').debugprint() end, expr = true }
+        },
+        config = function()
+            local opts = {
+                create_keymaps = false,
+                create_commands = true
+            }
+            require("debugprint").setup(opts)
+        end
+    },
+    {
         'ethanholz/nvim-lastplace',
         init = function()
             require 'nvim-lastplace'.setup {
@@ -14,7 +30,6 @@ return {
         config = function()
             require("executor").setup({})
         end,
-        cmd = '',
         keys = {
             { '<leader>es', '<cmd>ExecutorSetCommand<cr>', desc = 'Set executor command' },
             {
