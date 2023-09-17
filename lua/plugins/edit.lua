@@ -11,6 +11,16 @@ return {
         }
     },
     {
+        "gbprod/substitute.nvim",
+        keys = {
+            { "s", function() require('substitute.exchange').operator() end, noremap = true },
+            { "S", function() require('substitute.exchange').line() end,     noremap = true },
+        },
+        config = function()
+            require("substitute").setup({})
+        end
+    },
+    {
         'AndrewRadev/splitjoin.vim',
         keys = {
             { 'J', '<cmd>SplitjoinJoin<cr>' },
