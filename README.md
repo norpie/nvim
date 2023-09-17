@@ -1,4 +1,4 @@
-# nvim/
+# norpie's neovim config
 
 <a href="https://dotfyle.com/norpie-dev/nvim"><img src="https://dotfyle.com/norpie-dev/nvim/badges/plugins?style=flat" /></a>
 <a href="https://dotfyle.com/norpie-dev/nvim"><img src="https://dotfyle.com/norpie-dev/nvim/badges/leaderkey?style=flat" /></a>
