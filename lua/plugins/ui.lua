@@ -27,13 +27,6 @@ return {
     },
     {
         'famiu/bufdelete.nvim',
-        keys = {
-            { '<leader>bd', '<cmd>Bdelete<cr>' },
-            { '<leader>bw', '<cmd>Bwipeout<cr>' },
-            { 'bd',         'Bdelete',          mode = 'ca', },
-            { 'bw',         'Bwipeout',         mode = 'ca', }
-
-        },
         cmd = {
             'Bdelete',
             'Bwipeout'

@@ -91,7 +91,7 @@ local function close_or_delete()
     end
 end
 
-map('n', '<leader>d', function() close_or_delete() end)
+map('n', 'bd', function() close_or_delete() end)
 
 -- Resize wins
 map('n', '<C-s-h>', ':resize +2<CR>')
