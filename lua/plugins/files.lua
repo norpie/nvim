@@ -6,6 +6,7 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     {
-        'jghauser/mkdir.nvim'
+        'jghauser/mkdir.nvim',
+        event = 'VeryLazy'
     }
 }
