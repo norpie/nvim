@@ -1,8 +1,8 @@
 # norpie's neovim config
 
-<a href="https://dotfyle.com/norpie-dev/nvim"><img src="https://dotfyle.com/norpie-dev/nvim/badges/plugins?style=flat" /></a>
-<a href="https://dotfyle.com/norpie-dev/nvim"><img src="https://dotfyle.com/norpie-dev/nvim/badges/leaderkey?style=flat" /></a>
-<a href="https://dotfyle.com/norpie-dev/nvim"><img src="https://dotfyle.com/norpie-dev/nvim/badges/plugin-manager?style=flat" /></a>
+<a href="https://dotfyle.com/norpie/nvim"><img src="https://dotfyle.com/norpie/nvim/badges/plugins?style=flat" /></a>
+<a href="https://dotfyle.com/norpie/nvim"><img src="https://dotfyle.com/norpie/nvim/badges/leaderkey?style=flat" /></a>
+<a href="https://dotfyle.com/norpie/nvim"><img src="https://dotfyle.com/norpie/nvim/badges/plugin-manager?style=flat" /></a>
 
 
 ## Install Instructions
@@ -12,14 +12,14 @@
 Clone the repository and install the plugins:
 
 ```sh
-git clone git@github.com:norpie-dev/nvim ~/.config/norpie-dev/nvim
-NVIM_APPNAME=norpie-dev/nvim/ nvim --headless +"Lazy! sync" +qa
+git clone git@github.com:norpie/nvim ~/.config/norpie/nvim
+NVIM_APPNAME=norpie/nvim/ nvim --headless +"Lazy! sync" +qa
 ```
 
 Open Neovim with this config:
 
 ```sh
-NVIM_APPNAME=norpie-dev/nvim/ nvim
+NVIM_APPNAME=norpie/nvim/ nvim
 ```
 
 ## Plugins
