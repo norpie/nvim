@@ -3,7 +3,7 @@ return -- Treesitter
     {
         'nvim-treesitter/nvim-treesitter',
         dependencies = {
-            'David-Kunz/markid',
+            'norpie/markid',
             'nvim-treesitter/nvim-treesitter-textobjects', -- TODO: config
             'RRethy/nvim-treesitter-textsubjects',         -- TODO: config
             'RRethy/vim-illuminate',
