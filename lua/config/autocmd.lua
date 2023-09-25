@@ -15,6 +15,17 @@ create_autocmd('VimEnter', {
     group = custom_events
 })
 
+
+local java_group = 'javagroup'
+create_augroup(java_group, { clear = true })
+create_autocmd('BufReadPost', {
+    pattern = "*.java",
+    callback = function()
+        require('lsp.jdtls').launch()
+    end,
+    group = java_group
+})
+
 local misc_events = 'miscgroup'
 create_augroup(misc_events, { clear = true })
 create_autocmd("BufHidden", {

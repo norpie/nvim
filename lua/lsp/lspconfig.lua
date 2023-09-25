@@ -25,7 +25,7 @@ function M.setup()
         'cssls',
         'emmet_ls',
         'html',
-        'jdtls',
+        --'jdtls',
         'jsonls',
         'vtsls',
         'pylsp',

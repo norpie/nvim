@@ -16,6 +16,20 @@ return {
         end
     },
     {
+        'mfussenegger/nvim-jdtls',
+        event = { "BufReadPost *.java" },
+        dependencies = {
+            'neovim/nvim-lspconfig',
+        },
+        config = function()
+            require('lsp.jdtls').launch()
+        end,
+        keys = {
+            -- nnoremap <A-o> <Cmd>lua require'jdtls'.organize_imports()<CR>
+            { '<C-S-O>', function() require('jdtls').organize_imports() end },
+        }
+    },
+    {
         "utilyre/barbecue.nvim",
         name = "barbecue",
         event = 'VeryLazy',
