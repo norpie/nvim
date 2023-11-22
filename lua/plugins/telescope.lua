@@ -7,8 +7,8 @@ return {
     },
     cmd = 'Telescope',
     keys = {
-        { '<C-p>', '<cmd>Telescope find_files<cr>', { silent = true } },
-        { '<C-S-P>', '<cmd>Telescope live_grep<cr>', { silent = true } },
+        { '<C-p>',   '<cmd>Telescope find_files<cr>', { silent = true } },
+        { '<C-S-P>', '<cmd>Telescope live_grep<cr>',  { silent = true } },
         --{ '<Leader>oc', '<cmd>Telescope cder<CR>' }
     },
     config = function()
@@ -20,6 +20,7 @@ return {
             --    }
             --},
             defaults = {
+                file_ignore_patterns = { "bin/.*", "oldSrc/.*", "build/.*", "run/.*" },
                 layout_config = {
                     horizontal = {
                         prompt_position = "top",

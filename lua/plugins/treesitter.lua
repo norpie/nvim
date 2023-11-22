@@ -3,7 +3,7 @@ return -- Treesitter
     {
         'nvim-treesitter/nvim-treesitter',
         dependencies = {
-            'norpie/markid',
+            { 'norpie/markid', branch = 'fix-issue-9' },
             'nvim-treesitter/nvim-treesitter-textobjects', -- TODO: config
             'RRethy/nvim-treesitter-textsubjects',         -- TODO: config
             'RRethy/vim-illuminate',

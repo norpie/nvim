@@ -7,7 +7,10 @@ return {
             'nvim-lua/plenary.nvim',
             'hrsh7th/nvim-cmp',
             'nvim-telescope/telescope.nvim',
-            'sbdchd/neoformat',
+            {
+                'sbdchd/neoformat',
+                cmd = "Neoformat"
+            }
         },
         opts = {
             dir = "~/notes", -- no need to call 'vim.fn.expand' here

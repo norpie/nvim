@@ -3,6 +3,7 @@ return {
         'neovim/nvim-lspconfig',
         dependencies = {
             'nvim-tree/nvim-web-devicons',
+            'williamboman/mason.nvim',
         },
         keys = {
             { '<leader>f', function() vim.lsp.buf.format({ async = true }) end, desc = 'lsp format' },
@@ -10,9 +11,10 @@ return {
             { 'gd',        function() vim.lsp.buf.definition() end },
             { 'gD',        function() vim.lsp.buf.declaration() end },
         },
-        event = 'BufReadPost',
+        --event = 'BufReadPost',
+        lazy = false,
         config = function()
-            require('lsp').setup()
+            require('lsp.lspconfig').setup()
         end
     },
     {
@@ -54,16 +56,16 @@ return {
             'MunifTanjim/nui.nvim'
         }
     },
-    {
-        'kosayoda/nvim-lightbulb',
-        event = 'VeryLazy',
-        config = function()
-            require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
-        end,
-        dependencies = {
-            'neovim/nvim-lspconfig'
-        }
-    },
+    -- {
+    --     'kosayoda/nvim-lightbulb',
+    --     event = 'VeryLazy',
+    --     config = function()
+    --         require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
+    --     end,
+    --     dependencies = {
+    --         'neovim/nvim-lspconfig'
+    --     }
+    -- },
     {
         'saecki/crates.nvim',
         ft = 'toml',
@@ -147,35 +149,35 @@ return {
             require('symbols-outline').setup()
         end
     },
-    --{
-    --    'williamboman/mason-lspconfig.nvim',
-    --    event = 'BufReadPost',
-    --    dependencies = { 'williamboman/mason.nvim' },
-    --    config = function()
-    --        require("mason-lspconfig").setup()
-    --        vim.api.nvim_create_autocmd("FileType", {
-    --            group = vim.api.nvim_create_augroup("mason-lspconfig", { clear = true }),
-    --            callback = function(t)
-    --                if vim.bo[t.buf].buftype ~= "" then return end
-    --                local mason_lspconfig = require("mason-lspconfig")
-    --                local available_servers =
-    --                    mason_lspconfig.get_available_servers({ filetype = t.match })
-    --                local installed_servers = mason_lspconfig.get_installed_servers()
-    --                local is_available = false
-    --                for _, available in ipairs(available_servers) do
-    --                    for _, installed in ipairs(installed_servers) do
-    --                        if available == installed then return end
-    --                    end
-    --                    is_available = true
-    --                end
-    --                if is_available then
-    --                    vim.schedule(vim.cmd.LspInstall)
-    --                end
-    --            end,
-    --        })
-    --    end
+    {
+        'williamboman/mason-lspconfig.nvim',
+        event = 'BufReadPost',
+        dependencies = { 'williamboman/mason.nvim' },
+        config = function()
+            require("mason-lspconfig").setup()
+            --vim.api.nvim_create_autocmd("FileType", {
+            --    group = vim.api.nvim_create_augroup("mason-lspconfig", { clear = true }),
+            --    callback = function(t)
+            --        if vim.bo[t.buf].buftype ~= "" then return end
+            --        local mason_lspconfig = require("mason-lspconfig")
+            --        local available_servers =
+            --            mason_lspconfig.get_available_servers({ filetype = t.match })
+            --        local installed_servers = mason_lspconfig.get_installed_servers()
+            --        local is_available = false
+            --        for _, available in ipairs(available_servers) do
+            --            for _, installed in ipairs(installed_servers) do
+            --                if available == installed then return end
+            --            end
+            --            is_available = true
+            --        end
+            --        if is_available then
+            --            vim.schedule(vim.cmd.LspInstall)
+            --        end
+            --    end,
+            --})
+        end
 
-    --},
+    },
     {
         'williamboman/mason.nvim',
         dependencies = { 'neovim/nvim-lspconfig' },

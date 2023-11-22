@@ -25,19 +25,17 @@ function M.setup()
         'cssls',
         'emmet_ls',
         'html',
-        --'jdtls',
         'jsonls',
         'vtsls',
         'pylsp',
-        'pyright',
+        'phpactor',
         'texlab',
         'clangd',
         'volar',
+        'gopls',
         'vimls',
         'taplo',
-        --'rust_analyzer',
         'lua_ls',
-        --'sqls'
     }
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lspconfig = require('lspconfig')
