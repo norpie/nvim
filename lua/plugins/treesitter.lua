@@ -40,10 +40,7 @@ return -- Treesitter
     },
     {
         'dariuscorvus/tree-sitter-surrealdb.nvim',
-        build = ':TSUpdate surrealdb',
-        ft = {
-            'surql',
-        },
+        ft = "surql",
         config = function()
             require("tree-sitter-surrealdb").setup()
         end

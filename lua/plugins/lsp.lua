@@ -108,18 +108,21 @@ return {
         dependencies = {
             'neovim/nvim-lspconfig'
         },
-        event = { "BufReadPost *.rs" },
+        ft = { 'rust' },
+        --event = { "BufReadPost *.rs" },
         config = function()
             local rt = require("rust-tools")
-            local opts = {
+            rt.setup({
                 server = {
-                    cmd = { "ra-multiplex", "client" },
-                    on_attach = function(_, bufnr)
+                    on_attach = function(client, bufnr)
+                        require('lsp.lspconfig').on_attach(client, bufnr)
                         vim.keymap.set("n", "<leader>h", rt.hover_actions.hover_actions, { buffer = bufnr })
                         vim.keymap.set("n", "<leader>q", rt.code_action_group.code_action_group, { buffer = bufnr })
                         vim.keymap.set("n", "<leader>oc", rt.open_cargo_toml.open_cargo_toml, { buffer = bufnr })
                         vim.keymap.set("n", "<leader>op", rt.parent_module.parent_module, { buffer = bufnr })
                     end,
+                    capabilities = require('lsp.lspconfig').capabilities(),
+                    cmd = { "ra-multiplex", "client" },
                     settings = {
                         ["rust-analyzer"] = {
                             check = {
@@ -132,8 +135,7 @@ return {
                         }
                     }
                 },
-            }
-            rt.setup(opts)
+            })
         end,
     },
     {

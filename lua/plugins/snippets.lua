@@ -2,6 +2,7 @@ return {
     {
         'L3MON4D3/LuaSnip',
         lazy = true,
+        version = "v2.*",
         keys = {
             { '<Leader>se', ':edit! ~/.config/nvim/lua/plugins/snippets.lua<CR>' },
         },

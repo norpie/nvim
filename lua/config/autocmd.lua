@@ -61,6 +61,10 @@ create_autocmd('BufNewFile', { pattern = '*.md', command = 'set filetype=markdow
 create_autocmd('BufFilePre', { pattern = '*.md', command = 'set filetype=markdown.pandoc', group = syntax_group })
 create_autocmd('BufRead', { pattern = '*.md', command = 'set filetype=markdown.pandoc', group = syntax_group })
 
+create_autocmd('BufNewFile', { pattern = '*.surql', command = 'set filetype=surql', group = syntax_group })
+create_autocmd('BufFilePre', { pattern = '*.surql', command = 'set filetype=surql', group = syntax_group })
+create_autocmd('BufRead', { pattern = '*.surql', command = 'set filetype=surql', group = syntax_group })
+
 create_autocmd('BufNewFile', { pattern = '*.tera', command = 'set filetype=htmldjango', group = syntax_group })
 create_autocmd('BufFilePre', { pattern = '*.tera', command = 'set filetype=htmldjango', group = syntax_group })
 create_autocmd('BufRead', { pattern = '*.tera', command = 'set filetype=htmldjango', group = syntax_group })

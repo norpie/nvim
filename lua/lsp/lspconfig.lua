@@ -1,7 +1,10 @@
 local M = {}
 
-function M.setup()
-    local on_attach = function(client, bufnr)
+function M.capabilities()
+    return require('cmp_nvim_lsp').default_capabilities()
+end
+
+function M.on_attach(client, bufnr)
         -- require("aerial").on_attach(client, bufnr)
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
         if client.server_capabilities.documentSymbolProvider then
@@ -21,6 +24,7 @@ function M.setup()
         )
     end
 
+function M.setup()
     local servers = {
         'cssls',
         'emmet_ls',
@@ -37,7 +41,6 @@ function M.setup()
         'taplo',
         'lua_ls',
     }
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lspconfig = require('lspconfig')
     for _, server in pairs(servers) do
         if vim.fn.filereadable(vim.fn.stdpath "config" .. "/lua/lsp/servers/" .. server .. ".lua") == 1 then
@@ -45,8 +48,8 @@ function M.setup()
             local filetypes = require('lsp.servers.' .. server).filetypes()
             local cmd = require('lsp.servers.' .. server).cmd()
             lspconfig[server].setup {
-                on_attach = on_attach,
-                capabilities = capabilities,
+                on_attach = M.on_attach,
+                capabilities = M.capabilities(),
                 cmd = cmd,
                 settings = settings,
                 filetypes = filetypes
@@ -56,11 +59,12 @@ function M.setup()
                 init_options = {
                     provideFormatter = true
                 },
-                on_attach = on_attach,
-                capabilities = capabilities,
+                on_attach = M.on_attach,
+                capabilities = M.capabilities(),
             }
         end
     end
 end
+
 
 return M
