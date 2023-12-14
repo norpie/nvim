@@ -56,9 +56,9 @@ function M.setup()
             }
         else
             lspconfig[server].setup {
-                init_options = {
-                    provideFormatter = true
-                },
+                -- init_options = {
+                --     provideFormatter = true
+                -- },
                 on_attach = M.on_attach,
                 capabilities = M.capabilities(),
             }
