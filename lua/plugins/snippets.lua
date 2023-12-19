@@ -37,7 +37,7 @@ return {
                 enable_autosnippets = true,
 
                 -- Use Tab (or some other key if you prefer) to trigger visual selection
-                store_selection_keys = "<Tab>",
+                -- store_selection_keys = "<Tab>",
             })
 
             vim.keymap.set("i", "<c-l>", function()
@@ -50,24 +50,24 @@ return {
                 return vim.api.nvim_replace_termcodes(c, true, true, true)
             end
 
-            function _G.tab_binding()
-                if ls.expand_or_jumpable() then
-                    return replace_keycodes('<Plug>luasnip-expand-or-jump')
-                else
-                    return replace_keycodes('<Plug>(Tabout)')
-                end
-            end
+            -- function _G.tab_binding()
+            --     if ls.expand_or_jumpable() then
+            --         return replace_keycodes('<Plug>luasnip-expand-or-jump')
+            --     else
+            --         return replace_keycodes('<Plug>(Tabout)')
+            --     end
+            -- end
+            --
+            -- function _G.s_tab_binding()
+            --     if ls.jumpable(-1) then
+            --         return replace_keycodes('<Plug>luasnip-jump-prev')
+            --     else
+            --         return replace_keycodes('<Plug>(TaboutBack)')
+            --     end
+            -- end
 
-            function _G.s_tab_binding()
-                if ls.jumpable(-1) then
-                    return replace_keycodes('<Plug>luasnip-jump-prev')
-                else
-                    return replace_keycodes('<Plug>(TaboutBack)')
-                end
-            end
-
-            vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.tab_binding()', { expr = true })
-            vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_binding()', { expr = true })
+            -- vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.tab_binding()', { expr = true })
+            -- vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_binding()', { expr = true })
 
             require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snippets/" })
 

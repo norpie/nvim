@@ -10,6 +10,8 @@ return -- Treesitter
             'RRethy/nvim-treesitter-endwise',
             {
                 'abecodes/tabout.nvim',
+                enabled = false,
+                lazy = true,
                 config = function()
                     require('tabout').setup()
                 end,

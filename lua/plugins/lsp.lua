@@ -17,6 +17,29 @@ return {
             require('lsp.lspconfig').setup()
         end
     },
+    { 'github/copilot.vim' },
+    -- {
+    --     "zbirenbaum/copilot-cmp",
+    --     config = function()
+    --         require("copilot_cmp").setup()
+    --     end
+    -- },
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     cmd = "Copilot",
+    --     event = "InsertEnter",
+    --     config = function()
+    --         require("copilot").setup({
+    --             suggestion = {
+    --                 enabled = false,
+    --                 auto_trigger = true
+    --             },
+    --             panel = {
+    --                 enabled = false
+    --             },
+    --         })
+    --     end,
+    -- },
     {
         'mfussenegger/nvim-jdtls',
         event = { "BufReadPost *.java" },
