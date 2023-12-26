@@ -36,6 +36,7 @@ function M.setup()
         'texlab',
         'clangd',
         'volar',
+        'svelte',
         'gopls',
         'vimls',
         'taplo',
