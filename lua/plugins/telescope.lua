@@ -3,7 +3,8 @@ return {
     dependencies = {
         --'Zane-/cder.nvim', -- BUG: change config to only show working dir and subs
         'nvim-telescope/telescope-fzy-native.nvim',
-        'nvim-lua/plenary.nvim'
+        'nvim-lua/plenary.nvim',
+        'ahmedkhalf/project.nvim',
     },
     cmd = 'Telescope',
     keys = {
@@ -40,7 +41,7 @@ return {
         })
 
         telescope.load_extension("noice")
-        --telescope.load_extension('cder')
+        telescope.load_extension('projects')
         telescope.load_extension('fzy_native')
 
         local colors = require('util').palette()

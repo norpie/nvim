@@ -103,6 +103,13 @@ map('n', '<C-s-l>', ':vertical resize +2<CR>')
 map('n', '<tab>', ':bnext<CR>')
 map('n', '<s-tab>', ':bprev<CR>')
 
+map('n', "<leader>Ls", "<cmd>Lazy sync<cr>")
+map('n', "<leader>Lc", "<cmd>Lazy clean<cr>")
+map('n', "<leader>Lu", "<cmd>Lazy check<cr>")
+map('n', "<leader>Li", "<cmd>Lazy install<cr>")
+map('n', "<leader>Lh", "<cmd>Lazy home<cr>")
+
+
 -- Ctrl-backspace deletes words bakwards in insert
 noremap('i', '<C-H>', '<Esc>cvb')
 

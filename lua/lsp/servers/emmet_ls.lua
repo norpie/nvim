@@ -6,7 +6,7 @@ function M.settings()
 end
 
 function M.filetypes()
-    local filetypes = { 'html', 'tera', 'htmldjango', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'vue' }
+    local filetypes = { 'html', 'tera', 'htmldjango', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'vue', 'blade' }
     return filetypes
 end
 

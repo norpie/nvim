@@ -4,8 +4,8 @@ return {
         version = "*",
         event = 'VeryLazy',
         keys = {
-            { '<leader>da', function() return require('debugprint').debugprint({ above = true }) end, expr = true },
-            { '<leader>du', function() return require('debugprint').debugprint() end, expr = true }
+            { '<leader>da', function() return require('debugprint').debugprint({ above = true }) end, expr = true, desc = "add debug print above" },
+            { '<leader>du', function() return require('debugprint').debugprint() end,                 expr = true, desc = "add debug print under" }
         },
         config = function()
             local opts = {
@@ -44,15 +44,13 @@ return {
         'ahmedkhalf/project.nvim',
         event = 'VeryLazy',
         config = function()
-            require('project_nvim').setup({
+            local opts = {
                 patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "src" },
-                sync_root_with_cwd = true,
-                respect_buf_cwd = true,
-                update_focused_file = {
-                    enable = true,
-                    update_root = true
-                },
-            })
-        end
+                detection_methods = { "pattern", "lsp" },
+                silent_chdir = false
+            }
+            require("project_nvim").setup(opts)
+        end,
+
     },
 }

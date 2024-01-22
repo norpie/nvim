@@ -18,7 +18,7 @@ return {
         'michaelb/sniprun',
         build = 'sh install.sh',
         keys = {
-            { '<leader>r', function() vim.cmd("'<,'>SnipRun") end },
+            { '<leader>er', function() vim.cmd("'<,'>SnipRun") end },
         }
     }
 }

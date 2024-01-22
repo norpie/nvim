@@ -5,8 +5,6 @@ function M.capabilities()
 end
 
 function M.on_attach(client, bufnr)
-        -- require("aerial").on_attach(client, bufnr)
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
         if client.server_capabilities.documentSymbolProvider then
             require("nvim-navic").attach(client, bufnr)
         end
@@ -31,12 +29,11 @@ function M.setup()
         'html',
         'jsonls',
         'vtsls',
-        'pylsp',
-        'intelephense',
+        'jedi_language_server',
+        'pyright',
         'texlab',
         'clangd',
         'volar',
-        'blade_formatter',
         'svelte',
         'gopls',
         'vimls',
@@ -58,9 +55,9 @@ function M.setup()
             }
         else
             lspconfig[server].setup {
-                -- init_options = {
-                --     provideFormatter = true
-                -- },
+                init_options = {
+                    provideFormatter = true
+                },
                 on_attach = M.on_attach,
                 capabilities = M.capabilities(),
             }

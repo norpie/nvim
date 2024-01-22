@@ -5,7 +5,7 @@ return {
         cmd = "HopWord",
         dependencies = 'mfussenegger/nvim-treehopper',
         keys = {
-            { '<leader>H', ':HopWord<CR>', desc = "Hop Word" }
+            { '<leader>h', ':HopWord<CR>', desc = "Hop Word" }
         },
         config = function()
             require('hop').setup()
@@ -35,7 +35,7 @@ return {
     },
     {
         "ghillb/cybu.nvim",
-        requires = {
+        dependencies = {
             "nvim-tree/nvim-web-devicons",
             "nvim-lua/plenary.nvim",
         },
