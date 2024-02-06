@@ -29,7 +29,7 @@ function M.setup()
         'html',
         'jsonls',
         'vtsls',
-        'jedi_language_server',
+        --'jedi_language_server',
         'pyright',
         'texlab',
         'clangd',
