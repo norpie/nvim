@@ -5,8 +5,8 @@ return {
             'nvim-tree/nvim-web-devicons',
         },
         keys = {
-            { '<leader>lf', function() vim.lsp.buf.format({ async = true }) end, desc = 'lsp format' },
-            { '<leader>lh', function() vim.lsp.buf.hover() end },
+            { '<leader>f', function() vim.lsp.buf.format({ async = true }) end, desc = 'lsp format' },
+            { '<leader>h', function() vim.lsp.buf.hover() end },
             { 'gd',         function() vim.lsp.buf.definition() end },
             { 'gD',         function() vim.lsp.buf.declaration() end },
         },
@@ -16,8 +16,37 @@ return {
         end
     },
     {
+        enabled = false,
+        dir = "/home/norpie/repos/completionist/completionist-nvim",
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'rcarriga/nvim-notify',
+        },
+        lazy = false,
+        event = 'InsertEnter',
+        -- config = function()
+        --     require('completionist-nvim').setup({})
+        -- end,
+        opts = {
+            notifications = {
+                startup_connection_check = true
+            }
+        }
+    },
+    {
         'github/copilot.vim',
-        event = 'VeryLazy', -- TODO: add better copilot support
+        config = function()
+            vim.g.copilot_filetypes = {
+                md = true,
+                markdown = true
+            }
+        end
+        -- enabled = true,
+        -- 'TabbyML/vim-tabby',
+        -- event = 'BufRead',
+        -- config = function()
+            -- vim.g.tabby_keybind_accept = '9'
+        -- end
         -- {
         --     "zbirenbaum/copilot-cmp",
         --     config = function()
@@ -163,22 +192,22 @@ return {
                 server = {
                     on_attach = function(client, bufnr)
                         require('lsp.lspconfig').on_attach(client, bufnr)
-                        vim.keymap.set("n", "<leader>lh", rt.hover_actions.hover_actions, { buffer = bufnr })
-                        vim.keymap.set("n", "<leader>lq", rt.code_action_group.code_action_group, { buffer = bufnr })
+                        vim.keymap.set("n", "<leader>h", rt.hover_actions.hover_actions, { buffer = bufnr })
+                        vim.keymap.set("n", "<leader>q", rt.code_action_group.code_action_group, { buffer = bufnr })
                         vim.keymap.set("n", "<leader>oc", rt.open_cargo_toml.open_cargo_toml, { buffer = bufnr })
                         vim.keymap.set("n", "<leader>op", rt.parent_module.parent_module, { buffer = bufnr })
                     end,
                     capabilities = require('lsp.lspconfig').capabilities(),
-                    cmd = { "ra-multiplex", "client" },
+                    --cmd = { "ra-multiplex", "client" },
                     settings = {
                         ["rust-analyzer"] = {
                             check = {
                                 command = "clippy",
                                 extraArgs = { "--all", "--", "-W", "clippy::all" },
                             },
-                            --procMacro = {
-                            --    enable = true
-                            --},
+                            procMacro = {
+                                enable = true
+                            },
                         }
                     }
                 },
@@ -186,51 +215,38 @@ return {
         end,
     },
     {
-        'simrat39/symbols-outline.nvim',
-        keys = {
-            { '<leader>os', '<cmd>SymbolsOutline<CR>' }
-        },
-        dependencies = {
-            'neovim/nvim-lspconfig',
-            'nvim-tree/nvim-web-devicons'
-        },
-        config = function()
-            require('symbols-outline').setup()
-        end
-    },
-    {
         'williamboman/mason-lspconfig.nvim',
         dependencies = {
             'neovim/nvim-lspconfig',
         },
+        event = "BufRead",
         config = function()
             require("mason-lspconfig").setup()
-            vim.api.nvim_create_autocmd("FileType", {
-                group = vim.api.nvim_create_augroup("mason-lspconfig", { clear = true }),
-                callback = function(t)
-                    if vim.bo[t.buf].buftype ~= "" then return end
-                    local mason_lspconfig = require("mason-lspconfig")
-                    local available_servers =
-                        mason_lspconfig.get_available_servers({ filetype = t.match })
-                    local installed_servers = mason_lspconfig.get_installed_servers()
-                    local is_available = false
-                    for _, available in ipairs(available_servers) do
-                        for _, installed in ipairs(installed_servers) do
-                            if available == installed then return end
-                        end
-                        is_available = true
-                    end
-                    if is_available then
-                        vim.schedule(vim.cmd.LspInstall)
-                    end
-                end,
-            })
+            -- vim.api.nvim_create_autocmd("FileType", {
+            --     group = vim.api.nvim_create_augroup("mason-lspconfig", { clear = true }),
+            --     callback = function(t)
+            --         if vim.bo[t.buf].buftype ~= "" then return end
+            --         local mason_lspconfig = require("mason-lspconfig")
+            --         local available_servers =
+            --             mason_lspconfig.get_available_servers({ filetype = t.match })
+            --         local installed_servers = mason_lspconfig.get_installed_servers()
+            --         local is_available = false
+            --         for _, available in ipairs(available_servers) do
+            --             for _, installed in ipairs(installed_servers) do
+            --                 if available == installed then return end
+            --             end
+            --             is_available = true
+            --         end
+            --         if is_available then
+            --             vim.schedule(vim.cmd.LspInstall)
+            --         end
+            --     end,
+            -- })
         end
 
     },
     {
         'williamboman/mason.nvim',
-        lazy = true,
         config = function()
             require("mason").setup({
                 ui = {
