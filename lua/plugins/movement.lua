@@ -5,7 +5,7 @@ return {
         cmd = "HopWord",
         dependencies = 'mfussenegger/nvim-treehopper',
         keys = {
-            { '<leader>h', ':HopWord<CR>', desc = "Hop Word" }
+            { '<M-h>', ':HopWord<CR>', desc = "Hop Word" }
         },
         config = function()
             require('hop').setup()
