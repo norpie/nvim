@@ -40,7 +40,7 @@ create_autocmd("BufHidden", {
 
 local save_file_group = 'writegroup'
 create_augroup(save_file_group, { clear = true })
-create_autocmd('BufWritePost', { pattern = '*.lua', command = 'source %', group = save_file_group })
+-- create_autocmd('BufWritePost', { pattern = '*.lua', command = 'source %', group = save_file_group })
 create_autocmd('BufWritePre', { pattern = '*', command = 'retab!', group = save_file_group })
 create_autocmd('BufWritePost',
     {
