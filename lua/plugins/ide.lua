@@ -3,17 +3,16 @@ return {
         'andrewferrier/debugprint.nvim',
         version = "*",
         event = 'VeryLazy',
-        keys = {
-            { '<leader>da', function() return require('debugprint').debugprint({ above = true }) end, expr = true, desc = "add debug print above" },
-            { '<leader>du', function() return require('debugprint').debugprint() end,                 expr = true, desc = "add debug print under" }
-        },
-        config = function()
-            local opts = {
-                create_keymaps = false,
-                create_commands = true
+        opts = {
+            keymaps = {
+                normal = {
+                    plain_below = "<leader>du",
+                    plain_above = "<leader>da",
+                    variable_below = "<leader>dU",
+                    variable_above = "<leader>dA",
+                },
             }
-            require("debugprint").setup(opts)
-        end
+        }
     },
     {
         'ethanholz/nvim-lastplace',
