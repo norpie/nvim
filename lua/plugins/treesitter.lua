@@ -18,7 +18,7 @@ return -- Treesitter
             },
         },
         build = ':TSUpdate',
-        event = { 'UIEnter' },
+        -- event = { 'UIEnter' },
         config = function()
             require('nvim-treesitter.configs').setup {
                 ensure_installed = "all",
