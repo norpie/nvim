@@ -35,6 +35,7 @@ function M.setup()
         'clangd',
         'volar',
         'svelte',
+        'nil_ls',
         'gopls',
         'vimls',
         'taplo',
