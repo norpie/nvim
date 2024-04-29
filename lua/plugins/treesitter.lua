@@ -20,6 +20,7 @@ return -- Treesitter
         build = ':TSUpdate',
         event = { 'UIEnter' },
         config = function()
+            require('nvim-treesitter.install').compilers = { 'clang++' }
             require('nvim-treesitter.configs').setup {
                 ensure_installed = "all",
                 sync_install = false,
