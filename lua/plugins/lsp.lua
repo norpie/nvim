@@ -4,39 +4,45 @@ return {
         dependencies = {
             'nvim-tree/nvim-web-devicons',
         },
-        keys = {
-            {
-                '<leader>f',
-                function()
-                    vim.lsp.buf.format { async = true }
-                end,
-                desc = 'lsp format',
-            },
-            {
-                '<leader>h',
-                function()
-                    vim.lsp.buf.hover()
-                end,
-                desc = 'lsp hover',
-            },
-            {
-                'gd',
-                function()
-                    vim.lsp.buf.definition()
-                end,
-                desc = 'lsp definition',
-            },
-            {
-                'gD',
-                function()
-                    vim.lsp.buf.declaration()
-                end,
-                desc = 'lsp declaration',
-            },
-        },
         lazy = true,
         config = function()
             require('lsp.lspconfig').setup()
+        end,
+    },
+    {
+        'nvimtools/none-ls.nvim',
+        dependencies = {
+            'neovim/nvim-lspconfig',
+            'nvim-lua/plenary.nvim',
+        },
+        event = 'VeryLazy',
+        config = function()
+            local null_ls = require('null-ls')
+            local sources = {
+                -- Rust
+                null_ls.builtins.formatting.rustfmt,
+                -- Python
+                null_ls.builtins.formatting.black,
+                -- Lua
+                null_ls.builtins.formatting.stylua,
+                -- Markdown
+                null_ls.builtins.formatting.prettier,
+                -- JSON
+                null_ls.builtins.formatting.prettier,
+                -- YAML
+                null_ls.builtins.formatting.prettier,
+                -- TOML
+                null_ls.builtins.formatting.prettier,
+                -- Dockerfile
+                null_ls.builtins.formatting.dockerfile,
+                -- Shell
+                null_ls.builtins.formatting.shfmt,
+                -- Nix
+                null_ls.builtins.formatting.alejandra
+            }
+            null_ls.setup {
+                sources = sources
+            }
         end,
     },
     {
