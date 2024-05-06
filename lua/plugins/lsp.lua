@@ -15,32 +15,31 @@ return {
             'neovim/nvim-lspconfig',
             'nvim-lua/plenary.nvim',
         },
-        event = 'VeryLazy',
         config = function()
-            local null_ls = require('null-ls')
+            local none = require('null-ls')
             local sources = {
-                -- Rust
-                null_ls.builtins.formatting.rustfmt,
                 -- Python
-                null_ls.builtins.formatting.black,
+                none.builtins.formatting.black,
                 -- Lua
-                null_ls.builtins.formatting.stylua,
+                none.builtins.formatting.stylua,
                 -- Markdown
-                null_ls.builtins.formatting.prettier,
+                none.builtins.formatting.prettier,
                 -- JSON
-                null_ls.builtins.formatting.prettier,
+                none.builtins.formatting.prettier,
                 -- YAML
-                null_ls.builtins.formatting.prettier,
+                none.builtins.formatting.prettier,
                 -- TOML
-                null_ls.builtins.formatting.prettier,
+                none.builtins.formatting.prettier,
                 -- Dockerfile
-                null_ls.builtins.formatting.dockerfile,
+                -- none.builtins.formatting.dockerfile,
+                -- Rust
+                -- none.builtins.formatting.rustfmt,
                 -- Shell
-                null_ls.builtins.formatting.shfmt,
+                none.builtins.formatting.shfmt,
                 -- Nix
-                null_ls.builtins.formatting.alejandra
+                none.builtins.formatting.alejandra
             }
-            null_ls.setup {
+            none.setup {
                 sources = sources
             }
         end,
