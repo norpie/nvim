@@ -22,14 +22,8 @@ return {
                 none.builtins.formatting.black,
                 -- Lua
                 none.builtins.formatting.stylua,
-                -- Markdown
-                none.builtins.formatting.prettier,
-                -- JSON
-                none.builtins.formatting.prettier,
-                -- YAML
-                none.builtins.formatting.prettier,
-                -- TOML
-                none.builtins.formatting.prettier,
+                -- General
+                none.builtins.formatting.prettierd,
                 -- Dockerfile
                 -- none.builtins.formatting.dockerfile,
                 -- Rust
