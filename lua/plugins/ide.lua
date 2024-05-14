@@ -15,6 +15,21 @@ return {
         }
     },
     {
+        'numToStr/FTerm.nvim',
+        config = function()
+            require("FTerm").setup({
+                dimensions = {
+                    height = 0.8,
+                    width = 0.8,
+                },
+                border = 'single' -- or 'double'
+            })
+        end,
+        keys = {
+            { '<leader>t', '<cmd>lua require("FTerm").toggle()<cr>', desc = 'Toggle FTerm' },
+        },
+    },
+    {
         'ethanholz/nvim-lastplace',
         event = 'BufReadPost',
         config = function()

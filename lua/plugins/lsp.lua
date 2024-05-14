@@ -132,25 +132,25 @@ return {
             require('crates').setup()
         end,
     },
-    {
-        'folke/trouble.nvim',
-        dependencies = {
-            'neovim/nvim-lspconfig',
-            'nvim-tree/nvim-web-devicons',
-        },
-        config = function()
-            require('trouble').setup()
-        end,
-        cmd = {
-            'TroubleToggle',
-        },
-        keys = {
-            { '<leader>tt', '<cmd>TroubleToggle<CR>' },
-            { '<leader>tq', '<cmd>TroubleToggle quickfix<CR>' },
-            { '<leader>tw', '<cmd>TroubleToggle workspace_diagnostics<CR>' },
-            { '<leader>td', '<cmd>TroubleToggle document_diagnostics<CR>' },
-        },
-    },
+    -- {
+    --     'folke/trouble.nvim',
+    --     dependencies = {
+    --         'neovim/nvim-lspconfig',
+    --         'nvim-tree/nvim-web-devicons',
+    --     },
+    --     config = function()
+    --         require('trouble').setup()
+    --     end,
+    --     cmd = {
+    --         'TroubleToggle',
+    --     },
+    --     keys = {
+    --         { '<leader>tt', '<cmd>TroubleToggle<CR>' },
+    --         { '<leader>tq', '<cmd>TroubleToggle quickfix<CR>' },
+    --         { '<leader>tw', '<cmd>TroubleToggle workspace_diagnostics<CR>' },
+    --         { '<leader>td', '<cmd>TroubleToggle document_diagnostics<CR>' },
+    --     },
+    -- },
     {
 
         'weilbith/nvim-code-action-menu',
