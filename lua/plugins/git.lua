@@ -1,27 +1,38 @@
 return {
     {
-        'tpope/vim-fugitive',
-        cmd = "Git",
+        'NeogitOrg/neogit',
+        dependencies = {
+            'nvim-lua/plenary.nvim', -- required
+            'sindrets/diffview.nvim', -- optional - Diff integration
+
+            -- Only one of these is needed, not both.
+            'nvim-telescope/telescope.nvim', -- optional
+        },
+        config = true,
+        cmd = 'Neogit',
+        keys = {
+            { '<leader>gg', '<cmd>Neogit<CR>' },
+        },
     },
     {
         'rbong/vim-flog',
         cmd = {
-            "Flog",
-            "Flogsplit"
+            'Flog',
+            'Flogsplit',
         },
         keys = {
-            { '<Leader>gb', '<cmd>Flogsplit' }
+            { '<Leader>gl', '<cmd>Flogsplit<CR>' },
         },
         dependencies = {
-            'tpope/vim-fugitive'
-        }
+            'tpope/vim-fugitive',
+        },
     },
     {
         'rhysd/git-messenger.vim',
-        cmd = "GitMessenger",
+        cmd = 'GitMessenger',
         keys = {
-            { '<leader>gm', '<cmd>GitMessenger' }
-        }
+            { '<leader>gb', '<cmd>GitMessenger<CR>' },
+        },
     },
     --{ -- TODO: Enable later, maybe
     --    'lewis6991/gitsigns.nvim'
