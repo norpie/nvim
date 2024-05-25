@@ -226,9 +226,6 @@ return {
                             cargo = {
                                 features = 'all'
                             },
-                            diagnostics = {
-                                disabled = { 'inactive-code' },
-                            },
                         },
                     },
                 },

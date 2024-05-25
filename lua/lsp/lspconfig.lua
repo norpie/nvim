@@ -42,9 +42,16 @@ function M.capabilities()
     return require('cmp_nvim_lsp').default_capabilities()
 end
 
+function M.formatting_lsps()
+    return {
+        'null-ls',
+        'rust_analyzer',
+    }
+end
+
 function M.on_attach(client, buffer)
-    -- If not null-ls, then disable formatting
-    if client.name ~= 'null-ls' then
+    -- If not in M.formatting_lsps() then disable formatting
+    if not vim.tbl_contains(M.formatting_lsps(), client.name) then
         client.server_capabilities.documentFormattingProvider = false
     end
     if client.server_capabilities.documentSymbolProvider then
