@@ -127,7 +127,7 @@ map('v', '<C-c>', '"+y')
 map('i', '<C-s-v>', '<Esc>"+pa')
 
 -- git -> Git
-map('ca', 'git', 'Git')
+map('ca', 'git', 'Neogit')
 
 -- :Write to not care about permissions
 map('ca', 'Write', 'w !sudo tee %')

@@ -15,6 +15,9 @@ return {
         }
     },
     {
+        'wakatime/vim-wakatime',
+    },
+    {
         'numToStr/FTerm.nvim',
         config = function()
             require("FTerm").setup({
