@@ -16,7 +16,7 @@ return {
             'nvim-lua/plenary.nvim',
         },
         config = function()
-            local none = require('null-ls')
+            local none = require 'null-ls'
             local sources = {
                 -- Python
                 none.builtins.formatting.black,
@@ -31,10 +31,10 @@ return {
                 -- Shell
                 none.builtins.formatting.shfmt,
                 -- Nix
-                none.builtins.formatting.alejandra
+                none.builtins.formatting.alejandra,
             }
             none.setup {
-                sources = sources
+                sources = sources,
             }
         end,
     },
@@ -190,48 +190,67 @@ return {
         build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
     },
     {
-
-        'simrat39/rust-tools.nvim',
+        'mrcjkb/rustaceanvim',
         dependencies = {
             'neovim/nvim-lspconfig',
         },
         ft = { 'rust' },
         config = function()
-            local rt = require 'rust-tools'
-            rt.setup {
-                server = {
-                    on_attach = function(client, bufnr)
-                        require('lsp.lspconfig').on_attach(client, bufnr)
-                        vim.keymap.set('n', '<leader>h', rt.hover_actions.hover_actions, { buffer = bufnr })
-                        vim.keymap.set('n', '<leader>q', rt.code_action_group.code_action_group, { buffer = bufnr })
-                        vim.keymap.set('n', '<leader>oc', rt.open_cargo_toml.open_cargo_toml, { buffer = bufnr })
-                        vim.keymap.set('n', '<leader>op', rt.parent_module.parent_module, { buffer = bufnr })
-                    end,
-                    capabilities = require('lsp.lspconfig').capabilities(),
-                    --cmd = { "ra-multiplex", "client" },
-                    init_options = {
-                        provideFormatter = true
-                    },
-                    settings = {
-                        ['rust-analyzer'] = {
-                            check = {
-                                command = 'clippy',
-                                -- command = 'check',
-                                extraArgs = { '--all', '--', '-W', 'clippy::all' },
-                                -- extraArgs = { '--target', 'x86_64-pc-windows-gnu' },
-                            },
-                            procMacro = {
-                                enable = true,
-                            },
-                            cargo = {
-                                features = 'all'
-                            },
-                        },
-                    },
-                },
-            }
+            -- local buffer = vim.api.nvim_get_current_buf()
+            vim.keymap.set('n', '<leader>f', function()
+                vim.lsp.buf.format { async = true }
+            end)
+            vim.keymap.set('n', '<leader>q', '<cmd>RustLsp codeAction<CR>')
+            vim.keymap.set('n', '<leader>oc', '<cmd>RustLsp openCargo<CR>')
+            vim.keymap.set('n', '<leader>op', '<cmd>RustLsp parentModule<CR>')
+            vim.keymap.set('n', '<leader>h', '<cmd>RustLsp hover actions<CR>')
         end,
+        version = '^4', -- Recommended
+        lazy = false, -- This plugin is already lazy
     },
+    -- {
+    --
+    --     'simrat39/rust-tools.nvim',
+    --     dependencies = {
+    --         'neovim/nvim-lspconfig',
+    --     },
+    --     ft = { 'rust' },
+    --     config = function()
+    --         local rt = require 'rust-tools'
+    --         rt.setup {
+    --             server = {
+    --                 on_attach = function(client, bufnr)
+    --                     require('lsp.lspconfig').on_attach(client, bufnr)
+    --                     vim.keymap.set('n', '<leader>h', rt.hover_actions.hover_actions, { buffer = bufnr })
+    --                     vim.keymap.set('n', '<leader>q', rt.code_action_group.code_action_group, { buffer = bufnr })
+    --                     vim.keymap.set('n', '<leader>oc', rt.open_cargo_toml.open_cargo_toml, { buffer = bufnr })
+    --                     vim.keymap.set('n', '<leader>op', rt.parent_module.parent_module, { buffer = bufnr })
+    --                 end,
+    --                 capabilities = require('lsp.lspconfig').capabilities(),
+    --                 --cmd = { "ra-multiplex", "client" },
+    --                 init_options = {
+    --                     provideFormatter = true,
+    --                 },
+    --                 settings = {
+    --                     ['rust-analyzer'] = {
+    --                         check = {
+    --                             command = 'clippy',
+    --                             -- command = 'check',
+    --                             extraArgs = { '--all', '--', '-W', 'clippy::all' },
+    --                             -- extraArgs = { '--target', 'x86_64-pc-windows-gnu' },
+    --                         },
+    --                         procMacro = {
+    --                             enable = true,
+    --                         },
+    --                         cargo = {
+    --                             features = 'all',
+    --                         },
+    --                     },
+    --                 },
+    --             },
+    --         }
+    --     end,
+    -- },
     {
         'williamboman/mason-lspconfig.nvim',
         dependencies = {

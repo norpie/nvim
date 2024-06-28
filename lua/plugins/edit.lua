@@ -57,6 +57,9 @@ return {
         config = function()
             require('nvim_comment').setup({
                 create_mappings = false,
+                hook = function()
+                    require('ts_context_commentstring.internal').update_commentstring()
+                end
             })
         end
     },
