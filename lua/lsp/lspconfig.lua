@@ -9,7 +9,7 @@ function M.setup_keys(buffer)
     --     print(key)
     -- end
     -- if  == '' then
-    -- vim.keymap.set('n', '<leader>h', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>h', vim.lsp.buf.hover, opts)
     -- end
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
