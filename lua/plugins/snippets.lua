@@ -4,7 +4,7 @@ return {
         lazy = true,
         version = "v2.*",
         keys = {
-            { '<Leader>se', ':edit! ~/.config/nvim/lua/plugins/snippets.lua<CR>' },
+            { '<Leader>se', ':edit! ~/.config/nvim/lua/plugins/snippets.lua<CR>', desc = 'Edit snippets' },
         },
         config = function()
             local ls = require("luasnip")

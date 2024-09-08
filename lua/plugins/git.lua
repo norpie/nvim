@@ -11,7 +11,7 @@ return {
         config = true,
         cmd = 'Neogit',
         keys = {
-            { '<leader>gg', '<cmd>Neogit<CR>' },
+            { '<leader>gg', '<cmd>Neogit<CR>', desc = 'Neogit' },
         },
     },
     {
@@ -21,7 +21,7 @@ return {
             'Flogsplit',
         },
         keys = {
-            { '<Leader>gl', '<cmd>Flogsplit<CR>' },
+            { '<Leader>gl', '<cmd>Flogsplit<CR>', desc = 'Git log' },
         },
         dependencies = {
             'tpope/vim-fugitive',
@@ -31,7 +31,7 @@ return {
         'rhysd/git-messenger.vim',
         cmd = 'GitMessenger',
         keys = {
-            { '<leader>gb', '<cmd>GitMessenger<CR>' },
+            { '<leader>gb', '<cmd>GitMessenger<CR>', desc = 'Git blame' },
         },
     },
     --{ -- TODO: Enable later, maybe

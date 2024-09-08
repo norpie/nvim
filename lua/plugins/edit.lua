@@ -1,44 +1,56 @@
 return {
     {
         'wellle/targets.vim',
-        event = 'VeryLazy'
+        event = 'VeryLazy',
     },
     {
         'matze/vim-move',
         keys = {
             { '<A-j>', '<Plug>MoveBlockDown' },
-            { '<A-k>', '<Plug>MoveBlockUp' }
-        }
+            { '<A-k>', '<Plug>MoveBlockUp' },
+        },
     },
     {
-        "gbprod/substitute.nvim",
+        'gbprod/substitute.nvim',
         keys = {
-            { "s", function() require('substitute.exchange').operator() end, noremap = true },
-            { "S", function() require('substitute.exchange').line() end,     noremap = true },
+            {
+                's',
+                function()
+                    require('substitute.exchange').operator()
+                end,
+                noremap = true,
+            },
+            {
+                'S',
+                function()
+                    require('substitute.exchange').line()
+                end,
+                noremap = true,
+            },
         },
         config = function()
-            require("substitute").setup({})
-        end
+            require('substitute').setup {}
+        end,
     },
     {
         'AndrewRadev/splitjoin.vim',
         keys = {
             { 'J', '<cmd>SplitjoinJoin<cr>' },
             { 'K', '<cmd>SplitjoinSplit<cr>' },
-        }
+        },
     },
     {
         'AndrewRadev/switch.vim',
         keys = {
-            { '<leader>s', '<cmd>Switch<cr>' }
+            { '<leader>s', '<cmd>Switch<cr>' },
         },
     },
     {
         'kylechui/nvim-surround',
-        event = "VeryLazy",
+        event = 'VeryLazy',
         config = function()
-            require('nvim-surround').setup({})
-        end
+            require('nvim-surround').setup {}
+        end,
     },
     {
         'altermo/ultimate-autopair.nvim',
@@ -51,23 +63,23 @@ return {
     {
         'terrortylor/nvim-comment',
         keys = {
-            { '<leader>c', '<cmd>CommentToggle<cr>' },
-            { '<leader>c', ':<C-u>call CommentOperator(visualmode())<CR>', mode = 'x' }
+            { '<leader>c', '<cmd>CommentToggle<cr>', desc = 'Comment toggle' },
+            { '<leader>c', ':<C-u>call CommentOperator(visualmode())<CR>', mode = 'x' },
         },
         config = function()
-            require('nvim_comment').setup({
+            require('nvim_comment').setup {
                 create_mappings = false,
                 hook = function()
                     require('ts_context_commentstring.internal').update_commentstring()
-                end
-            })
-        end
+                end,
+            }
+        end,
     },
     {
         'McAuleyPenney/tidy.nvim',
-        event = "VeryLazy",
+        event = 'VeryLazy',
         config = function()
             require('tidy').setup()
-        end
+        end,
     },
 }

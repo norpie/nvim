@@ -1,66 +1,43 @@
 local M = {}
 
 function M.setup_keys(buffer)
-    local opts = { buffer = buffer, noremap = true, silent = true }
-    vim.keymap.set('n', '<leader>f', '<cmd>Neoformat<CR>', opts)
-    -- Check if <leader>h is already mapped, if so, don't map it
-    -- local keyset = vim.api.nvim_buf_get_keymap(buffer, 'n') -- TODO: fix this
-    -- for _, key in pairs(keyset) do
-    --     print(key)
-    -- end
-    -- if  == '' then
-    vim.keymap.set('n', '<leader>h', vim.lsp.buf.hover, opts)
-    -- end
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    --  keys = {
-    --         {
-    --             '<leader>f',
-    --             function()
-    --                 vim.lsp.buf.format()
-    --             end,
-    --             desc = 'lsp format',
-    --         },
-    --         {
-    --             '<leader>h',
-    --             function()
-    --                 vim.lsp.buf.hover()
-    --             end,
-    --             desc = 'lsp hover',
-    --         },
-    --         {
-    --             'gd',
-    --             function()
-    --                 vim.lsp.buf.definition()
-    --             end,
-    --             desc = 'lsp definition',
-    --         },
-    --         {
-    --             'gD',
-    --             function()
-    --                 vim.lsp.buf.declaration()
-    --             end,
-    --             desc = 'lsp declaration',
-    --         },
-    --     },
+    vim.keymap.set(
+        'n',
+        '<leader>q',
+        vim.lsp.buf.code_action,
+        { buffer = buffer, noremap = true, silent = true, desc = 'Code action' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>r',
+        vim.lsp.buf.rename,
+        { buffer = buffer, noremap = true, silent = true, desc = 'Rename' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>h',
+        vim.lsp.buf.hover,
+        { buffer = buffer, noremap = true, silent = true, desc = 'Show hover' }
+    )
+    vim.keymap.set(
+        'n',
+        'gd',
+        vim.lsp.buf.definition,
+        { buffer = buffer, noremap = true, silent = true, desc = 'Go to definition' }
+    )
+    vim.keymap.set(
+        'n',
+        'gD',
+        vim.lsp.buf.declaration,
+        { buffer = buffer, noremap = true, silent = true, desc = 'Go to declaration' }
+    )
 end
 
 function M.capabilities()
     return require('cmp_nvim_lsp').default_capabilities()
 end
 
-function M.formatting_lsps()
-    return {
-        'null-ls',
-        'rust_analyzer',
-    }
-end
-
 function M.on_attach(client, buffer)
-    -- If not in M.formatting_lsps() then disable formatting
-    if not vim.tbl_contains(M.formatting_lsps(), client.name) then
-        client.server_capabilities.documentFormattingProvider = false
-    end
     if client.server_capabilities.documentSymbolProvider then
         require('nvim-navic').attach(client, buffer)
     end
@@ -68,10 +45,8 @@ function M.on_attach(client, buffer)
     vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         -- disable virtual text
         virtual_text = true,
-
         -- show signs
         signs = true,
-
         -- show_diagnostic_autocmds = { "BufWritePost" },
         show_diagnostic_autocmds = { 'InsertLeave', 'BufWritePost' },
     })
@@ -112,9 +87,6 @@ function M.setup()
             }
         else
             lspconfig[server].setup {
-                init_options = {
-                    provideFormatter = true,
-                },
                 on_attach = M.on_attach,
                 capabilities = M.capabilities(),
             }

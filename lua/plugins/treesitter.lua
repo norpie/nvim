@@ -2,6 +2,8 @@ return -- Treesitter
 {
     {
         'JoosepAlviste/nvim-ts-context-commentstring',
+        lazy = true,
+        event = 'VeryLazy',
         setup = function()
             require('ts_context_commentstring').setup {
                 -- enable_autocmd = false,
@@ -27,7 +29,7 @@ return -- Treesitter
             },
         },
         build = ':TSUpdate',
-        -- event = { 'UIEnter' },
+        event = { 'UIEnter' },
         config = function()
             require('nvim-treesitter.install').compilers = { 'gcc', 'clang++' }
             require('nvim-treesitter.configs').setup {

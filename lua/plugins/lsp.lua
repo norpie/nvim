@@ -9,35 +9,37 @@ return {
             require('lsp.lspconfig').setup()
         end,
     },
-    {
-        'nvimtools/none-ls.nvim',
-        dependencies = {
-            'neovim/nvim-lspconfig',
-            'nvim-lua/plenary.nvim',
-        },
-        config = function()
-            local none = require 'null-ls'
-            local sources = {
-                -- Python
-                none.builtins.formatting.black,
-                -- Lua
-                none.builtins.formatting.stylua,
-                -- General
-                none.builtins.formatting.prettierd,
-                -- Dockerfile
-                -- none.builtins.formatting.dockerfile,
-                -- Rust
-                -- none.builtins.formatting.rustfmt,
-                -- Shell
-                none.builtins.formatting.shfmt,
-                -- Nix
-                none.builtins.formatting.alejandra,
-            }
-            none.setup {
-                sources = sources,
-            }
-        end,
-    },
+    -- {
+    --     'nvimtools/none-ls.nvim',
+    --     lazy = true,
+    --     event = 'BufRead',
+    --     dependencies = {
+    --         'neovim/nvim-lspconfig',
+    --         'nvim-lua/plenary.nvim',
+    --     },
+    --     config = function()
+    --         local none = require 'null-ls'
+    --         local sources = {
+    --             -- Python
+    --             none.builtins.formatting.black,
+    --             -- Lua
+    --             none.builtins.formatting.stylua,
+    --             -- General
+    --             none.builtins.formatting.prettierd,
+    --             -- Dockerfile
+    --             -- none.builtins.formatting.dockerfile,
+    --             -- Rust
+    --             -- none.builtins.formatting.rustfmt,
+    --             -- Shell
+    --             none.builtins.formatting.shfmt,
+    --             -- Nix
+    --             none.builtins.formatting.alejandra,
+    --         }
+    --         none.setup {
+    --             sources = sources,
+    --         }
+    --     end,
+    -- },
     {
         enabled = false,
         dir = '/home/norpie/repos/completionist/completionist-nvim',
@@ -108,7 +110,7 @@ return {
             },
         },
         keys = {
-            { '<leader>n', '<cmd>Navbuddy<CR>' },
+            { '<leader>n', '<cmd>Navbuddy<CR>', desc = 'Open Navbuddy' },
         },
         dependencies = {
             'SmiteshP/nvim-navic',
@@ -151,16 +153,16 @@ return {
     --         { '<leader>td', '<cmd>TroubleToggle document_diagnostics<CR>' },
     --     },
     -- },
-    {
-
-        'weilbith/nvim-code-action-menu',
-        dependencies = {
-            'neovim/nvim-lspconfig',
-        },
-        keys = {
-            { '<leader>q', '<cmd>CodeActionMenu<CR>' },
-        },
-    },
+    -- {
+    --
+    --     'weilbith/nvim-code-action-menu',
+    --     dependencies = {
+    --         'neovim/nvim-lspconfig',
+    --     },
+    --     keys = {
+    --         { '<leader>q', '<cmd>CodeActionMenu<CR>', desc = 'Code Action Menu' },
+    --     },
+    -- },
     {
         'ray-x/go.nvim',
         dependencies = { -- optional packages
@@ -168,25 +170,17 @@ return {
             'neovim/nvim-lspconfig',
             'nvim-treesitter/nvim-treesitter',
         },
-        keys = {
-            { '<leader>r', '<cmd>GoRename<CR>' },
-            {
-                '<leader>f',
-                function()
-                    require('go.format').goimport()
-                end,
-            },
-            { '<leader>sw', '<cmd>GoFillSwitch<CR>' },
-            { '<leader>st', '<cmd>GoFillStruct<CR>' },
-            { '<leader>i', '<cmd>GoIfErr<CR>' },
-        },
         config = function()
             require('go').setup {
                 luasnip = true,
             }
+            vim.keymap.set('n', '<leader>r', '<cmd>GoRename<CR>', { desc = 'Go Rename' })
+            vim.keymap.set('n', '<leader>f', '<cmd>GoFormat<CR>', { desc = 'Go Format' })
+            vim.keymap.set('n', '<leader>sw', '<cmd>GoFillSwitch<CR>', { desc = 'Go Fill Switch' })
+            vim.keymap.set('n', '<leader>st', '<cmd>GoFillStruct<CR>', { desc = 'Go Fill Struct' })
+            vim.keymap.set('n', '<leader>i', '<cmd>GoIfErr<CR>', { desc = 'Go If Error' })
         end,
-        event = { 'CmdlineEnter', 'VeryLazy' },
-        --ft = { "go", 'gomod' },
+        ft = { "go", 'gomod' },
         build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
     },
     {
@@ -194,63 +188,46 @@ return {
         dependencies = {
             'neovim/nvim-lspconfig',
         },
-        ft = { 'rust' },
-        config = function()
-            -- local buffer = vim.api.nvim_get_current_buf()
-            vim.keymap.set('n', '<leader>f', function()
-                vim.lsp.buf.format { async = true }
-            end)
-            vim.keymap.set('n', '<leader>q', '<cmd>RustLsp codeAction<CR>')
-            vim.keymap.set('n', '<leader>oc', '<cmd>RustLsp openCargo<CR>')
-            vim.keymap.set('n', '<leader>op', '<cmd>RustLsp parentModule<CR>')
-            vim.keymap.set('n', '<leader>h', '<cmd>RustLsp hover actions<CR>')
-        end,
-        version = '^4', -- Recommended
         lazy = false, -- This plugin is already lazy
+        -- event = 'BufRead',
+        -- ft = { 'rust' },
+        init = function()
+            vim.g.rustaceanvim = {
+                -- Plugin options
+                tools = {},
+                -- LSP options
+                server = {
+                    on_attach = function(_, _)
+                        vim.keymap.set('n', '<leader>f', function()
+                            vim.lsp.buf.format { async = true }
+                        end)
+                        vim.keymap.set('n', '<leader>q', '<cmd>RustLsp codeAction<CR>')
+                        vim.keymap.set('n', '<leader>oc', '<cmd>RustLsp openCargo<CR>')
+                        vim.keymap.set('n', '<leader>op', '<cmd>RustLsp parentModule<CR>')
+                        vim.keymap.set('n', '<leader>h', '<cmd>RustLsp hover actions<CR>')
+                    end,
+                    cmd = function()
+                        return { 'ra-multiplex', 'client' }
+                    end,
+                    standalone = false,
+                    default_settings = {
+                        ['rust-analyzer'] = {
+                            check = {
+                                overrideCommand = {
+                                    'cargo',
+                                    'clippy',
+                                    '--message-format=json-diagnostic-rendered-ansi',
+                                    '--fix',
+                                    '--allow-dirty',
+                                },
+                            },
+                        },
+                    },
+                },
+            }
+        end,
+        version = '^5', -- Recommended
     },
-    -- {
-    --
-    --     'simrat39/rust-tools.nvim',
-    --     dependencies = {
-    --         'neovim/nvim-lspconfig',
-    --     },
-    --     ft = { 'rust' },
-    --     config = function()
-    --         local rt = require 'rust-tools'
-    --         rt.setup {
-    --             server = {
-    --                 on_attach = function(client, bufnr)
-    --                     require('lsp.lspconfig').on_attach(client, bufnr)
-    --                     vim.keymap.set('n', '<leader>h', rt.hover_actions.hover_actions, { buffer = bufnr })
-    --                     vim.keymap.set('n', '<leader>q', rt.code_action_group.code_action_group, { buffer = bufnr })
-    --                     vim.keymap.set('n', '<leader>oc', rt.open_cargo_toml.open_cargo_toml, { buffer = bufnr })
-    --                     vim.keymap.set('n', '<leader>op', rt.parent_module.parent_module, { buffer = bufnr })
-    --                 end,
-    --                 capabilities = require('lsp.lspconfig').capabilities(),
-    --                 --cmd = { "ra-multiplex", "client" },
-    --                 init_options = {
-    --                     provideFormatter = true,
-    --                 },
-    --                 settings = {
-    --                     ['rust-analyzer'] = {
-    --                         check = {
-    --                             command = 'clippy',
-    --                             -- command = 'check',
-    --                             extraArgs = { '--all', '--', '-W', 'clippy::all' },
-    --                             -- extraArgs = { '--target', 'x86_64-pc-windows-gnu' },
-    --                         },
-    --                         procMacro = {
-    --                             enable = true,
-    --                         },
-    --                         cargo = {
-    --                             features = 'all',
-    --                         },
-    --                     },
-    --                 },
-    --             },
-    --         }
-    --     end,
-    -- },
     {
         'williamboman/mason-lspconfig.nvim',
         dependencies = {
