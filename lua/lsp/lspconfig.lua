@@ -59,7 +59,8 @@ function M.setup()
         'bashls',
         'html',
         'jsonls',
-        'vtsls',
+        'ts_ls',
+        'tailwindcss',
         --'jedi_language_server',
         'pyright',
         'texlab',
@@ -90,6 +91,16 @@ function M.setup()
                 on_attach = M.on_attach,
                 capabilities = M.capabilities(),
             }
+        end
+    end
+    local custom_servers = {
+        'surql',
+    }
+    -- For every custom server, are we in this filetype?
+    for _, server in pairs(custom_servers) do
+        if vim.fn.filereadable(vim.fn.stdpath 'config' .. '/lua/lsp/servers/' .. server .. '.lua') == 1 then
+            local cs = require('lsp.servers.' .. server)
+            cs.setup()
         end
     end
 end
