@@ -5,8 +5,8 @@ return {
             'nvim-tree/nvim-web-devicons',
         },
         lazy = true,
-        config = function()
-            require('lsp.lspconfig').setup()
+        config = function(_, opts)
+            require('lsp.lspconfig').setup(opts)
         end,
     },
     -- {
@@ -197,36 +197,51 @@ return {
                 tools = {},
                 -- LSP options
                 server = {
-                    on_attach = function(_, _)
+                    on_attach = function(_, buffer)
                         vim.keymap.set('n', '<leader>f', function()
                             vim.lsp.buf.format { async = true }
                         end)
                         vim.keymap.set('n', '<leader>q', '<cmd>RustLsp codeAction<CR>')
+                        vim.keymap.set('n', '<leader>p', '<cmd>RustLsp parentModule<CR>')
+                        vim.keymap.set(
+                            'n',
+                            'gd',
+                            vim.lsp.buf.definition,
+                            { buffer = buffer, noremap = true, silent = true, desc = 'Go to definition' }
+                        )
+                        vim.keymap.set(
+                            'n',
+                            'gD',
+                            vim.lsp.buf.declaration,
+                            { buffer = buffer, noremap = true, silent = true, desc = 'Go to declaration' }
+                        )
                         vim.keymap.set('n', '<leader>oc', '<cmd>RustLsp openCargo<CR>')
                         vim.keymap.set('n', '<leader>op', '<cmd>RustLsp parentModule<CR>')
                         vim.keymap.set('n', '<leader>h', '<cmd>RustLsp hover actions<CR>')
+                        vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename,
+                            { buffer = buffer, noremap = true, silent = true })
                     end,
-                    cmd = function()
-                        return { 'ra-multiplex', 'client' }
-                    end,
+                    -- cmd = function()
+                    --     return { 'ra-multiplex', 'client' }
+                    -- end,
                     standalone = false,
-                    default_settings = {
-                        ['rust-analyzer'] = {
-                            check = {
-                                overrideCommand = {
-                                    'cargo',
-                                    'clippy',
-                                    '--message-format=json-diagnostic-rendered-ansi',
-                                    '--fix',
-                                    '--allow-dirty',
-                                },
-                            },
-                        },
-                    },
+                    -- default_settings = {
+                    --     ['rust-analyzer'] = {
+                    --         check = {
+                    --             overrideCommand = {
+                    --                 'cargo',
+                    --                 'check',
+                    --                 -- '--message-format=json-diagnostic-rendered-ansi',
+                    --                 -- '--fix',
+                    --                 -- '--allow-dirty',
+                    --             },
+                    --         },
+                    --     },
+                    -- },
                 },
             }
         end,
-        version = '^5', -- Recommended
+        -- version = '^5', -- Recommended
     },
     {
         'williamboman/mason-lspconfig.nvim',

@@ -53,14 +53,6 @@ return {
         end,
     },
     {
-        'altermo/ultimate-autopair.nvim',
-        event = { 'InsertEnter', 'CmdlineEnter' },
-        branch = 'v0.6',
-        opts = {
-            --Config goes here
-        },
-    },
-    {
         'terrortylor/nvim-comment',
         keys = {
             { '<leader>c', '<cmd>CommentToggle<cr>', desc = 'Comment toggle' },

@@ -37,6 +37,11 @@ create_autocmd("BufHidden", {
     end,
     group = misc_events
 })
+create_autocmd('CursorHold', {
+    pattern = '*',
+    command = 'normal! m\'',
+    group = misc_events
+})
 
 local save_file_group = 'writegroup'
 create_augroup(save_file_group, { clear = true })
@@ -64,6 +69,10 @@ create_autocmd('BufRead', { pattern = '*.md', command = 'set filetype=markdown.p
 create_autocmd('BufNewFile', { pattern = '*.surql', command = 'set filetype=surql', group = syntax_group })
 create_autocmd('BufFilePre', { pattern = '*.surql', command = 'set filetype=surql', group = syntax_group })
 create_autocmd('BufRead', { pattern = '*.surql', command = 'set filetype=surql', group = syntax_group })
+
+create_autocmd('BufNewFile', { pattern = '*.tex', command = 'set filetype=tex', group = syntax_group })
+create_autocmd('BufFilePre', { pattern = '*.tex', command = 'set filetype=tex', group = syntax_group })
+create_autocmd('BufRead', { pattern = '*.tex', command = 'set filetype=tex', group = syntax_group })
 
 create_autocmd('BufNewFile', { pattern = '*.tera', command = 'set filetype=htmldjango', group = syntax_group })
 create_autocmd('BufFilePre', { pattern = '*.tera', command = 'set filetype=htmldjango', group = syntax_group })

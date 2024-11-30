@@ -34,13 +34,35 @@ function M.setup_keys(buffer)
 end
 
 function M.capabilities()
-    return require('cmp_nvim_lsp').default_capabilities()
+    -- check if blink.cmp is installed
+    local ok, blink = pcall(require, 'blink.cmp')
+    if ok then
+        return blink.get_lsp_capabilities()
+    else
+        return require('cmp_nvim_lsp').default_capabilities()
+    end
+end
+
+function M.setup_formatter(client, buffer)
+    if client.server_capabilities.documentFormattingProvider then
+        vim.keymap.set('n', '<leader>f', function()
+            vim.lsp.buf.format { async = true }
+        end, { buffer = buffer, noremap = true, silent = true, desc = 'Format' })
+    else
+        vim.keymap.set(
+            'n',
+            '<leader>f',
+            '<cmd>Neoformat<CR>',
+            { buffer = buffer, noremap = true, silent = true, desc = 'Format' }
+        )
+    end
 end
 
 function M.on_attach(client, buffer)
     if client.server_capabilities.documentSymbolProvider then
         require('nvim-navic').attach(client, buffer)
     end
+    M.setup_formatter(client, buffer)
     M.setup_keys(buffer)
     vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         -- disable virtual text
@@ -52,7 +74,7 @@ function M.on_attach(client, buffer)
     })
 end
 
-function M.setup()
+function M.setup(_)
     local servers = {
         'cssls',
         'emmet_ls',
@@ -61,7 +83,6 @@ function M.setup()
         'jsonls',
         'ts_ls',
         'tailwindcss',
-        --'jedi_language_server',
         'pyright',
         'texlab',
         'clangd',
@@ -75,21 +96,22 @@ function M.setup()
     }
     local lspconfig = require 'lspconfig'
     for _, server in pairs(servers) do
+        local capabilities = M.capabilities()
         if vim.fn.filereadable(vim.fn.stdpath 'config' .. '/lua/lsp/servers/' .. server .. '.lua') == 1 then
             local settings = require('lsp.servers.' .. server).settings()
             local filetypes = require('lsp.servers.' .. server).filetypes()
             local cmd = require('lsp.servers.' .. server).cmd()
             lspconfig[server].setup {
                 on_attach = M.on_attach,
-                capabilities = M.capabilities(),
                 cmd = cmd,
+                capabilities = capabilities,
                 settings = settings,
                 filetypes = filetypes,
             }
         else
             lspconfig[server].setup {
                 on_attach = M.on_attach,
-                capabilities = M.capabilities(),
+                capabilities = capabilities,
             }
         end
     end

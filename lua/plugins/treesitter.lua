@@ -17,7 +17,10 @@ return -- Treesitter
             'https://github.com/David-Kunz/markid',
             'nvim-treesitter/nvim-treesitter-textobjects', -- TODO: config
             'RRethy/nvim-treesitter-textsubjects', -- TODO: config
-            'RRethy/vim-illuminate',
+            {
+                'ehpi/vim-illuminate',
+                branch = 'remove-vim-region',
+            },
             'RRethy/nvim-treesitter-endwise',
             {
                 'abecodes/tabout.nvim',
@@ -36,13 +39,13 @@ return -- Treesitter
                 auto_install = true,
                 ensure_installed = 'all',
                 sync_install = false,
-                ignore_install = {},
                 autotag = {
                     enable = true,
                 },
                 highlight = {
                     enable = true,
                     additional_vim_regex_highlighting = { 'latex', 'markdown' },
+                    disable = { 'text', 'text,ignore' },
                 },
                 markid = {
                     enable = true,

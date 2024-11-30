@@ -59,10 +59,10 @@ return {
     },
     {
         'ahmedkhalf/project.nvim',
-        event = 'VeryLazy',
+        lazy = false,
         config = function()
             local opts = {
-                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "src" },
+                patterns = { "Cargo.lock", "package.json", ".git" },
                 detection_methods = { "pattern", "lsp" },
                 silent_chdir = false
             }

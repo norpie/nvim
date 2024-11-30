@@ -1,13 +1,13 @@
 return {
     {
         'sbdchd/neoformat',
-        keys = {
-            {
-                '<Leader>f',
-                '<cmd>Neoformat<CR>',
-                desc = 'Format the current buffer',
-            },
-        },
+        -- keys = {
+        --     {
+        --         '<Leader>f',
+        --         '<cmd>Neoformat<CR>',
+        --         desc = 'Format the current buffer',
+        --     },
+        -- },
         cmd = 'Neoformat',
         lazy = true
     },

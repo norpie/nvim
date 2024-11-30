@@ -1,6 +1,7 @@
 return {
     {
         'hrsh7th/nvim-cmp',
+        enabled = true,
         version = false,
         event = { 'InsertEnter', 'CmdlineEnter' },
         dependencies = {
@@ -13,6 +14,13 @@ return {
             'saadparwaiz1/cmp_luasnip',
             'onsails/lspkind.nvim',
             'L3MON4D3/LuaSnip',
+            {
+                'windwp/nvim-autopairs',
+                event = "InsertEnter",
+                config = true
+                -- use opts = {} for passing setup options
+                -- this is equivalent to setup({}) function
+            }
         },
         config = function()
             local cmp = require 'cmp'
@@ -55,7 +63,7 @@ return {
                     fields = { 'kind', 'abbr', 'menu' },
                     format = function(entry, vim_item)
                         local kind =
-                            require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 50 }(entry, vim_item)
+                            require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 50 } (entry, vim_item)
                         local strings = vim.split(kind.kind, '%s', { trimempty = true })
                         kind.kind = ' ' .. (strings[1] or '') .. ' '
                         kind.menu = '    (' .. (strings[2] or '') .. ')'
@@ -117,7 +125,7 @@ return {
                 formatting = {
                     format = function(entry, vim_item)
                         local kind =
-                            require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 60 }(entry, vim_item)
+                            require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 60 } (entry, vim_item)
                         kind.kind = ''
                         kind.menu = ''
                         kind.abbr = string.format('%-64s', kind.abbr)
@@ -145,7 +153,7 @@ return {
                 formatting = {
                     format = function(entry, vim_item)
                         local kind =
-                            require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 60 }(entry, vim_item)
+                            require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 60 } (entry, vim_item)
                         kind.kind = ''
                         kind.menu = ''
                         kind.abbr = string.format('%-64s', kind.abbr)
@@ -161,7 +169,115 @@ return {
                     },
                 },
             })
+
+            local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+            cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
         end,
+    },
+    {
+        'saghen/blink.cmp',
+        enabled = false,
+        lazy = false, -- lazy loading handled internally
+        dependencies = {
+            'rafamadriz/friendly-snippets',
+            'niuiic/blink-cmp-rg.nvim',
+            'Saghen/blink.compat',
+            'dmitmel/cmp-digraphs',
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip',
+        },
+
+        -- use a release tag to download pre-built binaries
+        version = 'v0.*',
+        -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+        -- build = 'cargo build --release',
+
+        opts = {
+            keymap = { preset = 'enter' },
+            highlight = {
+                use_nvim_cmp_as_default = true,
+            },
+            nerd_font_variant = 'mono',
+
+            accept = {
+                auto_brackets = { enabled = true },
+
+                expand_snippet = function(args)
+                    require('luasnip').lsp_expand(args.body)
+                    vim.cmd '<Plug>luasnip-expand-or-jump'
+                end,
+            },
+
+            trigger = { signature_help = { enabled = true } },
+
+            sources = {
+                completion = {
+                    enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep', 'luasnip' },
+                },
+                providers = {
+                    luasnip = {
+                        name = 'luasnip',
+                        module = 'blink.compat.source',
+
+                        score_offset = 3,
+
+                        opts = {},
+                    },
+                    digraphs = {
+                        name = 'digraphs',
+                        module = 'blink.compat.source',
+
+                        score_offset = -3,
+
+                        opts = {
+                            cache_digraphs_on_start = true,
+                        },
+                    },
+                    path = {
+                        name = 'Path',
+                        module = 'blink.cmp.sources.path',
+                        score_offset = 3,
+                        opts = {
+                            trailing_slash = false,
+                            label_trailing_slash = true,
+                            get_cwd = function(context)
+                                return vim.fn.expand(('#%d:p:h'):format(context.bufnr))
+                            end,
+                            show_hidden_files_by_default = false,
+                        },
+                    },
+                    -- other sources
+                    ripgrep = {
+                        module = 'blink-cmp-rg',
+                        name = 'Ripgrep',
+                        opts = {
+                            prefix_min_len = 3,
+                            get_command = function(_, prefix)
+                                return {
+                                    'rg',
+                                    '--no-config',
+                                    '--json',
+                                    '--word-regexp',
+                                    '--ignore-case',
+                                    '--',
+                                    prefix .. '[\\w_-]+',
+                                    vim.fs.root(0, '.git') or vim.fn.getcwd(),
+                                }
+                            end,
+                            get_prefix = function(_)
+                                local col = vim.api.nvim_win_get_cursor(0)[2]
+                                local line = vim.api.nvim_get_current_line()
+                                local prefix = line:sub(1, col):match '[%w_-]+$' or ''
+                                return prefix
+                            end,
+                        },
+                    },
+                },
+            },
+        },
+        -- allows extending the enabled_providers array elsewhere in your config
+        -- without having to redefining it
+        opts_extend = { 'sources.completion.enabled_providers' },
     },
     {
         'folke/neodev.nvim',
