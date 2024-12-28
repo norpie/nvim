@@ -76,14 +76,6 @@ function M.on_attach(client, buffer)
     end
     M.setup_formatter(client, buffer)
     M.setup_keys(buffer)
-    vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        -- disable virtual text
-        virtual_text = true,
-        -- show signs
-        signs = true,
-        -- show_diagnostic_autocmds = { "BufWritePost" },
-        show_diagnostic_autocmds = { 'InsertLeave', 'BufWritePost' },
-    })
 end
 
 function M.setup(_)
