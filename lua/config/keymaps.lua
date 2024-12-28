@@ -100,8 +100,8 @@ map('n', '<C-s-k>', ':vertical resize -2<CR>')
 map('n', '<C-s-l>', ':vertical resize +2<CR>')
 
 -- change buffers
-map('n', '<tab>', ':bnext<CR>')
-map('n', '<s-tab>', ':bprev<CR>')
+-- map('n', '<tab>', ':bnext<CR>')
+-- map('n', '<s-tab>', ':bprev<CR>')
 
 map('n', "<leader>Ls", "<cmd>Lazy sync<cr>")
 map('n', "<leader>Lc", "<cmd>Lazy clean<cr>")
