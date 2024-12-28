@@ -58,16 +58,14 @@ return {
         },
     },
     {
-        'ahmedkhalf/project.nvim',
+        "LintaoAmons/cd-project.nvim",
         lazy = false,
-        config = function()
-            local opts = {
-                patterns = { "Cargo.lock", "package.json", ".git" },
+        init = function()
+            require("cd-project").setup({
+                project_dir_pattern = { "Cargo.lock", "package.json", ".git" },
                 detection_methods = { "pattern", "lsp" },
                 silent_chdir = false
-            }
-            require("project_nvim").setup(opts)
+            })
         end,
-
     },
 }
