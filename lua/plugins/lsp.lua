@@ -56,7 +56,7 @@ return {
         },
     },
     {
-        enabled = true,
+        enabled = false,
         'github/copilot.vim',
         config = function()
             vim.g.copilot_filetypes = {
@@ -66,11 +66,18 @@ return {
         end,
     },
     {
-        enabled = false,
+        enabled = true,
         'TabbyML/vim-tabby',
-        event = 'BufRead',
+        lazy = false,
         config = function()
-            vim.g.tabby_keybind_accept = '9'
+            vim.g.tabby_keybind_accept = '<TAB>'
+        end,
+        dependencies = {
+            "neovim/nvim-lspconfig",
+        },
+        init = function()
+            vim.g.tabby_agent_start_command = { "npx", "tabby-agent", "--stdio" }
+            vim.g.tabby_inline_completion_trigger = "auto"
         end,
     },
     {
@@ -221,9 +228,9 @@ return {
                         vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename,
                             { buffer = buffer, noremap = true, silent = true })
                     end,
-                    -- cmd = function()
-                    --     return { 'ra-multiplex', 'client' }
-                    -- end,
+                    cmd = function()
+                        return { 'ra-multiplex', 'client' }
+                    end,
                     standalone = false,
                     -- default_settings = {
                     --     ['rust-analyzer'] = {
