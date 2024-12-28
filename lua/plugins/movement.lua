@@ -39,6 +39,7 @@ return {
             "nvim-tree/nvim-web-devicons",
             "nvim-lua/plenary.nvim",
         },
+        lazy = false,
         keys = {
             { "<s-tab>", "<cmd>CybuPrev<cr>" },
             { "<tab>",   "<cmd>CybuNext<cr>" }
