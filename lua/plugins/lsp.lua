@@ -56,7 +56,7 @@ return {
         },
     },
     {
-        enabled = false,
+        enabled = true,
         'github/copilot.vim',
         config = function()
             vim.g.copilot_filetypes = {
@@ -66,11 +66,19 @@ return {
         end,
     },
     {
-        enabled = true,
-        'TabbyML/vim-tabby',
+        enabled = false,
+        'phamngocquy/vim-tabby',
         lazy = false,
         config = function()
-            vim.g.tabby_keybind_accept = '<TAB>'
+            -- vim.api.nvim_create_user_command(
+            --     'TabbyAccept',
+            --     function()
+            --         vim.api.nvim_command('call tabby#inline_completion#service#Accept()')
+            --     end,
+            --     { nargs = 0 }
+            -- )
+            -- vim.keymap.set('i', '<TAB>', '<cmd>TabbyAccept<CR>', {})
+            vim.g.tabby_inline_completion_keybinding_accept = "<Tab>"
         end,
         dependencies = {
             "neovim/nvim-lspconfig",
