@@ -15,11 +15,14 @@ return {
     config = function()
         local telescope = require('telescope')
         telescope.setup({
-            --pickers = {
-            --    find_files = {
-            --        theme = "dropdown",
-            --    }
-            --},
+            pickers = {
+                find_files = {
+                    -- theme = "dropdown",
+                },
+                colorscheme = {
+                    enable_preview = true,
+                },
+            },
             defaults = {
                 file_ignore_patterns = { "bin/.*", "oldSrc/.*", "build/.*", "run/.*" },
                 layout_config = {
