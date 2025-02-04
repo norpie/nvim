@@ -60,11 +60,11 @@ create_autocmd('BufWritePost',
         group = save_file_group
     })
 
-local syntax_group = 'syntaxgroup'
-create_augroup(syntax_group, { clear = true })
-create_autocmd('BufNewFile', { pattern = '*.md', command = 'set filetype=markdown.pandoc', group = syntax_group })
-create_autocmd('BufFilePre', { pattern = '*.md', command = 'set filetype=markdown.pandoc', group = syntax_group })
-create_autocmd('BufRead', { pattern = '*.md', command = 'set filetype=markdown.pandoc', group = syntax_group })
+-- local syntax_group = 'syntaxgroup'
+-- create_augroup(syntax_group, { clear = true })
+-- create_autocmd('BufNewFile', { pattern = '*.md', command = 'set filetype=markdown.pandoc', group = syntax_group })
+-- create_autocmd('BufFilePre', { pattern = '*.md', command = 'set filetype=markdown.pandoc', group = syntax_group })
+-- create_autocmd('BufRead', { pattern = '*.md', command = 'set filetype=markdown.pandoc', group = syntax_group })
 
 create_autocmd('BufNewFile', { pattern = '*.surql', command = 'set filetype=surql', group = syntax_group })
 create_autocmd('BufFilePre', { pattern = '*.surql', command = 'set filetype=surql', group = syntax_group })
