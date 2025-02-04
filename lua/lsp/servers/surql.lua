@@ -13,7 +13,7 @@ M.setup = function()
 
             local client = vim.lsp.start {
                 name = 'surrealql-lsp-server',
-                cmd = { '/home/norpie/repos/surrealql-lsp/target/debug/surrealql-lsp-server' },
+                cmd = { '/home/norpie/repos/surrealql-lsp/target/release/surrealql-lsp-server' },
             }
 
             if not client then
