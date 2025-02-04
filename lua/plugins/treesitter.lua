@@ -17,10 +17,10 @@ return -- Treesitter
             'https://github.com/David-Kunz/markid',
             'nvim-treesitter/nvim-treesitter-textobjects', -- TODO: config
             'RRethy/nvim-treesitter-textsubjects', -- TODO: config
-            {
-                'ehpi/vim-illuminate',
-                branch = 'remove-vim-region',
-            },
+            -- {
+            --     'ehpi/vim-illuminate',
+            --     branch = 'remove-vim-region',
+            -- },
             'RRethy/nvim-treesitter-endwise',
             {
                 'abecodes/tabout.nvim',
