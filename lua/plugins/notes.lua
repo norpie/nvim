@@ -1,17 +1,12 @@
 return {
     {
-        'sbdchd/neoformat',
-        -- keys = {
-        --     {
-        --         '<Leader>f',
-        --         '<cmd>Neoformat<CR>',
-        --         desc = 'Format the current buffer',
-        --     },
-        -- },
-        cmd = 'Neoformat',
-        lazy = true
+        'OXY2DEV/markview.nvim',
+        lazy = false,
     },
-
+    {
+        'sbdchd/neoformat',
+        cmd = 'Neoformat',
+    },
     {
         'epwalsh/obsidian.nvim',
         event = { 'BufReadPre ' .. vim.fn.expand '~' .. '/notes/**.md' },
