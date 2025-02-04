@@ -24,11 +24,35 @@ return {
         },
         config = function()
             local cmp = require 'cmp'
-            --local lspkind = require('lspkind')
             local lspkind = require 'lspkind'
             lspkind.init {
                 symbol_map = {
-                    Copilot = '',
+                    Text = "󰰥",
+                    Method = "󰰑",
+                    Function = "󰯻",
+                    Constructor = "󰯲",
+                    Copilot = "",
+                    Field = "󰯼",
+                    Variable = "󰰫",
+                    Class = "󰰥",
+                    Interface = "󰰄",
+                    Module = "󰰐",
+                    Property = "󰰙",
+                    Unit = "󰯸",
+                    Value = "󰰫",
+                    Enum = "󰯸",
+                    Keyword = "󰰊",
+                    Snippet = "󰰢",
+                    Color = "󰯲",
+                    File = "󰯻",
+                    Reference = "󰰟",
+                    Folder = "󰯻",
+                    EnumMember = "󰯸",
+                    Constant = "󰯲",
+                    Struct = "󰰥",
+                    Event = "󰯻",
+                    Operator = "󰰊",
+                    TypeParameter = "󰰥",
                 },
             }
 
@@ -53,38 +77,49 @@ return {
                 },
                 window = {
                     completion = {
-                        winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+                        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
                         col_offset = -3,
                         side_padding = 0,
-                        scrollbar = true,
+                        scrollbar = false,
+                    },
+                    documnentation = {
+                        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
                     },
                 },
                 formatting = {
-                    fields = { 'kind', 'abbr', 'menu' },
+                    fields = { "kind", "abbr", "menu" },
                     format = function(entry, vim_item)
-                        local kind =
-                            require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 50 } (entry, vim_item)
-                        local strings = vim.split(kind.kind, '%s', { trimempty = true })
-                        kind.kind = ' ' .. (strings[1] or '') .. ' '
-                        kind.menu = '    (' .. (strings[2] or '') .. ')'
-
+                        local settings = require("lspkind").cmp_format({
+                            mode = "symbol_text",
+                            maxwidth = {
+                                abbr = 15,
+                                kind = 8,
+                                menu = 0,
+                            },
+                            elipsis_character = "…",
+                        })
+                        local kind = settings(entry, vim_item)
+                        local strings = vim.split(kind.kind, "%s", { trimempty = true })
+                        -- Add padding to the kind
+                        kind.menu = string.format(" [%-7s]", strings[2] or "")
+                        kind.kind = " " .. (strings[1] or "") .. " "
+                        local kind_length = vim.fn.strdisplaywidth(kind.kind)
+                        if strings[2] == "Keyword" or strings[2] == "Variable" then
+                            -- set the kind to string of kind_length spaces
+                            kind.kind = string.rep(" ", kind_length)
+                        end
                         return kind
                     end,
-                    --format = lspkind.cmp_format({
-                    --    mode = 'symbol', -- show only symbol annotations
-                    --    maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-                    --    ellipsis_char = '…', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-                    --})
                 },
                 view = {
                     entries = {
-                        name = 'custom',
                         selection_order = 'near_cursor',
+                        follow_cursor = true,
                     },
                 },
-                experimental = {
-                    ghost_text = { hl_group = 'Comment' },
-                },
+                -- experimental = {
+                --     ghost_text = { hl_group = 'Comment' },
+                -- },
                 mapping = cmp.mapping.preset.insert {
                     ['<C-p>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
                     ['<C-n>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
@@ -170,8 +205,8 @@ return {
                 },
             })
 
-            local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-            cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+            -- local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+            -- cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
         end,
     },
     {
