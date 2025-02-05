@@ -8,26 +8,6 @@ return {
         },
         -- version = '*',
         build = "cargo build --release",
-        init = function()
-            vim.api.nvim_create_autocmd("User", {
-                pattern = "LazyLoad",
-                callback = function(event)
-                    if event.data == "blink.nvim" then
-                        vim.schedule(function()
-                            local cmp = require("blink.cmp")
-                            cmp.on_show(function()
-                                require("copilot.suggestion").dismiss()
-                                vim.api.nvim_buf_set_var(0, "copilot_suggestion_hidden", true)
-                            end)
-
-                            cmp.on_hide(function()
-                                vim.api.nvim_buf_set_var(0, "copilot_suggestion_hidden", false)
-                            end)
-                        end)
-                    end
-                end
-            })
-        end,
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
         opts = {
@@ -65,7 +45,7 @@ return {
                 use_nvim_cmp_as_default = true,
                 nerd_font_variant = 'mono',
                 kind_icons = {
-                    Copilot = "",
+                    Copilot = "",
                     Text = '󰉿',
                     Method = '󰊕',
                     Function = '󰊕',
@@ -98,9 +78,20 @@ return {
                     TypeParameter = '󰬛',
                 }
             },
+            signature = { enabled = true },
             sources = {
                 default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
                 providers = {
+                    buffer = {
+                        opts = {
+                            -- or (recommended) filter to only "normal" buffers
+                            get_bufnrs = function()
+                                return vim.tbl_filter(function(bufnr)
+                                    return vim.bo[bufnr].buftype == ''
+                                end, vim.api.nvim_list_bufs())
+                            end
+                        }
+                    },
                     lazydev = {
                         name = "LazyDev",
                         module = "lazydev.integrations.blink",
@@ -128,6 +119,21 @@ return {
         opts_extend = { "sources.default" }
     },
     {
+        'terrortylor/nvim-comment',
+        keys = {
+            { '<leader>c', '<cmd>CommentToggle<cr>',                       desc = 'Comment toggle' },
+            { '<leader>c', ':<C-u>call CommentOperator(visualmode())<CR>', mode = 'x' },
+        },
+        config = function()
+            require('nvim_comment').setup {
+                create_mappings = false,
+                hook = function()
+                    require('ts_context_commentstring.internal').update_commentstring()
+                end,
+            }
+        end,
+    },
+    {
         event = "InsertEnter",
         'giuxtaposition/blink-cmp-copilot',
         dependencies = {
@@ -137,9 +143,32 @@ return {
                     'saghen/blink.cmp',
                 },
                 config = function()
+                    vim.api.nvim_create_autocmd('User', {
+                        pattern = 'BlinkCmpMenuOpen',
+                        callback = function()
+                            require("copilot.suggestion").dismiss()
+                            vim.b.copilot_suggestion_hidden = true
+                        end,
+                    })
+                    vim.api.nvim_create_autocmd('User', {
+                        pattern = 'BlinkCmpMenuClose',
+                        callback = function()
+                            vim.b.copilot_suggestion_hidden = false
+                        end,
+                    })
+
+
                     require("copilot").setup({
-                        suggestion = { enabled = false },
-                        panel = { enabled = false },
+                        suggestion = {
+                            enabled = true,
+                            auto_trigger = true,
+                            keymap = {
+                                accept = "<Tab>",
+                            }
+                        },
+                        panel = {
+                            enabled = false,
+                        },
                     })
                 end
             }
