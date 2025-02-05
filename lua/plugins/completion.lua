@@ -78,7 +78,6 @@ return {
                     TypeParameter = '󰬛',
                 }
             },
-            signature = { enabled = true },
             sources = {
                 default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
                 providers = {
@@ -114,7 +113,7 @@ return {
                         end,
                     },
                 },
-            },
+            }
         },
         opts_extend = { "sources.default" }
     },
@@ -156,7 +155,6 @@ return {
                             vim.b.copilot_suggestion_hidden = false
                         end,
                     })
-
 
                     require("copilot").setup({
                         suggestion = {
