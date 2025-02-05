@@ -76,6 +76,7 @@ return {
     },
     {
         'akinsho/bufferline.nvim',
+        event = "UIEnter",
         version = "*",
         dependencies = {
             'nvim-tree/nvim-web-devicons'
@@ -95,6 +96,9 @@ return {
     },
     {
         'nvim-lualine/lualine.nvim',
+        dependencies = {
+            { 'AndreM222/copilot-lualine' }
+        },
         event = "UIEnter",
         config = function()
             require('lualine').setup({
@@ -110,18 +114,18 @@ return {
                 sections = {
                     -- left
                     lualine_a = { 'mode' },
-                    lualine_b = { 'branch', '', 'diagnostics' },
-                    lualine_c = { 'filename' },
+                    lualine_b = { 'branch', 'copilot', 'diagnostics' },
+                    lualine_c = { '' },
                     -- right
                     lualine_x = { '' },
                     lualine_y = { 'filetype' },
                     lualine_z = { '' }
                 },
                 inactive_sections = {
-                    lualine_a = { 'filename' },
+                    lualine_a = {},
                     lualine_b = {},
                     lualine_c = {},
-                    lualine_x = { 'location' },
+                    lualine_x = {},
                     lualine_y = {},
                     lualine_z = {}
                 },
