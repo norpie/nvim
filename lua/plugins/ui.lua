@@ -27,6 +27,17 @@ return {
                     inc_rename = true
 
                 },
+                routes = {
+                    {
+                        filter = {
+                            event = 'msg_show',
+                            any = {
+                                { find = 'Agent service not initialized' },
+                            },
+                        },
+                        opts = { skip = true },
+                    },
+                },
                 views = { -- TODO: fix cmdline suggestions
                     cmdline_popup = {
                         position = {
