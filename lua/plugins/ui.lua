@@ -75,6 +75,62 @@ return {
         end
     },
     {
+        'akinsho/bufferline.nvim',
+        version = "*",
+        dependencies = {
+            'nvim-tree/nvim-web-devicons'
+        },
+        config = function()
+            local bufferline = require('bufferline')
+            bufferline.setup {
+                options = {
+                    -- count, level, diagnostics_dict, context
+                    diagnostics_indicator = function(count, level, _, _)
+                        local icon = level:match("error") and " " or " "
+                        return " " .. icon .. count
+                    end
+                }
+            }
+        end,
+    },
+    {
+        'nvim-lualine/lualine.nvim',
+        event = "UIEnter",
+        config = function()
+            require('lualine').setup({
+                options = {
+                    icons_enabled = true,
+                    theme = 'auto', -- based on current vim colorscheme
+                    -- not a big fan of fancy triangle separators
+                    component_separators = { left = '', right = '' },
+                    section_separators = { left = '', right = '' },
+                    disabled_filetypes = {},
+                    always_divide_middle = true,
+                },
+                sections = {
+                    -- left
+                    lualine_a = { 'mode' },
+                    lualine_b = { 'branch', '', 'diagnostics' },
+                    lualine_c = { 'filename' },
+                    -- right
+                    lualine_x = { '' },
+                    lualine_y = { 'filetype' },
+                    lualine_z = { '' }
+                },
+                inactive_sections = {
+                    lualine_a = { 'filename' },
+                    lualine_b = {},
+                    lualine_c = {},
+                    lualine_x = { 'location' },
+                    lualine_y = {},
+                    lualine_z = {}
+                },
+                tabline = {},
+                extensions = {}
+            })
+        end
+    },
+    {
         "ghillb/cybu.nvim",
         dependencies = {
             "nvim-tree/nvim-web-devicons",
