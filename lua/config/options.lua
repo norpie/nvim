@@ -52,5 +52,5 @@ set.cmdheight = 0
 set.spelllang = 'fi,fr,nl,en'
 set.laststatus = 1
 set.showmode = false
-set.conceallevel = 0
+set.conceallevel = 1
 set.showtabline = 0
