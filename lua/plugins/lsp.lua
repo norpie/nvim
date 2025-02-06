@@ -58,6 +58,17 @@ return {
                 svelte = {},
                 taplo = {},
                 vimls = {},
+                nil_ls = {
+                    settings = {
+                        ['nil'] = {
+                            formatting = {
+                                command = {
+                                    "alejandra",
+                                }
+                            }
+                        }
+                    }
+                },
                 pyright = {
                     settings = {
                         python = {
