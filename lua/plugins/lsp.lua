@@ -5,7 +5,11 @@ return {
             -- Completion
             'saghen/blink.cmp',
             -- Rust
-            --
+            -- Auto configuring LSP and installing servers
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            -- Typescript
+            { "pmizio/typescript-tools.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = {} },
             -- Neovim dev
             {
                 'folke/lazydev.nvim',
@@ -61,6 +65,11 @@ return {
             },
         },
         config = function(_, opts)
+            require('mason').setup()
+            local mason_lspconfig = require 'mason-lspconfig'
+            mason_lspconfig.setup {
+                ensure_installed = { "pyright" }
+            }
             local lspconfig = require 'lspconfig'
             for server, config in pairs(opts.servers) do
                 config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
