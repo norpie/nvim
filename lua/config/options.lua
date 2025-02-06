@@ -49,6 +49,7 @@ set.termguicolors = true
 set.scrolloff = 50
 set.updatetime = 4000
 set.cmdheight = 0
+set.colorcolumn = '80'
 set.spelllang = 'fi,fr,nl,en'
 set.laststatus = 1
 set.showmode = false

@@ -201,6 +201,11 @@ return {
         }
     },
     {
+        'Bekaboo/deadcolumn.nvim',
+        event = 'UIEnter',
+        opts = {}
+    },
+    {
         "chrisgrieser/nvim-spider",
         keys = {
             { 'w', function() require('spider').motion('w') end },
