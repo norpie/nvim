@@ -4,7 +4,6 @@ return {
         dependencies = {
             -- Completion
             'saghen/blink.cmp',
-            -- Rust
             -- Auto configuring LSP and installing servers
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
