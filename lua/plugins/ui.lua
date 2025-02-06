@@ -177,6 +177,11 @@ return {
         end
     },
     {
+        'lewis6991/satellite.nvim',
+        event = 'VeryLazy',
+        opts = {},
+    },
+    {
         'famiu/bufdelete.nvim',
         cmd = {
             'Bdelete',
