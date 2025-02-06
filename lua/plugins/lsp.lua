@@ -4,11 +4,18 @@ return {
         dependencies = {
             -- Completion
             'saghen/blink.cmp',
+            -- Typescript
+            {
+                "pmizio/typescript-tools.nvim",
+                dependencies = {
+                    "nvim-lua/plenary.nvim",
+                    { "vuki656/package-info.nvim", opts = {} },
+                },
+                opts = {}
+            },
             -- Auto configuring LSP and installing servers
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
-            -- Typescript
-            { "pmizio/typescript-tools.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = {} },
             -- Neovim dev
             {
                 'folke/lazydev.nvim',
@@ -184,6 +191,7 @@ return {
         'mrcjkb/rustaceanvim',
         dependencies = {
             'neovim/nvim-lspconfig',
+            { 'saecki/crates.nvim', opts = {} }
         },
         lazy = false,
         init = function()
