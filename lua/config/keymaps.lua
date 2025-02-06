@@ -26,6 +26,8 @@ noremap('n', '<esc>', '<cmd>noh<cr><cmd>lua require("notify").dismiss()<cr>')
 map('', 'j', 'gj')
 map('', 'k', 'gk')
 
+map({ 'n', 'v' }, '<Space>', '<Nop>')
+
 -- Disable the execute mode thingy
 map('', 'Q', 'q')
 
