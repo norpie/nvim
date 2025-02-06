@@ -39,5 +39,27 @@ return {
         },
         build = function() require('fundo').install() end,
         opts = {}
+    },
+    {
+        'folke/zen-mode.nvim',
+        keys = {
+            { '<Leader>z', '<cmd>ZenMode<CR>', { silent = true } }
+
+        },
+        dependencies = {
+            'folke/twilight.nvim',
+        },
+        opts = {
+            -- callback where you can add custom code when the Zen window opens
+            on_open = function(win)
+                vim.opt.wrap = true
+                vim.opt.linebreak = true
+            end,
+            -- callback where you can add custom code when the Zen window closes
+            on_close = function()
+                vim.opt.wrap = false
+                vim.opt.linebreak = false
+            end,
+        }
     }
 }
