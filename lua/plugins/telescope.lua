@@ -7,8 +7,8 @@ return {
     },
     cmd = 'Telescope',
     keys = {
-        { '<C-p>', '<cmd>Telescope find_files<cr>', { silent = true } },
-        { '<M-p>', '<cmd>Telescope live_grep<cr>',  { silent = true } },
+        { '<C-p>',     '<cmd>Telescope find_files<cr>', { silent = true } },
+        { '<M-p>',     '<cmd>Telescope live_grep<cr>',  { silent = true } },
         { '<leader>i', '<cmd>Telescope import<cr>',     { silent = true } },
     },
     config = function()
