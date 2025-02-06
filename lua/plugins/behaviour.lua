@@ -183,5 +183,57 @@ return {
             hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
             hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
         end
-    }
+    },
+    { -- Hop to other places on the screen
+        'smoka7/hop.nvim',
+        cmd = "HopWord",
+        keys = {
+            { '<M-h>', ':HopWord<CR>', desc = "Hop Word" }
+        },
+        opts = {
+            keys = 'etovxqpdygfblzhckisuran'
+        }
+    },
+    { -- Perform vim motions on objects elsewhere on the screen
+        'Weissle/easy-action',
+        opts = {
+            jump_provider_config = {
+                hop = {
+                    action_select = {
+                        line = {
+                            cmd = "HopLineStartMW",
+                        },
+                        default = {
+                            cmd = "HopChar1",
+                        }
+                    },
+                },
+            },
+        },
+        dependencies = {
+            {
+                "hop.nvim",
+                "kevinhwang91/promise-async",
+                module = { "async" },
+            }
+        },
+        keys = {
+            {
+                "<leader>a",
+                "<cmd>BasicEasyAction<cr>",
+                desc = "Action Anywhere",
+                silent = true,
+                remap = false
+            },
+            {
+                "<leader>e",
+                function()
+                    require("easy-action").base_easy_action("i", nil, "InsertLeave")
+                end,
+                desc = "Jump edit anywhere",
+                silent = true,
+                remap = false
+            }
+        }
+    },
 }
