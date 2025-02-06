@@ -141,6 +141,23 @@ return {
                 dependencies = {
                     'saghen/blink.cmp',
                 },
+                keys = {
+                    {
+                        '<Tab>',
+                        function()
+                            if require("copilot.suggestion").is_visible() then
+                                require("copilot.suggestion").accept()
+                                return
+                            else
+                                return "<Tab>"
+                            end
+                        end,
+                        mode = 'i',
+                        desc = 'Accept copilot suggestion',
+                        expr = true,
+                        noremap = true,
+                    },
+                },
                 config = function()
                     vim.api.nvim_create_autocmd('User', {
                         pattern = 'BlinkCmpMenuOpen',
@@ -160,9 +177,6 @@ return {
                         suggestion = {
                             enabled = true,
                             auto_trigger = true,
-                            keymap = {
-                                accept = "<Tab>",
-                            }
                         },
                         panel = {
                             enabled = false,
