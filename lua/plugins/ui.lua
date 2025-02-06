@@ -188,6 +188,19 @@ return {
         end
     },
     {
+        "folke/todo-comments.nvim",
+        event = "UIEnter",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {}
+    },
+    {
+        'catgoose/nvim-colorizer.lua',
+        event = 'BufReadPre',
+        opts = {
+            tailwind = true
+        }
+    },
+    {
         "chrisgrieser/nvim-spider",
         keys = {
             { 'w', function() require('spider').motion('w') end },
