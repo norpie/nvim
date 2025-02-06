@@ -2,34 +2,16 @@ return
 {
     {
         'JoosepAlviste/nvim-ts-context-commentstring',
-        lazy = true,
         event = 'VeryLazy',
-        setup = function()
-            require('ts_context_commentstring').setup {
-                -- enable_autocmd = false,
-            }
-        end,
+        opts = {}
     },
     {
         'nvim-treesitter/nvim-treesitter',
         dependencies = {
-            -- { 'norpie/markid', branch = 'fix-issue-9' },
             'https://github.com/David-Kunz/markid',
-            'nvim-treesitter/nvim-treesitter-textobjects', -- TODO: config
-            'RRethy/nvim-treesitter-textsubjects',         -- TODO: config
-            -- {
-            --     'ehpi/vim-illuminate',
-            --     branch = 'remove-vim-region',
-            -- },
+            'RRethy/vim-illuminate', -- { 'ehpi/vim-illuminate', branch = 'remove-vim-region' }, -- This is ready for the nightly
             'RRethy/nvim-treesitter-endwise',
-            {
-                'abecodes/tabout.nvim',
-                enabled = false,
-                lazy = true,
-                config = function()
-                    require('tabout').setup()
-                end,
-            },
+            'RRethy/nvim-treesitter-textsubjects',
         },
         build = ':TSUpdate',
         event = { 'UIEnter' },
@@ -46,6 +28,13 @@ return
                     enable = true,
                     additional_vim_regex_highlighting = { 'latex', 'markdown' },
                     disable = { 'text', 'text,ignore' },
+                },
+                textsubjects = {
+                    enable = true,
+                    prev_selection = ',',
+                    keymaps = {
+                        ['.'] = 'textsubjects-smart',
+                    },
                 },
                 markid = {
                     enable = true,
