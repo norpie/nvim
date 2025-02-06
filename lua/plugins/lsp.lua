@@ -35,10 +35,26 @@ return {
         -- example using `opts` for defining servers
         opts = {
             servers = {
-                lua_ls = {
+                lua_ls = {},
+                cssls = {},
+                emmet_ls = {},
+                bashls = {},
+                html = {},
+                jsonls = {},
+                ts_ls = {},
+                tailwindcss = {},
+                sqlls = {},
+                texlab = {},
+                svelte = {},
+                taplo = {},
+                vimls = {},
+                pyright = {
                     settings = {
-                        diagnostics = {
-                            globals = { 'vim' },
+                        python = {
+                            analysis = {
+                                autoSearchPaths = true,
+                                useLibraryCodeForTypes = true,
+                            },
                         },
                     },
                 },
