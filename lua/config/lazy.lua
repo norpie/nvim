@@ -16,5 +16,5 @@ vim.env.GIT_SSH_COMMAND = "ssh -o UserKnownHostsFile=~/.config/ssh/known_hosts -
 require('lazy').setup({
     spec = { { import = "plugins" } },
     install = { colorscheme = { "catppuccin-mocha" } },
-    checker = { enabled = true }
+    -- checker = { enabled = true }
 })
