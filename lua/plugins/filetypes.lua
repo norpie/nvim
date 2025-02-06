@@ -15,12 +15,6 @@ return {
         'epwalsh/obsidian.nvim',
         event = { 'BufReadPre ' .. vim.fn.expand '~' .. '/notes/**.md' },
         dependencies = { 'nvim-lua/plenary.nvim', },
-        -- ["<leader>d"] = vim.cmd('ObsidianFollowLink'),
-        -- ["<leader>b"] = vim.cmd('ObsidianBacklinks'),
-        -- ["<leader>n"] = vim.cmd('ObsidianNew'),
-        -- ["<leader>s"] = vim.cmd('ObsidianSearch'),
-        -- ["<C-P>"] = vim.cmd('ObsidianQuickSwitch'),
-        -- ["<leader>t"] = vim.cmd('ObsidianTemplate'),
         keys = {
             { '<leader>d', function() vim.cmd('ObsidianFollowLink') end,  desc = 'Follow link' },
             { '<leader>b', function() vim.cmd('ObsidianBacklinks') end,   desc = 'Backlinks' },
