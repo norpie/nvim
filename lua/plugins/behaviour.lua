@@ -40,6 +40,7 @@ return {
     },
     { -- Possiblity to view undo history in a tree
         'mbbill/undotree',
+        event = 'VeryLazy',
         keys = {
             { '<leader>u', vim.cmd.UndotreeToggle, desc = 'Toggle undotree' }
         }
@@ -53,7 +54,7 @@ return {
         build = function() require('fundo').install() end,
         opts = {}
     },
-    {
+    { -- Zen mode
         'folke/zen-mode.nvim',
         keys = {
             { '<Leader>z', '<cmd>ZenMode<CR>', { silent = true } }
@@ -74,5 +75,9 @@ return {
                 vim.opt.linebreak = false
             end,
         }
+    },
+    { -- Make directories when saving a file
+        'jghauser/mkdir.nvim',
+        event = 'VeryLazy',
     }
 }
