@@ -108,7 +108,7 @@ return {
     {
         'nvim-lualine/lualine.nvim',
         dependencies = {
-            { 'AndreM222/copilot-lualine' }
+            'AndreM222/copilot-lualine',
         },
         event = "UIEnter",
         config = function()
@@ -125,8 +125,8 @@ return {
                 sections = {
                     -- left
                     lualine_a = { 'mode' },
-                    lualine_b = { 'branch', 'copilot', 'diagnostics' },
-                    lualine_c = { '' },
+                    lualine_b = { 'branch', 'copilot', },
+                    lualine_c = { 'diff', 'diagnostics' },
                     -- right
                     lualine_x = { '' },
                     lualine_y = { 'filetype' },
@@ -158,6 +158,13 @@ return {
         config = function()
             require('cybu').setup()
         end,
+    },
+    {
+        'mawkler/modicator.nvim',
+        event = "UIEnter",
+        opts = {
+            show_warnings = true,
+        }
     },
     {
         'jinh0/eyeliner.nvim',
@@ -207,7 +214,7 @@ return {
     },
     {
         'Bekaboo/dropbar.nvim',
-        -- optional, but required for fuzzy finder support
+        event = 'UIEnter',
         dependencies = {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make'
