@@ -3,11 +3,13 @@ return {
     dependencies = {
         'nvim-telescope/telescope-fzy-native.nvim',
         'nvim-lua/plenary.nvim',
+        "piersolenski/telescope-import.nvim",
     },
     cmd = 'Telescope',
     keys = {
         { '<C-p>', '<cmd>Telescope find_files<cr>', { silent = true } },
         { '<M-p>', '<cmd>Telescope live_grep<cr>',  { silent = true } },
+        { '<leader>i', '<cmd>Telescope import<cr>',     { silent = true } },
     },
     config = function()
         local telescope = require('telescope')
@@ -35,12 +37,16 @@ return {
                 fzy_native = {
                     override_generic_sorter = false,
                     override_file_sorter = true,
+                },
+                import = {
+                    insert_at_top = true
                 }
             },
         })
 
         telescope.load_extension("noice")
         telescope.load_extension('fzy_native')
+        telescope.load_extension("import")
 
         local colors = require('util').palette()
         if not colors then
