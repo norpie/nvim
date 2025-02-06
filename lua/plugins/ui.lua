@@ -161,7 +161,7 @@ return {
     },
     {
         'mawkler/modicator.nvim',
-        event = "UIEnter",
+        event = 'ModeChanged',
         opts = {
             show_warnings = true,
         }
