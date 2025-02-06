@@ -20,17 +20,6 @@ return {
             require('tidy').setup()
         end,
     },
-    { -- Go to last location on file open
-        'ethanholz/nvim-lastplace',
-        event = 'BufReadPost',
-        config = function()
-            require 'nvim-lastplace'.setup {
-                lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-                lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
-                lastplace_open_folds = true
-            }
-        end
-    },
     { -- Auto pairs for brackets, quotes, etc.
         'windwp/nvim-autopairs',
         event = "InsertEnter",

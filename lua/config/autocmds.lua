@@ -15,6 +15,12 @@ create_autocmd('VimEnter', {
     group = custom_events
 })
 
+vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+    desc = 'return cursor to where it was last time closing the file',
+    pattern = '*',
+    command = 'silent! normal! g`"zv',
+    group = custom_events
+})
 
 local java_group = 'javagroup'
 create_augroup(java_group, { clear = true })
