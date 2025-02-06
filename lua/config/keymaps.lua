@@ -89,7 +89,7 @@ local function close_or_delete()
     if count > 1 then
         vim.cmd("close")
     else
-        vim.cmd("Bdelete")
+        vim.cmd("bdelete")
     end
 end
 
