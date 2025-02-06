@@ -181,6 +181,10 @@ return {
                         panel = {
                             enabled = false,
                         },
+                        filetypes = {
+                            yaml = true,
+                            markdown = true,
+                        }
                     })
                 end
             }
