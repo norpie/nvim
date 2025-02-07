@@ -19,9 +19,6 @@ local function map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
--- remove search highlight and dismiss notifications
-noremap('n', '<esc>', '<cmd>noh<cr><cmd>lua require("notify").dismiss()<cr>')
-
 -- dont move over when j- and k-ing with :set wrap
 map('', 'j', 'gj')
 map('', 'k', 'gk')
