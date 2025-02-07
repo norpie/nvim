@@ -34,7 +34,8 @@ return {
             completion = {
                 list = {
                     selection = {
-                        auto_insert = false
+                        preselect = true,
+                        auto_insert = true
                     },
                 },
                 trigger = {
