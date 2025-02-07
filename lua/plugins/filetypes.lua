@@ -10,6 +10,13 @@ return {
     { -- Markdown preview
         'OXY2DEV/markview.nvim',
         ft = { 'markdown' },
+        ---@class mkv.config
+        opts = {
+            preview = {
+                modes = { "n", "no", "c", "i" },
+                hybrid_modes = { "i" }
+            }
+        }
     },
     {
         'epwalsh/obsidian.nvim',
