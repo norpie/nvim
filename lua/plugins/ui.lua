@@ -232,6 +232,16 @@ return {
         end
     },
     {
+        {
+            'stevearc/oil.nvim',
+            ---@module 'oil'
+            ---@type oil.SetupOpts
+            opts = {},
+            dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+            lazy = false,
+        }
+    },
+    {
         "chrisgrieser/nvim-spider",
         keys = {
             { 'w', function() require('spider').motion('w') end },
