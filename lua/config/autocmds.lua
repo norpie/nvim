@@ -3,7 +3,7 @@ local create_autocmd = vim.api.nvim_create_autocmd
 
 local custom_events = 'customeventsgroup'
 create_augroup(custom_events, { clear = true })
-create_autocmd('VimEnter', {
+create_autocmd('VimEnter', { -- Fire custom "DirEnter" event when opening a directory
     callback = function()
         local res = vim.fn.isdirectory(vim.fn.expand('%:p'))
         if res == 1 then
@@ -15,26 +15,16 @@ create_autocmd('VimEnter', {
     group = custom_events
 })
 
-vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+create_autocmd('BufWinEnter', { -- Set the cursor to the last position when opening a file
     desc = 'return cursor to where it was last time closing the file',
     pattern = '*',
     command = 'silent! normal! g`"zv',
     group = custom_events
 })
 
-local java_group = 'javagroup'
-create_augroup(java_group, { clear = true })
-create_autocmd('BufReadPost', {
-    pattern = "*.java",
-    callback = function()
-        require('lsp.jdtls').launch()
-    end,
-    group = java_group
-})
-
 local misc_events = 'miscgroup'
 create_augroup(misc_events, { clear = true })
-create_autocmd("BufHidden", {
+create_autocmd("BufHidden", { -- Close the buffer if it's hidden
     desc = "Delete [No Name] buffers",
     callback = function(event)
         if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
@@ -43,43 +33,13 @@ create_autocmd("BufHidden", {
     end,
     group = misc_events
 })
-create_autocmd('CursorHold', {
-    pattern = '*',
-    command = 'normal! m\'',
-    group = misc_events
+create_autocmd('VimEnter', { -- If `$(git dir)` exits with `$? -eq 0`, `cd $(git root)`
+    desc = "Project root cd'er",
+    callback = function()
+        local git_dir = vim.fn.system('git rev-parse --show-toplevel 2> /dev/null')
+        if git_dir ~= "" then
+            vim.cmd('cd ' .. git_dir)
+        end
+    end,
+    group = misc_events,
 })
-
-local save_file_group = 'writegroup'
-create_augroup(save_file_group, { clear = true })
--- create_autocmd('BufWritePost', { pattern = '*.lua', command = 'source %', group = save_file_group })
-create_autocmd('BufWritePre', { pattern = '*', command = 'retab!', group = save_file_group })
-create_autocmd('BufWritePost',
-    {
-        pattern = 'Xresources',
-        command = 'silent !xrdb -merge ~/.config/X11/Xresources && notify-send "Xresources saved\\! 💾"',
-        group = save_file_group
-    })
-create_autocmd('BufWritePost',
-    {
-        pattern = 'dunstrc',
-        command = 'silent !restart dunst && notify-send "dunstrc saved\\! 💾"',
-        group = save_file_group
-    })
-
--- local syntax_group = 'syntaxgroup'
--- create_augroup(syntax_group, { clear = true })
--- create_autocmd('BufNewFile', { pattern = '*.md', command = 'set filetype=markdown.pandoc', group = syntax_group })
--- create_autocmd('BufFilePre', { pattern = '*.md', command = 'set filetype=markdown.pandoc', group = syntax_group })
--- create_autocmd('BufRead', { pattern = '*.md', command = 'set filetype=markdown.pandoc', group = syntax_group })
-
-create_autocmd('BufNewFile', { pattern = '*.surql', command = 'set filetype=surql', group = syntax_group })
-create_autocmd('BufFilePre', { pattern = '*.surql', command = 'set filetype=surql', group = syntax_group })
-create_autocmd('BufRead', { pattern = '*.surql', command = 'set filetype=surql', group = syntax_group })
-
-create_autocmd('BufNewFile', { pattern = '*.tex', command = 'set filetype=tex', group = syntax_group })
-create_autocmd('BufFilePre', { pattern = '*.tex', command = 'set filetype=tex', group = syntax_group })
-create_autocmd('BufRead', { pattern = '*.tex', command = 'set filetype=tex', group = syntax_group })
-
-create_autocmd('BufNewFile', { pattern = '*.tera', command = 'set filetype=htmldjango', group = syntax_group })
-create_autocmd('BufFilePre', { pattern = '*.tera', command = 'set filetype=htmldjango', group = syntax_group })
-create_autocmd('BufRead', { pattern = '*.tera', command = 'set filetype=htmldjango', group = syntax_group })
