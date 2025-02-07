@@ -136,6 +136,15 @@ return {
                             CompletionItemKind[kind_idx] = "Copilot"
                             for _, item in ipairs(items) do
                                 item.kind = kind_idx
+                                --  FIXME::
+                                --  Copilot has an issue where the completion text in
+                                --  the dropdown shows the entire line, lets cut
+                                --  off the part until the cursor
+                                --  `item.label` contains the completion text
+                                --  local line_content = vim.api.nvim_get_current_line()
+                                --  print(line_content)
+                                --  print(item.label)
+                                --  item.label = item.label:sub(1, #line_content - vim.fn.col('.') + 1)
                             end
                             return items
                         end,
