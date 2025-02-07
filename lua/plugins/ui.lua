@@ -179,7 +179,9 @@ return {
     {
         'lewis6991/satellite.nvim',
         event = 'VeryLazy',
-        opts = {},
+        opts = {
+            winblend = 0,
+        },
     },
     {
         'famiu/bufdelete.nvim',
