@@ -48,7 +48,7 @@ return {
         telescope.load_extension('fzy_native')
         telescope.load_extension("import")
 
-        local colors = require('util').palette()
+        local colors = require('util.color').palette()
         if not colors then
             return
         end
