@@ -139,6 +139,17 @@ return {
                 end
                 lspconfig[server].setup(config)
             end
+            local custom_servers = {
+                {
+                    lang = 'surrealql',
+                    path = '/home/norpie/repos/surrealql-lsp/target/release/surrealql-lsp-server',
+                    ft = 'surql'
+                }
+            }
+            local custom_server = require('util.lsp').custom_server
+            for _, server in pairs(custom_servers) do
+                custom_server(server)
+            end
         end,
     },
     { -- Format
