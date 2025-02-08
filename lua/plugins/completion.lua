@@ -176,64 +176,6 @@ return {
             }
         end,
     },
-    -- {
-    --     event = "InsertEnter",
-    --     'giuxtaposition/blink-cmp-copilot',
-    --     dependencies = {
-    --         {
-    --             'zbirenbaum/copilot.lua',
-    --             dependencies = {
-    --                 'saghen/blink.cmp',
-    --             },
-    --             keys = {
-    --                 {
-    --                     '<Tab>',
-    --                     function()
-    --                         if require("copilot.suggestion").is_visible() then
-    --                             require("copilot.suggestion").accept()
-    --                             return
-    --                         else
-    --                             return "<Tab>"
-    --                         end
-    --                     end,
-    --                     mode = 'i',
-    --                     desc = 'Accept copilot suggestion',
-    --                     expr = true,
-    --                     noremap = true,
-    --                 },
-    --             },
-    --             config = function()
-    --                 -- vim.api.nvim_create_autocmd('User', {
-    --                 --     pattern = 'BlinkCmpMenuOpen',
-    --                 --     callback = function()
-    --                 --         require("copilot.suggestion").dismiss()
-    --                 --         vim.b.copilot_suggestion_hidden = true
-    --                 --     end,
-    --                 -- })
-    --                 -- vim.api.nvim_create_autocmd('User', {
-    --                 --     pattern = 'BlinkCmpMenuClose',
-    --                 --     callback = function()
-    --                 --         vim.b.copilot_suggestion_hidden = false
-    --                 --     end,
-    --                 -- })
-    --
-    --                 require("copilot").setup({
-    --                     suggestion = {
-    --                         enabled = false,
-    --                         auto_trigger = false,
-    --                     },
-    --                     panel = {
-    --                         enabled = false,
-    --                     },
-    --                     filetypes = {
-    --                         yaml = true,
-    --                         markdown = true,
-    --                     }
-    --                 })
-    --             end
-    --         }
-    --     },
-    -- },
     {
         'L3MON4D3/LuaSnip',
         lazy = true,
