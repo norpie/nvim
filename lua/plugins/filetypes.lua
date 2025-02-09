@@ -13,6 +13,7 @@ return {
         ---@class mkv.config
         opts = {
             preview = {
+                filetypes = { "markdown", "codecompanion" },
                 modes = { "n", "no", "c", "i" },
                 hybrid_modes = { "i" }
             }
