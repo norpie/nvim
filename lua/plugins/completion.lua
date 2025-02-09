@@ -109,6 +109,9 @@ return {
             sources = {
                 min_keyword_length = 0,
                 default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+                per_filetype = {
+                    codecompanion = { "codecompanion" },
+                },
                 providers = {
                     buffer = {
                         opts = {
@@ -142,10 +145,6 @@ return {
                                 --  the dropdown shows the entire line, lets cut
                                 --  off the part until the cursor
                                 --  `item.label` contains the completion text
-                                --  local line_content = vim.api.nvim_get_current_line()
-                                --  print(line_content)
-                                --  print(item.label)
-                                --  item.label = item.label:sub(1, #line_content - vim.fn.col('.') + 1)
                             end
                             return items
                         end,
@@ -160,6 +159,101 @@ return {
                 },
             }
         },
+    },
+    {
+        "olimorris/codecompanion.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        keys = {
+            {
+                '<leader>ai',
+                function()
+                    vim.cmd('CodeCompanion')
+                end,
+                desc = 'Code companion'
+            },
+            { '<leader>aa', '<cmd>CodeCompanionActions<cr>', desc = 'Code companion action' },
+            { '<leader>ac', '<cmd>CodeCompanionChat<cr>',    desc = 'Code companion chat' },
+            { '<leader>am', '<cmd>CodeCompanionCmd',         desc = 'Code companion command' },
+        },
+        opts = {
+            adapters = {
+                adapters = {
+                    ollama = function()
+                        return require("codecompanion.adapters").extend("ollama", {
+                            env = {
+                                url = "cmd:ollama-ip",
+                            },
+                            headers = {
+                                ["Content-Type"] = "application/json",
+                            },
+                            parameters = {
+                                sync = true,
+                            },
+                        })
+                    end,
+                },
+                qwen = function()
+                    return require("codecompanion.adapters").extend("ollama", {
+                        name = "qwen",
+                        schema = {
+                            model = {
+                                default = "qwen2.5-coder:32b",
+                            },
+                            num_ctx = {
+                                default = 16384,
+                            },
+                            num_preduct = {
+                                default = -1,
+                            }
+                        },
+                    })
+                end,
+            },
+            strategies = {
+                chat = {
+                    adapter = "qwen",
+                    roles = {
+                        ---The header name for the LLM's messages
+                        ---@type string|fun(adapter: CodeCompanion.Adapter): string
+                        llm = function()
+                            return "CodeCompanion"
+                        end,
+
+                        ---The header name for your messages
+                        ---@type string
+                        user = "Me",
+                    }
+                },
+                inline = {
+                    adapter = "qwen",
+                    keymaps = {
+                        accept_change = {
+                            modes = { n = "<leader>da" },
+                            description = "Accept the suggested change",
+                        },
+                        reject_change = {
+                            modes = { n = "<leader>dr" },
+                            description = "Reject the suggested change",
+                        },
+                    },
+                },
+            },
+            display = {
+                diff = {
+                    enabled = true,
+                    close_chat_at = 240,
+                    layout = "vertical",
+                    opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
+                    provider = "mini_diff",
+                },
+            },
+            opts = {
+                log_level = "DEBUG",
+            },
+        }
     },
     {
         'terrortylor/nvim-comment',
