@@ -127,6 +127,7 @@ map('i', '<C-s-v>', '<Esc>"+pa')
 
 -- git -> Git
 map('ca', 'git', 'Neogit')
+vim.cmd([[cab cc CodeCompanion]])
 
 -- :Write to not care about permissions
 map('ca', 'Write', 'w !sudo tee %')
