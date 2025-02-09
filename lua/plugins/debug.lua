@@ -8,10 +8,10 @@ return {
         opts = {
             keymaps = {
                 normal = {
-                    plain_below = "<leader>du",
-                    plain_above = "<leader>da",
-                    variable_below = "<leader>dU",
-                    variable_above = "<leader>dA",
+                    plain_below = "<leader>dpu",
+                    plain_above = "<leader>dpa",
+                    variable_below = "<leader>dpU",
+                    variable_above = "<leader>dpA",
                 },
             }
         },
