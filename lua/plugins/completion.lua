@@ -172,11 +172,29 @@ return {
                 function()
                     vim.cmd('CodeCompanion')
                 end,
-                desc = 'Code companion'
+                desc = 'Code companion inline'
             },
-            { '<leader>aa', '<cmd>CodeCompanionActions<cr>', desc = 'Code companion action' },
-            { '<leader>ac', '<cmd>CodeCompanionChat<cr>',    desc = 'Code companion chat' },
-            { '<leader>am', '<cmd>CodeCompanionCmd',         desc = 'Code companion command' },
+            {
+                '<leader>aa',
+                '<cmd>CodeCompanionActions<cr>',
+                desc = 'Trigger Code Companion actions'
+            },
+            {
+                '<leader>ac',
+                '<cmd>CodeCompanionChat<cr>',
+                desc = 'Open Code Companion chat interface'
+            },
+            {
+                '<leader>am',
+                '<cmd>CodeCompanionCmd',
+                desc = 'Execute a command in Code Companion'
+            },
+        },
+        cmd = {
+            'CodeCompanion',
+            'CodeCompanionActions',
+            'CodeCompanionChat',
+            'CodeCompanionCmd',
         },
         opts = {
             adapters = {
