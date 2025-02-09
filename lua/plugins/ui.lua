@@ -184,6 +184,11 @@ return {
         },
     },
     {
+        'echasnovski/mini.diff',
+        version = '*',
+        opts = {}
+    },
+    {
         'famiu/bufdelete.nvim',
         cmd = {
             'Bdelete',
