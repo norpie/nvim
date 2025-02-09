@@ -43,3 +43,9 @@ create_autocmd('VimEnter', { -- If `$(git dir)` exits with `$? -eq 0`, `cd $(git
     end,
     group = misc_events,
 })
+create_autocmd('BufReadPost', { -- Set the filetype to surql for .surql files
+    desc = "Set filetype based on file extension",
+    pattern = '*.surql',
+    command = 'set filetype=surql',
+    group = misc_events
+})
