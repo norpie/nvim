@@ -198,24 +198,17 @@ return {
         },
         opts = {
             adapters = {
-                adapters = {
-                    ollama = function()
-                        return require("codecompanion.adapters").extend("ollama", {
-                            env = {
-                                url = "cmd:ollama-ip",
-                            },
-                            headers = {
-                                ["Content-Type"] = "application/json",
-                            },
-                            parameters = {
-                                sync = true,
-                            },
-                        })
-                    end,
-                },
-                qwen = function()
+                ollama = function()
                     return require("codecompanion.adapters").extend("ollama", {
-                        name = "qwen",
+                        env = {
+                            url = "cmd:ollama-ip",
+                        },
+                        headers = {
+                            ["Content-Type"] = "application/json",
+                        },
+                        parameters = {
+                            sync = true,
+                        },
                         schema = {
                             model = {
                                 default = "qwen2.5-coder:32b",
@@ -226,13 +219,13 @@ return {
                             num_preduct = {
                                 default = -1,
                             }
-                        },
+                        }
                     })
                 end,
             },
             strategies = {
                 chat = {
-                    adapter = "qwen",
+                    adapter = "ollama",
                     roles = {
                         ---The header name for the LLM's messages
                         ---@type string|fun(adapter: CodeCompanion.Adapter): string
@@ -246,7 +239,7 @@ return {
                     }
                 },
                 inline = {
-                    adapter = "qwen",
+                    adapter = "ollama",
                     keymaps = {
                         accept_change = {
                             modes = { n = "<leader>da" },
