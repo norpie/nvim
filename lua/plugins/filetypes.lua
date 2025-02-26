@@ -57,4 +57,7 @@ return {
             })
         end,
     },
+    {
+        "HiPhish/jinja.vim",
+    }
 }
