@@ -36,7 +36,7 @@ create_autocmd("BufHidden", { -- Close the buffer if it's hidden
 create_autocmd('VimEnter', { -- If `$(git dir)` exits with `$? -eq 0`, `cd $(git root)`
     desc = "Project root cd'er",
     callback = function()
-        local git_dir = vim.fn.system('git rev-parse --show-toplevel 2> /dev/null')
+        local git_dir = vim.fn.system('project subroot')
         if git_dir ~= "" then
             vim.cmd('cd ' .. git_dir)
         end
