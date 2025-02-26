@@ -140,6 +140,7 @@ return {
                             CompletionItemKind[kind_idx] = "Copilot"
                             for _, item in ipairs(items) do
                                 item.kind = kind_idx
+                                item.score_offset = item.score_offset - 3
                                 --  FIXME::
                                 --  Copilot has an issue where the completion text in
                                 --  the dropdown shows the entire line, lets cut
@@ -198,7 +199,7 @@ return {
         },
         opts = {
             adapters = {
-                ollama = function()
+                qwen = function()
                     return require("codecompanion.adapters").extend("ollama", {
                         env = {
                             url = "cmd:ollama-ip",
@@ -214,7 +215,31 @@ return {
                                 default = "qwen2.5-coder:32b",
                             },
                             num_ctx = {
-                                default = 16384,
+                                default = 8192,
+                            },
+                            num_preduct = {
+                                default = -1,
+                            }
+                        }
+                    })
+                end,
+                deepseek = function()
+                    return require("codecompanion.adapters").extend("ollama", {
+                        env = {
+                            url = "cmd:ollama-ip",
+                        },
+                        headers = {
+                            ["Content-Type"] = "application/json",
+                        },
+                        parameters = {
+                            sync = true,
+                        },
+                        schema = {
+                            model = {
+                                default = "deepseek-coder-v2:16b-lite-base-q8_0",
+                            },
+                            num_ctx = {
+                                default = 8192,
                             },
                             num_preduct = {
                                 default = -1,
@@ -225,7 +250,7 @@ return {
             },
             strategies = {
                 chat = {
-                    adapter = "ollama",
+                    adapter = "qwen",
                     roles = {
                         ---The header name for the LLM's messages
                         ---@type string|fun(adapter: CodeCompanion.Adapter): string
@@ -239,7 +264,7 @@ return {
                     }
                 },
                 inline = {
-                    adapter = "ollama",
+                    adapter = "qwen",
                     keymaps = {
                         accept_change = {
                             modes = { n = "<leader>da" },
