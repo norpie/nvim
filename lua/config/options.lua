@@ -29,6 +29,7 @@ set.softtabstop = 4
 set.shiftwidth = 4
 set.expandtab = true
 set.smartindent = true
+set.backspace = { 'indent', 'eol', 'start' }
 
 set.mouse = 'a'
 set.cursorline = true
