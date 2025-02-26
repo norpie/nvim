@@ -189,13 +189,6 @@ return {
         opts = {}
     },
     {
-        'famiu/bufdelete.nvim',
-        cmd = {
-            'Bdelete',
-            'Bwipeout'
-        }
-    },
-    {
         'stevearc/dressing.nvim',
         event = 'VeryLazy',
         config = function()
@@ -277,7 +270,7 @@ return {
             vim.g.rainbow_delimiters = { highlight = highlight }
             require("ibl").setup {
                 scope = {
-                    enabled = true,
+                    enabled = false,
                     highlight = highlight,
                     show_exact_scope = true,
                 },
