@@ -4,15 +4,6 @@ return {
         dependencies = {
             -- Completion
             'saghen/blink.cmp',
-            -- Typescript
-            {
-                "pmizio/typescript-tools.nvim",
-                dependencies = {
-                    "nvim-lua/plenary.nvim",
-                    { "vuki656/package-info.nvim", opts = {} },
-                },
-                opts = {}
-            },
             -- Auto configuring LSP and installing servers
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -51,7 +42,7 @@ return {
                 bashls = {},
                 html = {},
                 jsonls = {},
-                ts_ls = {},
+                -- ts_ls = {},
                 tailwindcss = {},
                 sqlls = {},
                 texlab = {},
@@ -218,6 +209,9 @@ return {
         lazy = false,
         init = function()
             vim.g.rustaceanvim = {
+                -- ra_multiplex = {
+                --     enabled = true
+                -- },
                 -- Plugin options
                 tools = {},
                 -- LSP options
@@ -250,5 +244,17 @@ return {
                 },
             }
         end,
-    }
+    },
+    { -- Typescript
+        "pmizio/typescript-tools.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            { "vuki656/package-info.nvim", opts = {} },
+        },
+        ft = { 'ts', 'tsx', 'js', 'jsx', 'svelte' },
+        keys = {
+            { "gd", "<cmd>TSToolsGoToSourceDefinition<CR>", desc = "Go to source definition", }
+        },
+        opts = {}
+    },
 }
