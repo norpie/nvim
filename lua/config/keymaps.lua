@@ -125,12 +125,6 @@ map('v', 'y', 'ygv<ESC>')
 map('v', '<C-c>', '"+y')
 map('i', '<C-s-v>', '<Esc>"+pa')
 
--- git -> Git
-map('ca', 'git', 'Neogit')
 vim.cmd([[cab cc CodeCompanion]])
-
--- :Write to not care about permissions
-map('ca', 'Write', 'w !sudo tee %')
-
--- dont care for fat fingering :W instead of :w
-map('ca', 'W', 'w')
+vim.cmd([[ca Write w !sudo tee %]])
+vim.cmd([[ca W w]])
