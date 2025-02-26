@@ -30,17 +30,19 @@ return {
         },
     },
     {
-        "igorlfs/nvim-dap-view",
-        event = "VeryLazy",
+        enabled = false,
+        "mfussenegger/nvim-dap",
         dependencies = {
-            "mfussenegger/nvim-dap",
+            "igorlfs/nvim-dap-view",
             "nvim-neotest/nvim-nio",
             "Weissle/persistent-breakpoints.nvim",
             "t-troebst/perfanno.nvim",
             "ofirgall/goto-breakpoints.nvim",
             "Willem-J-an/visidata.nvim",
         },
-        opts = {},
+        opts = {
+
+        },
     },
     {
         "nvim-neotest/neotest",
@@ -52,13 +54,19 @@ return {
             "olimorris/neotest-phpunit",
             "andythigpen/nvim-coverage"
         },
+        keys = {
+            { '<leader>tr', function() require("neotest").run.run() end, { silent = true } },
+            { '<leader>ts', '<cmd>Neotest summary<CR>',                  { silent = true } },
+            { '<leader>tn', '<cmd>Neotest nearest<CR>',                  { silent = true } }
+        },
         config = function()
             local opts = {
                 adapters = {
-                    -- require('rustaceanvim.neotest')
+                    require('rustaceanvim.neotest')
                     -- require("neotest-phpunit")
                 },
             }
+            require("neotest").setup(opts)
         end,
     }
 }
