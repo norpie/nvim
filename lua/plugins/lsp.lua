@@ -38,7 +38,9 @@ return {
             servers = {
                 lua_ls = {},
                 cssls = {},
-                emmet_ls = {},
+                emmet_ls = {
+                    filetypes = { "html", "css", "scss", "less", "php", "javascriptreact", "typescriptreact" },
+                },
                 bashls = {},
                 html = {},
                 jsonls = {},
