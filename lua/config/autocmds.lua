@@ -24,6 +24,12 @@ create_autocmd('BufWinEnter', { -- Set the cursor to the last position when open
 
 local misc_events = 'miscgroup'
 create_augroup(misc_events, { clear = true })
+create_autocmd("CursorHold", {
+    callback = function()
+        vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
+    end,
+    group = misc_events,
+})
 create_autocmd("BufHidden", { -- Close the buffer if it's hidden
     desc = "Delete [No Name] buffers",
     callback = function(event)
