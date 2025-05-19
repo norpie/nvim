@@ -25,7 +25,8 @@ return {
                 }
             },
         },
-        version = '*',
+        version = '1.*',
+        build = 'nix run .#build-plugin',
         -- build = "cargo build --release",
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
@@ -309,6 +310,7 @@ return {
     {
         'L3MON4D3/LuaSnip',
         lazy = true,
+        disabled = false,
         dependencies = {
             'rafamadriz/friendly-snippets',
         },
