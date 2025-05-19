@@ -102,14 +102,14 @@ return {
                 function() mc.lineSkipCursor(1) end)
 
             -- Add or skip adding a new cursor by matching word/selection
-            set({ "n", "v" }, "<leader>n",
-                function() mc.matchAddCursor(1) end)
-            set({ "n", "v" }, "<leader>s",
-                function() mc.matchSkipCursor(1) end)
-            set({ "n", "v" }, "<leader>N",
-                function() mc.matchAddCursor(-1) end)
-            set({ "n", "v" }, "<leader>S",
-                function() mc.matchSkipCursor(-1) end)
+            -- set({ "n", "v" }, "<leader>n",
+            --     function() mc.matchAddCursor(1) end)
+            -- set({ "n", "v" }, "<leader>s",
+            --     function() mc.matchSkipCursor(1) end)
+            -- set({ "n", "v" }, "<leader>N",
+            --     function() mc.matchAddCursor(-1) end)
+            -- set({ "n", "v" }, "<leader>S",
+            --     function() mc.matchSkipCursor(-1) end)
 
             -- Add all matches in the document
             set({ "n", "v" }, "<leader>A", mc.matchAllAddCursors)
@@ -159,8 +159,8 @@ return {
             set("v", "S", mc.splitCursors)
 
             -- Append/insert for each line of visual selections.
-            set("v", "I", mc.insertVisual)
-            set("v", "A", mc.appendVisual)
+            -- set("v", "I", mc.insertVisual)
+            -- set("v", "A", mc.appendVisual)
 
             -- match new cursors within visual selections by regex.
             set("v", "M", mc.matchCursors)
