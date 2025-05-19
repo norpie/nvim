@@ -48,7 +48,7 @@ set.undofile = true
 
 set.termguicolors = true
 set.scrolloff = 50
-set.updatetime = 4000
+set.updatetime = 500
 set.cmdheight = 0
 set.colorcolumn = '80'
 set.spelllang = 'fi,fr,nl,en'
