@@ -120,8 +120,15 @@ return {
                     vim.keymap.set(
                         'n',
                         'gd',
-                        vim.lsp.buf.definition,
-                        { buffer = buffer, noremap = true, silent = true, desc = 'Go to definition' }
+                        function()
+                            vim.lsp.buf.definition({
+                                on_list = function(list)
+                                    local item = list.items[1]
+                                    vim.cmd.edit(item.filename)
+                                    vim.fn.setcursorcharpos(item.lnum, item.col)
+                                end,
+                            })
+                        end
                     )
                     vim.keymap.set(
                         'n',
