@@ -1,6 +1,15 @@
 local create_augroup = vim.api.nvim_create_augroup
 local create_autocmd = vim.api.nvim_create_autocmd
 
+local create_autocmds = function(events, opts)
+    if type(events) == 'string' then
+        events = { events }
+    end
+    for _, event in ipairs(events) do
+        create_autocmd(event, opts)
+    end
+end
+
 local custom_events = 'customeventsgroup'
 create_augroup(custom_events, { clear = true })
 create_autocmd('VimEnter', { -- Fire custom "DirEnter" event when opening a directory
@@ -53,5 +62,25 @@ create_autocmd('BufReadPost', { -- Set the filetype to surql for .surql files
     desc = "Set filetype based on file extension",
     pattern = '*.surql',
     command = 'set filetype=surql',
+    group = misc_events
+})
+create_autocmds({ 'FocusGained', 'BufEnter' }, { -- Load the file on focus gained or buffer enter
+    desc = "Load the file on focus gained or buffer enter",
+    pattern = '*',
+    -- command = 'silent! e',
+    callback = function()
+        vim.cmd('silent! e')
+        -- vim.notify('File reloaded', vim.log.levels.INFO)
+    end,
+    group = misc_events
+})
+create_autocmds({ 'FocusLost', 'WinLeave' }, { -- Save the file on focus lost or window leave
+    desc = "Save the file on focus lost or window leave",
+    pattern = '*',
+    -- command = 'silent! w',
+    callback = function()
+        vim.cmd('silent! w')
+        -- vim.notify('File saved', vim.log.levels.INFO)
+    end,
     group = misc_events
 })
