@@ -3,6 +3,10 @@ return {
         'wellle/targets.vim',
         event = "VeryLazy",
     },
+    {
+        'tmux-plugins/vim-tmux-focus-events',
+        lazy = false,
+    },
     { -- Surround text objects with quotes, brackets, etc.
         "kylechui/nvim-surround",
         dependencies = {
@@ -27,6 +31,7 @@ return {
         }
     },
     { -- Clean up trailing whitespace
+        enabled = false,
         'McAuleyPenney/tidy.nvim',
         event = 'VeryLazy',
         config = function()
