@@ -26,8 +26,8 @@ return {
             },
         },
         version = '1.*',
-        build = 'nix run .#build-plugin',
-        -- build = "cargo build --release",
+        -- build = 'nix run .#default',
+        build = "cargo build --release",
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
         opts = {
