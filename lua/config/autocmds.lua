@@ -74,13 +74,11 @@ create_autocmds({ 'FocusGained', 'BufEnter' }, { -- Load the file on focus gaine
     end,
     group = misc_events
 })
-create_autocmds({ 'FocusLost', 'WinLeave' }, { -- Save the file on focus lost or window leave
+create_autocmds({ 'CursorHoldI', 'CursorHold' ,'FocusLost', 'WinLeave' }, { -- Save the file on focus lost or window leave
     desc = "Save the file on focus lost or window leave",
     pattern = '*',
-    -- command = 'silent! w',
     callback = function()
-        vim.cmd('silent! w')
-        -- vim.notify('File saved', vim.log.levels.INFO)
+        vim.cmd('silent! update')
     end,
     group = misc_events
 })
