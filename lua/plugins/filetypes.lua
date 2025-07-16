@@ -10,6 +10,7 @@ return {
     { -- Markdown preview
         'OXY2DEV/markview.nvim',
         ft = { 'markdown' },
+        priority = 49,
         ---@class mkv.config
         opts = {
             preview = {
