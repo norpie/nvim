@@ -78,6 +78,7 @@ return {
             require('mason').setup()
             local mason_lspconfig = require 'mason-lspconfig'
             mason_lspconfig.setup {
+                automatic_enable = true,
                 automatic_installation = true,
                 ensure_installed = { "pyright" }
             }
@@ -120,15 +121,18 @@ return {
                     vim.keymap.set(
                         'n',
                         'gd',
-                        function()
-                            vim.lsp.buf.definition({
-                                on_list = function(list)
-                                    local item = list.items[1]
-                                    vim.cmd.edit(item.filename)
-                                    vim.fn.setcursorcharpos(item.lnum, item.col)
-                                end,
-                            })
-                        end
+                        -- For LSPs that give multiple results for `vim.lsp.buf.definition`
+                        -- vim.lsp.buf.definition({
+                        --     on_list = function(list)
+                        --         local item = list.items[1]
+                        --         vim.cmd.edit(item.filename)
+                        --         vim.fn.setcursorcharpos(item.lnum, item.col)
+                        --     end,
+                        -- })
+                        
+                        -- Default behavior
+                        vim.lsp.buf.definition,
+                        { buffer = buffer, noremap = true, silent = true, desc = 'Go to definition' }
                     )
                     vim.keymap.set(
                         'n',
