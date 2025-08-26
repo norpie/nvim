@@ -8,6 +8,7 @@ return
     {
         'nvim-treesitter/nvim-treesitter',
         dependencies = {
+            'OXY2DEV/markview.nvim',
             'https://github.com/David-Kunz/markid',
             'RRethy/vim-illuminate', -- { 'ehpi/vim-illuminate', branch = 'remove-vim-region' }, -- This is ready for the nightly
             'RRethy/nvim-treesitter-endwise',

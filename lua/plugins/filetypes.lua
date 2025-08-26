@@ -11,12 +11,16 @@ return {
         'OXY2DEV/markview.nvim',
         ft = { 'markdown' },
         priority = 49,
+        event = "VeryLazy",
         ---@class mkv.config
         opts = {
             preview = {
                 filetypes = { "markdown", "codecompanion" },
                 modes = { "n", "no", "c", "i" },
                 hybrid_modes = { "i" }
+            },
+            experimental = {
+                check_rtp_message = false
             }
         }
     },
