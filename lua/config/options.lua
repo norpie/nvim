@@ -28,7 +28,8 @@ set.tabstop = 4
 set.softtabstop = 4
 set.shiftwidth = 4
 set.expandtab = true
-set.smartindent = true
+set.smarttab = true
+set.autoindent = true
 set.backspace = { 'indent', 'eol', 'start' }
 
 set.mouse = 'a'
