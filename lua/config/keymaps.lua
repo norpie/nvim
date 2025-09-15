@@ -23,7 +23,7 @@ end
 map('', 'j', 'h')  -- j = left
 map('', 'k', 'j')  -- k = down  
 map('', 'l', 'k')  -- l = up
-map('', ';', 'l')  -- ; = right
+noremap('', ';', 'l')  -- ; = right
 
 -- dont move over when k- and l-ing with :set wrap  
 map('', 'k', 'gj', { remap = true })  -- use remapped k (which is j/down)
