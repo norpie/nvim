@@ -19,9 +19,15 @@ local function map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
--- dont move over when j- and k-ing with :set wrap
-map('', 'j', 'gj')
-map('', 'k', 'gk')
+-- Remap basic navigation to jkl;
+map('', 'j', 'h')  -- j = left
+map('', 'k', 'j')  -- k = down  
+map('', 'l', 'k')  -- l = up
+map('', ';', 'l')  -- ; = right
+
+-- dont move over when k- and l-ing with :set wrap  
+map('', 'k', 'gj', { remap = true })  -- use remapped k (which is j/down)
+map('', 'l', 'gk', { remap = true })  -- use remapped l (which is k/up)
 
 map({ 'n', 'v' }, '<Space>', '<Nop>')
 
@@ -37,8 +43,7 @@ noremap('i', ':', ':<C-g>u')
 noremap('i', ';', ';<C-g>u')
 
 -- Get to relevant beginning and end
-map('n', 'H', '^')
-map('n', 'L', '$')
+map('n', 'J', '^')
 
 -- Leave unnamed alone when pasting over something
 noremap("x", "p", function() return 'pgv"' .. vim.v.register .. "y" end, { expr = true })
@@ -59,7 +64,7 @@ local function move_or_create_win(key)
     vim.cmd("wincmd " .. key)        --> attempt to move
 
     if (curr_win == fn.winnr()) then --> didn't move, so create a split
-        if key == "h" or key == "l" then
+        if key == "j" or key == ";" then
             vim.cmd("wincmd v")
         else
             vim.cmd("wincmd s")
@@ -70,10 +75,10 @@ local function move_or_create_win(key)
 end
 
 -- change wins easier
-map('n', '<C-h>', function() move_or_create_win('h') end)
 map('n', '<C-j>', function() move_or_create_win('j') end)
 map('n', '<C-k>', function() move_or_create_win('k') end)
 map('n', '<C-l>', function() move_or_create_win('l') end)
+map('n', '<C-;>', function() move_or_create_win(';') end)
 
 local function close_or_delete()
     local bufnr = vim.fn.bufnr()
@@ -90,13 +95,13 @@ local function close_or_delete()
     end
 end
 
-map('n', ';bd', function() close_or_delete() end)
+map('n', '<leader>bd', function() close_or_delete() end)
 
 -- Resize wins
-map('n', '<C-s-h>', ':resize +2<CR>')
-map('n', '<C-s-j>', ':resize -2<CR>')
-map('n', '<C-s-k>', ':vertical resize -2<CR>')
-map('n', '<C-s-l>', ':vertical resize +2<CR>')
+map('n', '<C-s-j>', ':resize +2<CR>')
+map('n', '<C-s-k>', ':resize -2<CR>')
+map('n', '<C-s-l>', ':vertical resize -2<CR>')
+map('n', '<C-s-;>', ':vertical resize +2<CR>')
 
 -- change buffers
 -- map('n', '<tab>', ':bnext<CR>')
