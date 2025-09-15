@@ -64,21 +64,21 @@ create_autocmd('BufReadPost', { -- Set the filetype to surql for .surql files
     command = 'set filetype=surql',
     group = misc_events
 })
-create_autocmds({ 'FocusGained', 'BufEnter' }, { -- Load the file on focus gained or buffer enter
-    desc = "Load the file on focus gained or buffer enter",
-    pattern = '*',
-    -- command = 'silent! e',
-    callback = function()
-        vim.cmd('silent! e')
-        -- vim.notify('File reloaded', vim.log.levels.INFO)
-    end,
-    group = misc_events
-})
-create_autocmds({ 'CursorHoldI', 'CursorHold' ,'FocusLost', 'WinLeave' }, { -- Save the file on focus lost or window leave
-    desc = "Save the file on focus lost or window leave",
-    pattern = '*',
-    callback = function()
-        vim.cmd('silent! update')
-    end,
-    group = misc_events
-})
+-- create_autocmds({ 'FocusGained', 'BufEnter' }, { -- Load the file on focus gained or buffer enter
+--     desc = "Load the file on focus gained or buffer enter",
+--     pattern = '*',
+--     -- command = 'silent! e',
+--     callback = function()
+--         vim.cmd('silent! e')
+--         -- vim.notify('File reloaded', vim.log.levels.INFO)
+--     end,
+--     group = misc_events
+-- })
+-- create_autocmds({ 'CursorHoldI', 'CursorHold' ,'FocusLost', 'WinLeave' }, { -- Save the file on focus lost or window leave
+--     desc = "Save the file on focus lost or window leave",
+--     pattern = '*',
+--     callback = function()
+--         vim.cmd('silent! update')
+--     end,
+--     group = misc_events
+-- })
