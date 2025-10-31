@@ -4,6 +4,7 @@ local core_modules = {
     "config.options",
     "config.autocmds",
     "config.keymaps",
+    "config.lsp",
     "config.lazy"
 }
 

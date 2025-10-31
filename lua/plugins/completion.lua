@@ -110,7 +110,7 @@ return {
             },
             sources = {
                 min_keyword_length = 0,
-                default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+                default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
                 per_filetype = {
                     codecompanion = { "codecompanion" },
                 },
@@ -125,12 +125,8 @@ return {
                             end
                         }
                     },
-                    lazydev = {
-                        name = "LazyDev",
-                        module = "lazydev.integrations.blink",
-                        -- make lazydev completions top priority (see `:h blink.cmp`)
-                        score_offset = 50,
-                    },
+                    -- Note: lazydev integration with blink.cmp is not available in current version
+                    -- lazydev will still enhance lua_ls completions through LSP
                     copilot = {
                         name = "copilot",
                         module = "blink-copilot",

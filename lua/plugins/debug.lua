@@ -52,7 +52,8 @@ return {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
             "olimorris/neotest-phpunit",
-            "andythigpen/nvim-coverage"
+            "andythigpen/nvim-coverage",
+            "mrcjkb/rustaceanvim"  -- Add rustaceanvim as dependency for neotest
         },
         keys = {
             { '<leader>tr', function() require("neotest").run.run() end, { silent = true } },
