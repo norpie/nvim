@@ -1,5 +1,14 @@
--- Main LSP configuration
--- This file sets up global LSP behavior, keymaps, and capabilities
+-- LSP Configuration
+-- Sets up LSP keymaps, capabilities, and all language servers using Neovim 0.11 native APIs
+
+-- Helper function to get LSP capabilities (includes blink.cmp)
+local function get_capabilities()
+    local ok, blink = pcall(require, 'blink.cmp')
+    if ok then
+        return blink.get_lsp_capabilities()
+    end
+    return vim.lsp.protocol.make_client_capabilities()
+end
 
 -- LspAttach autocmd for keymaps and per-buffer configuration
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -26,7 +35,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 end
                 vim.cmd('Neoformat')
             else
-                -- Try to use neoformat if LSP doesn't support formatting
                 vim.cmd('Neoformat')
             end
         end, 'Format')
@@ -48,13 +56,43 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
--- Export function to get capabilities (lazy-loaded)
-return {
-    get_capabilities = function()
-        local ok, blink = pcall(require, 'blink.cmp')
-        if ok then
-            return blink.get_lsp_capabilities()
-        end
-        return vim.lsp.protocol.make_client_capabilities()
-    end,
+-- Configure and enable LSP servers
+local servers = {
+    'lua_ls',
+    'cssls',
+    'emmet_ls',
+    'bashls',
+    'html',
+    'jsonls',
+    'tailwindcss',
+    'sqlls',
+    'texlab',
+    'svelte',
+    'taplo',
+    'vimls',
+    'nil_ls',
+    'pyright',
 }
+
+local capabilities = get_capabilities()
+
+-- Load and configure each server
+for _, server in ipairs(servers) do
+    local ok, server_config = pcall(require, 'lsp.' .. server)
+
+    if ok then
+        -- Add capabilities
+        server_config.capabilities = capabilities
+
+        -- Configure the server using native API (correct syntax: vim.lsp.config['server'] = config)
+        vim.lsp.config[server] = server_config
+    else
+        vim.notify('Failed to load LSP config for ' .. server, vim.log.levels.WARN)
+    end
+end
+
+-- Enable all configured servers
+vim.lsp.enable(servers)
+
+-- Load custom server (SurrealQL)
+require('lsp.custom.surrealql')

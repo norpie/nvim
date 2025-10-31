@@ -14,10 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.env.GIT_SSH_COMMAND = "ssh -o UserKnownHostsFile=~/.config/ssh/known_hosts -o StrictHostKeyChecking=no"
 
 require('lazy').setup({
-    spec = {
-        { import = "plugins" },
-        { import = "plugins.lsp" },
-    },
+    spec = { { import = "plugins" } },
     install = { colorscheme = { "catppuccin-mocha" } },
     -- checker = { enabled = true }
 })

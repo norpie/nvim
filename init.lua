@@ -4,8 +4,8 @@ local core_modules = {
     "config.options",
     "config.autocmds",
     "config.keymaps",
-    "config.lsp",
-    "config.lazy"
+    "config.lsp",        -- LSP configuration and server setup
+    "config.lazy"        -- Load plugins last
 }
 
 for _, module in ipairs(core_modules) do
