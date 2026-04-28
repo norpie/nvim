@@ -7,29 +7,29 @@ return {
         'tmux-plugins/vim-tmux-focus-events',
         lazy = false,
     },
-    { -- Surround text objects with quotes, brackets, etc.
-        "kylechui/nvim-surround",
-        dependencies = {
-            {
-                "roobert/surround-ui.nvim",
-                dependencies = {
-                    "folke/which-key.nvim",
-                },
-                config = function()
-                    require("surround-ui").setup({
-                        root_key = "S"
-                    })
-                end,
-            }
-        },
-        event = "VeryLazy",
-        opts = {
-            keymaps = {
-                visual = "s",
-                normal = "s"
-            }
-        }
-    },
+    -- { -- Surround text objects with quotes, brackets, etc.
+    --     "kylechui/nvim-surround",
+    --     dependencies = {
+    --         {
+    --             "roobert/surround-ui.nvim",
+    --             dependencies = {
+    --                 -- "folke/which-key.nvim",
+    --             },
+    --             config = function()
+    --                 require("surround-ui").setup({
+    --                     root_key = "S"
+    --                 })
+    --             end,
+    --         }
+    --     },
+    --     event = "VeryLazy",
+    --     opts = {
+    --         keymaps = {
+    --             visual = "s",
+    --             normal = "s"
+    --         }
+    --     }
+    -- },
     { -- Clean up trailing whitespace
         enabled = false,
         'McAuleyPenney/tidy.nvim',
