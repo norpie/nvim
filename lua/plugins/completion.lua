@@ -15,6 +15,8 @@ return {
                             filetypes = {
                                 yaml = true,
                                 markdown = true,
+                                text = false,
+                                txt = false,
                                 help = true,
                             },
                         }
@@ -27,8 +29,7 @@ return {
             },
         },
         version = '1.*',
-        -- build = 'nix run .#default',
-        build = "cargo build --release",
+        build = 'nix run .#build-plugin',
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
         opts = {
