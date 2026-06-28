@@ -1,0 +1,1 @@
+-- norpie's neovim configuration
