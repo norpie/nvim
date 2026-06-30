@@ -8,6 +8,7 @@ local env_files = {
 local is_loaded = false
 
 -- Evaluate the environment files and load them into the current environment
+-- TODO: Actually evaluate the files and load them into the environment
 M.load = function()
     if is_loaded then
         return
