@@ -17,11 +17,9 @@ local sources = {
     providers = {}
 }
 
-local function merge_sources_and_providers(old_sources, new_sources, new_providers)
-    for _, source in ipairs(new_sources) do
-        table.insert(old_sources.default, source)
-    end
+local function merge_sources_and_providers(old_sources, new_providers)
     for name, provider in pairs(new_providers) do
+        table.insert(old_sources.default, name)
         old_sources.providers[name] = provider
     end
     return old_sources
@@ -35,7 +33,7 @@ for _, module_file in ipairs(vim.fn.readdir(modules_path, [[v:val =~ '\.lua$']])
         print("Failed to load module: " .. module_file .. "\n" .. module)
     end
     if module.should_enable() then
-        sources = merge_sources_and_providers(sources, module.sources(), module.providers())
+        sources = merge_sources_and_providers(sources, module.providers())
     end
 end
 

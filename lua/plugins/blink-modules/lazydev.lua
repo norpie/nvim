@@ -1,20 +1,10 @@
-local packages = require("lib.packages")
-
-packages.add({
-    'https://github.com/folke/lazydev.nvim',
-})
+require("lib.packages").add('folke/lazydev.nvim')
 
 local M = {}
 
 function M.should_enable()
     local nvim = require('lib.nvim')
     return nvim.is_nvim_config()
-end
-
-function M.sources()
-    return {
-        'lazydev'
-    }
 end
 
 function M.providers()
