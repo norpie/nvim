@@ -1,7 +1,6 @@
-packages = require("lib.packages")
-env = require("lib.env")
+local env = require("lib.env")
 
-packages.add({ 
+require("lib.packages").add({ 
     'saghen/blink.lib',
     'saghen/blink.cmp',
     -- snippets
@@ -9,7 +8,6 @@ packages.add({
 })
 
 local cmp = require('blink.cmp')
-local nvim = require('lib.nvim')
 cmp.build():pwait()
 
 local sources = {
