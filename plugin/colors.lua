@@ -1,3 +1,5 @@
-vim.pack.add { { src = "https://github.com/catppuccin/nvim", name = "catppuccin" } }
+local packages = require("lib.packages")
+
+packages.add { { "catppuccin/nvim", name = "catppuccin" } }
 
 vim.cmd.colorscheme "catppuccin-mocha"
