@@ -1,4 +1,5 @@
 packages = require("lib.packages")
+env = require("lib.env")
 
 packages.add({ 
     'saghen/blink.lib',
@@ -26,10 +27,16 @@ local function merge_sources_and_providers(old_sources, new_sources, new_provide
     return old_sources
 end
 
--- if nvim config enable lazydev
-if nvim.is_nvim_config() then
-    local lazydev = require('plugins.lazydev')
-    sources = merge_sources_and_providers(sources, lazydev.sources(), lazydev.providers())
+local modules_path = env.config_dir() .. "/lua/plugins/blink-modules"
+for _, module_file in ipairs(vim.fn.readdir(modules_path, [[v:val =~ '\.lua$']])) do
+    local module_path = env.relative_lua_path(modules_path .. "/" .. module_file)
+    local ok, module = pcall(require, module_path:gsub("%.lua$", ""))
+    if not ok then
+        print("Failed to load module: " .. module_file .. "\n" .. module)
+    end
+    if module.should_enable() then
+        sources = merge_sources_and_providers(sources, module.sources(), module.providers())
+    end
 end
 
 ---@module 'blink.cmp'

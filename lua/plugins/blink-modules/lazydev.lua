@@ -6,6 +6,11 @@ packages.add({
 
 local M = {}
 
+function M.should_enable()
+    local nvim = require('lib.nvim')
+    return nvim.is_nvim_config()
+end
+
 function M.sources()
     return {
         'lazydev'
