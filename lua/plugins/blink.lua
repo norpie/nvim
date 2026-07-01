@@ -32,8 +32,13 @@ for _, module_file in ipairs(vim.fn.readdir(modules_path, [[v:val =~ '\.lua$']])
     if not ok then
         print("Failed to load module: " .. module_file .. "\n" .. module)
     end
-    if module.should_enable() then
-        sources = merge_sources_and_providers(sources, module.providers())
+    -- should enable is optional, if not present, the module will be enabled by default
+    local ok, should_enable = pcall(module.should_enable)
+    if not ok then
+        should_enable = true
+    end
+    if should_enable then
+        sources = merge_sources_and_providers(sources, module.providers() or {})
     end
 end
 
