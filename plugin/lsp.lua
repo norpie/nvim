@@ -1,5 +1,17 @@
 require('plugins.lspconfig')
 
+local navbuddy = require('nvim-navbuddy')
+local actions = require("nvim-navbuddy.actions")
+navbuddy.setup({
+    lsp = { auto_attach = true },
+    mappings = {
+        ["j"] = actions.parent(),           -- Move to left panel
+        ["k"] = actions.next_sibling(),     -- down
+        ["l"] = actions.previous_sibling(), -- up
+        [";"] = actions.children(),         -- Move to right panel
+    }
+})
+
 local lsps = {
     'lua_ls',
     'bashls',
@@ -30,7 +42,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = args.buf, desc = 'Go to implementation' })
         -- info
         vim.keymap.set('n', 'H', vim.lsp.buf.hover, { buffer = args.buf, desc = 'Hover' })
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = args.buf, desc = 'References'})
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = args.buf, desc = 'References' })
+        -- plugins
+        vim.keymap.set('n', '<leader>n', '<cmd>Navbuddy<cr>', { buffer = args.buf, desc = 'Navbuddy' })
         -- actions
         vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = args.buf, desc = 'Rename' })
         vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = args.buf, desc = 'Code action' })
