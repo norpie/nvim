@@ -1,6 +1,7 @@
 require('lib.packages').add({
     'j-hui/fidget.nvim',
     'lewis6991/gitsigns.nvim',
+    'jinh0/eyeliner.nvim',
 })
 
 local env = require('lib.env')
@@ -8,6 +9,7 @@ local env = require('lib.env')
 local things_to_setup = {
     'fidget',
     'gitsigns',
+    'eyeliner',
 }
 
 for _, thing in ipairs(things_to_setup) do
