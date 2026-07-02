@@ -38,7 +38,7 @@ set.splitkeep = "screen"
 -- col
 set.relativenumber = true
 set.signcolumn = "number"
-set.numberwidth = 3
+set.numberwidth = 4
 
 -- search
 set.hlsearch = true
@@ -53,9 +53,6 @@ set.tabstop = 4
 set.shiftwidth = 4
 set.softtabstop = 4
 set.smartindent = true
-
--- leaders
-g.mapleader = " "
 
 -- commands
 o.cmdheight = 0

@@ -4,6 +4,9 @@ local T = require("lib")
 
 vim.loader.enable()
 
+-- leaders
+vim.g.mapleader = " "
+
 -- Set our location
 local src = debug.getinfo(1, "S").source
 local path = src:sub(1, 1) == "@" and src:sub(2) or nil
