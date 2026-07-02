@@ -1,5 +1,15 @@
 local non_insert_modes = { 'n', 'v', 'x', 'o' }
 
+local function map(mode, lhs, rhs, opts)
+    local options = {
+        silent = true
+    }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.keymap.set(mode, lhs, rhs, options)
+end
+
 local keymap_non_insert = function(lhs, rhs)
     vim.keymap.set(non_insert_modes, lhs, rhs, { noremap = true, silent = true })
 end
@@ -7,6 +17,11 @@ end
 local no_wait = function(lhs, rhs)
     vim.keymap.set(non_insert_modes, lhs, rhs, { noremap = true, silent = false, nowait = true })
 end
+
+-- disable space
+map({ 'n', 'v' }, '<space>', '<nop>')
+-- replace execute mode with macro
+map('', 'Q', 'q')
 
 -- homerow motions, used for all other mappings too
 keymap_non_insert('j', 'h')
