@@ -98,6 +98,35 @@ keymap_non_insert('<c-k>', function() move_or_create_win('k') end)
 keymap_non_insert('<c-l>', function() move_or_create_win('l') end)
 keymap_non_insert('<M-[>9;8~', function() move_or_create_win(';') end)
 
+-- weird helpers
+-- Leave unnamed alone when pasting over something
+noremap("x", "p", function() return 'pgv"' .. vim.v.register .. "y" end, { expr = true })
+
+-- Leave unnamed alone when changing
+noremap('n', 'c', '"ac')
+noremap('n', 'C', '"aC')
+
+-- Autocorrect from end of word?
+noremap('i', '<C-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u') -- Spelling
+
+-- Save all buffers and close all except current
+map('n', '<C-s>', ':wa<CR>:%bdelete|e#<CR>')
+
+-- Ctrl-backspace deletes words bakwards in insert
+noremap('i', '<C-H>', '<Esc>cvb')
+
+-- Calc in insert mode
+map('i', '<C-=>', '<C-r>=')
+
+-- Y should yank the rest of the line not entire liune
+map('n', 'Y', 'y$')
+
+-- Cursor doesn't jump to start of selection
+map('v', 'y', 'ygv<ESC>')
+
+-- Ctrl-c is clipboard yank, Ctrl-Shift-V is paste from clipboard
+map('v', '<C-c>', '"+y')
+map('i', '<C-s-v>', '<Esc>"+pa')
 
 -- command line
 no_wait(',', ':')
