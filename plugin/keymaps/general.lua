@@ -10,6 +10,17 @@ local function map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
+local function noremap(mode, lhs, rhs, opts)
+    local options = {
+        noremap = true,
+        silent = true
+    }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.keymap.set(mode, lhs, rhs, options)
+end
+
 local keymap_non_insert = function(lhs, rhs)
     vim.keymap.set(non_insert_modes, lhs, rhs, { noremap = true, silent = true })
 end
@@ -22,6 +33,13 @@ end
 map({ 'n', 'v' }, '<space>', '<nop>')
 -- replace execute mode with macro
 map('', 'Q', 'q')
+
+noremap('i', ',', ',<C-g>u')
+noremap('i', '.', '.<C-g>u')
+noremap('i', '!', '!<C-g>u')
+noremap('i', '?', '?<C-g>u')
+noremap('i', ':', ':<C-g>u')
+noremap('i', ';', ';<C-g>u')
 
 -- homerow motions, used for all other mappings too
 keymap_non_insert('j', 'h')
