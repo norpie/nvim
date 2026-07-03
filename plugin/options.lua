@@ -37,6 +37,7 @@ set.splitkeep = "screen"
 
 -- col
 set.relativenumber = true
+set.number = true
 set.signcolumn = "number"
 set.numberwidth = 4
 
