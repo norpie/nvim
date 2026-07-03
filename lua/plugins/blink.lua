@@ -27,17 +27,19 @@ end
 local modules_path = env.config_dir() .. "/lua/plugins/blink-modules"
 for _, module_file in ipairs(vim.fn.readdir(modules_path, [[v:val =~ '\.lua$']])) do
     local module_path = env.relative_lua_path(modules_path .. "/" .. module_file)
-    local ok, module = pcall(require, module_path:gsub("%.lua$", ""))
+    local module_name = module_path:gsub("%.lua$", ""):gsub("/", ".")
+    local ok, module = pcall(require, module_name)
     if not ok then
         print("Failed to load module: " .. module_file .. "\n" .. module)
-    end
-    -- should enable is optional, if not present, the module will be enabled by default
-    local ok, should_enable = pcall(module.should_enable)
-    if not ok then
-        should_enable = true
-    end
-    if should_enable then
-        sources = merge_sources_and_providers(sources, module.providers() or {})
+    else
+        -- should enable is optional, if not present, the module will be enabled by default
+        local should_enable_ok, should_enable = pcall(module.should_enable)
+        if not should_enable_ok then
+            should_enable = true
+        end
+        if should_enable then
+            sources = merge_sources_and_providers(sources, module.providers() or {})
+        end
     end
 end
 
