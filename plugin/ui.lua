@@ -3,6 +3,7 @@ require('lib.packages').add({
     'lewis6991/gitsigns.nvim',
     'jinh0/eyeliner.nvim',
     "leath-dub/snipe.nvim",
+    'mawkler/modicator.nvim',
 })
 
 local env = require('lib.env')
@@ -11,7 +12,8 @@ local things_to_setup = {
     'fidget',
     'gitsigns',
     'eyeliner',
-    'snipe'
+    'snipe',
+    'modicator',
 }
 
 for _, thing in ipairs(things_to_setup) do
