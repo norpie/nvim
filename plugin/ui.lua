@@ -4,6 +4,7 @@ require('lib.packages').add({
     'jinh0/eyeliner.nvim',
     "leath-dub/snipe.nvim",
     'mawkler/modicator.nvim',
+    'saghen/blink.indent',
 })
 
 local env = require('lib.env')

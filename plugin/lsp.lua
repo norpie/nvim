@@ -12,6 +12,9 @@ navbuddy.setup({
     }
 })
 
+require("tiny-inline-diagnostic").setup()
+vim.diagnostic.config({ virtual_text = false })
+
 local lsps = {
     'lua_ls',
     'bashls',
