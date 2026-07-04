@@ -67,7 +67,7 @@ local opts = {
             draw = {
                 -- We don't need label_description now because label and label_description are already
                 -- combined together in label by colorful-menu.nvim.
-                columns = { { "kind_icon" }, { "label", gap = 1 } },
+                columns = { { "kind_icon" }, { "label", gap = 1 }, { 'source_name', gap = 1 } },
                 components = {
                     kind_icon = {
                         text = function(ctx)
@@ -96,6 +96,7 @@ local opts = {
                     },
                     label = {
                         text = function(ctx)
+                            ctx.label = ctx.label:gsub("↲ .*", "")
                             return require("colorful-menu").blink_components_text(ctx)
                         end,
                         highlight = function(ctx)
