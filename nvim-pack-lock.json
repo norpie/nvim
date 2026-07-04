@@ -76,6 +76,10 @@
       "rev": "725e122e497596673391c1b1227150e58c64f1b4",
       "src": "https://github.com/jdrupal-dev/css-vars.nvim"
     },
+    "dropbar.nvim": {
+      "rev": "808ba31cde89aec8833e9789f5e04557cd31c9e1",
+      "src": "https://github.com/Bekaboo/dropbar.nvim"
+    },
     "eyeliner.nvim": {
       "rev": "8f197eb30cecdf4c2cc9988a5eecc6bc34c0c7d6",
       "src": "https://github.com/jinh0/eyeliner.nvim"
@@ -155,6 +159,10 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "satellite.nvim": {
+      "rev": "87843c9c8f28b54332497302de380a6d94c9e82b",
+      "src": "https://github.com/lewis6991/satellite.nvim"
     },
     "smart-paste.nvim": {
       "rev": "ba7ef8cac985fbfa99cbe16f702b0b016c267a17",
