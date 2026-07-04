@@ -5,7 +5,11 @@ function M.opts()
             require("snipe").open_buffer_menu()
         end,
         { desc = "Open Snipe buffer menu" })
-    return {}
+    return {
+        ui = {
+            position = 'cursor'
+        }
+    }
 end
 
 return M
