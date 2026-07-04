@@ -7,6 +7,7 @@ require('lib.packages').add({
     'saghen/blink.indent',
     'FylerOrg/fyler.nvim',
     'Bekaboo/dropbar.nvim',
+    'lewis6991/satellite.nvim'
 })
 
 local env = require('lib.env')
@@ -18,6 +19,7 @@ local things_to_setup = {
     'snipe',
     'modicator',
     'fyler',
+    'satellite',
 }
 
 for _, thing in ipairs(things_to_setup) do
