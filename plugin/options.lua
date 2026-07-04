@@ -20,6 +20,7 @@ set.termguicolors = true
 
 -- view
 set.scrolloff = 50
+set.sidescrolloff = 36
 set.wrap = false
 set.cursorline = true
 wo.fillchars = "eob: "
