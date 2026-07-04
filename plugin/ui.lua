@@ -5,6 +5,7 @@ require('lib.packages').add({
     "leath-dub/snipe.nvim",
     'mawkler/modicator.nvim',
     'saghen/blink.indent',
+    'FylerOrg/fyler.nvim'
 })
 
 local env = require('lib.env')
@@ -15,6 +16,7 @@ local things_to_setup = {
     'eyeliner',
     'snipe',
     'modicator',
+    'fyler'
 }
 
 for _, thing in ipairs(things_to_setup) do
