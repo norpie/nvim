@@ -5,6 +5,7 @@ require('lib.packages').add({
     'windwp/nvim-ts-autotag',
     'jghauser/mkdir.nvim',
     'chrishrb/gx.nvim',
+    'nemanjamalesija/smart-paste.nvim'
 })
 
 local env = require('lib.env')
@@ -14,6 +15,7 @@ local things_to_setup = {
     'nvim-autopairs',
     'nvim-ts-autotag',
     'gx',
+    'smart-paste'
 }
 
 for _, thing in ipairs(things_to_setup) do
