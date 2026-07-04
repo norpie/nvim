@@ -1,4 +1,4 @@
-require('plugins.lspconfig')
+require('plugins.languages')
 
 local navbuddy = require('nvim-navbuddy')
 local actions = require("nvim-navbuddy.actions")
