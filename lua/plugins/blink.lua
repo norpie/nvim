@@ -13,7 +13,17 @@ cmp.build():pwait()
 
 local sources = {
     default = { 'lsp', 'path', 'snippets', 'buffer', 'cmdline' },
-    providers = {}
+    providers = {
+        buffer = {
+            score_offset = -5
+        },
+        snippets = {
+            score_offset = 50,
+            should_show_items = function(ctx)
+                return ctx.trigger.initial_kind ~= 'trigger_character'
+            end
+        }
+    }
 }
 
 local function merge_sources_and_providers(old_sources, new_providers)
@@ -47,7 +57,9 @@ end
 ---@type blink.cmp.Config
 local opts = {
     keymap = { preset = 'super-tab' },
-
+    sources = sources,
+    signature = { enabled = true },
+    fuzzy = { implementation = "rust" },
     completion = {
         documentation = { auto_show = true },
         ghost_text = { enabled = true },
@@ -85,9 +97,6 @@ local opts = {
             end,
         },
     },
-
-    sources = sources,
-
     cmdline = {
         completion = {
             menu = {
@@ -95,10 +104,6 @@ local opts = {
             }
         },
     },
-
-    signature = { enabled = true },
-
-    fuzzy = { implementation = "rust" }
 }
 
 cmp.setup(opts)

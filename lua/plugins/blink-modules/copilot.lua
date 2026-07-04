@@ -20,7 +20,7 @@ function M.providers()
         copilot = {
             name = "copilot",
             module = "blink-copilot",
-            score_offset = 100,
+            score_offset = 30,
             async = true,
         },
     }
