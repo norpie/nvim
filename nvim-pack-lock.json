@@ -128,6 +128,10 @@
       "rev": "7f867b4980946f115f4ccb922637d70d89a59cb4",
       "src": "https://github.com/mawkler/modicator.nvim"
     },
+    "neominimap.nvim": {
+      "rev": "0676085d898019f06044923934e38663f5efa290",
+      "src": "https://github.com/Isrothy/neominimap.nvim"
+    },
     "nui.nvim": {
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",
       "src": "https://github.com/MunifTanjim/nui.nvim"
@@ -148,6 +152,10 @@
       "rev": "f5eba192f39b453675d115351808bd51276d9de5",
       "src": "https://github.com/SmiteshP/nvim-navic"
     },
+    "nvim-treesitter-endwise": {
+      "rev": "8fe8a95630f4f2c72a87ba1927af649e0bfaa244",
+      "src": "https://github.com/rrethy/nvim-treesitter-endwise"
+    },
     "nvim-ts-autotag": {
       "rev": "88c1453db4ba7dd24131086fe51fdf74e587d275",
       "src": "https://github.com/windwp/nvim-ts-autotag"
@@ -159,6 +167,10 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "rainbow-delimiters.nvim": {
+      "rev": "a798325b7f36acc62741d1029930a7b96d4dd4bf",
+      "src": "https://github.com/hiphish/rainbow-delimiters.nvim"
     },
     "satellite.nvim": {
       "rev": "87843c9c8f28b54332497302de380a6d94c9e82b",
@@ -191,6 +203,10 @@
     "tiny-inline-diagnostic.nvim": {
       "rev": "78747eaeb04c45ac6a732ebe440f60649ed5f2b0",
       "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
+    },
+    "vim-illuminate": {
+      "rev": "8629e6b2dfa8c66677b9d489eb02480cbcfa9599",
+      "src": "https://github.com/RRethy/vim-illuminate"
     }
   }
 }

@@ -5,7 +5,8 @@ require('lib.packages').add({
     'windwp/nvim-ts-autotag',
     'jghauser/mkdir.nvim',
     'chrishrb/gx.nvim',
-    'nemanjamalesija/smart-paste.nvim'
+    'nemanjamalesija/smart-paste.nvim',
+    'rrethy/nvim-treesitter-endwise',
 })
 
 local env = require('lib.env')

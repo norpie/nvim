@@ -7,7 +7,10 @@ require('lib.packages').add({
     'saghen/blink.indent',
     'FylerOrg/fyler.nvim',
     'Bekaboo/dropbar.nvim',
-    'lewis6991/satellite.nvim'
+    'lewis6991/satellite.nvim',
+    'Isrothy/neominimap.nvim',
+    'RRethy/vim-illuminate',
+    'hiphish/rainbow-delimiters.nvim'
 })
 
 local env = require('lib.env')
@@ -20,17 +23,21 @@ local things_to_setup = {
     'modicator',
     'fyler',
     'satellite',
+    'neominimap',
+    'rainbow-delimiters.setup',
 }
 
 for _, thing in ipairs(things_to_setup) do
     local ok, plugin = pcall(require, thing)
     local opts = {}
+    -- subtract .* from the end of the string if it exists, e.g. rainbow-delimiters.setup -> rainbow-delimiters
+    local probable_opts_file = thing:gsub('%.setup$', '')
     -- optionally has a file in lua/plugins/ui/thing.lua that should have the opts() passed to setup()
-    if vim.fn.filereadable(env.config_dir() .. '/lua/plugins/ui/' .. thing .. '.lua') == 1 then
-        opts = require('plugins.ui.' .. thing).opts()
+    if vim.fn.filereadable(env.config_dir() .. '/lua/plugins/ui/' .. probable_opts_file .. '.lua') == 1 then
+        opts = require('plugins.ui.' .. probable_opts_file).opts()
     end
     if not ok then
-        vim.notify('Failed to load ' .. thing, vim.log.levels.ERROR)
+        vim.notify('Failed to load ' .. probable_opts_file, vim.log.levels.ERROR)
     else
         if plugin.setup then
             plugin.setup(opts)
