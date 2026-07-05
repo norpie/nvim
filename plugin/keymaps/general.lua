@@ -61,7 +61,12 @@ keymap_non_insert('<s-tab>', '<cmd>bprevious<cr>')
 
 -- delete buffer, prioritize deleting split first
 keymap_non_insert('<leader>bd', function()
-    if vim.fn.winnr('$') > 1 then
+    local enabled = require('neominimap.api').enabled()
+    local window_count_expect = 1
+    if enabled then
+        window_count_expect = 2
+    end
+    if vim.fn.winnr('$') > window_count_expect then
         vim.cmd('close')
     else
         vim.cmd('bdelete')
