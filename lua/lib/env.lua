@@ -7,17 +7,6 @@ local env_files = {
 
 local is_loaded = false
 
--- Evaluate the environment files and load them into the current environment
--- TODO: Actually evaluate the files and load them into the environment
-M.load = function()
-    if is_loaded then
-        return
-    end
-    for _, file in ipairs(env_files) do
-    end
-    is_loaded = true
-end
-
 local function normalize_path(path)
     return vim.fs.normalize(vim.fn.fnamemodify(vim.fn.expand(path), ":p"))
 end
@@ -48,5 +37,63 @@ end
 M.relative_lua_path = function(path)
     return relative_to(path, M.config_dir() .. "/lua")
 end
+
+-- use `project root` command, spits out an absolute path to the root of the project, useful for projects that have multiple subprojects, e.g. a monorepo
+-- warning: only relies on git internally to the command, so if the project is not a git repo, it will return nothing, we fall back to cwd
+M.project_root = function()
+    local ok, root = pcall(vim.fn.system, "project root")
+    if ok then
+        return vim.fs.normalize(vim.fn.fnamemodify(root, ":p"))
+    else
+        return vim.fs.normalize(vim.fn.getcwd())
+    end
+end
+
+-- use `project subroot` command, spits out an absolute path to the subroot of the project, useful for projects that have multiple subprojects, e.g. a monorepo
+-- internally falls back to `project root` if no subroot is found, and then falls back to cwd if no project root is found
+M.project_sub_root = function()
+    local ok, subroot = pcall(vim.fn.system, "project subroot")
+    if ok then
+        return vim.fs.normalize(vim.fn.fnamemodify(subroot, ":p"))
+    else
+        M.project_root()
+    end
+end
+
+local function load_local_env(file)
+    local env_file = io.open(file, "r")
+    if not env_file then
+        return
+    end
+
+    local ok, err = pcall(function()
+        for line in env_file:lines() do
+            if not line:match("^%s*#") then                                        -- Skip comments
+                for key, value in string.gmatch(line, "([%w_]+)%s*=%s*([^#]+)") do -- varname=value
+                    value = value:gsub("^%s*(.-)%s*$", "%1")                       -- Trim whitespace
+                    vim.fn.setenv(key, value)
+                end
+            end
+        end
+    end)
+
+    env_file:close()
+
+    if not ok then
+        vim.notify("Error parsing " .. file .. ": " .. tostring(err), vim.log.levels.WARN)
+    end
+end
+
+M.load = function()
+    if is_loaded then
+        return
+    end
+    for _, file in ipairs(env_files) do
+        load_local_env(file)
+    end
+    is_loaded = true
+end
+
+
 
 return M
