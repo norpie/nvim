@@ -16,7 +16,7 @@ require("tiny-inline-diagnostic").setup()
 vim.diagnostic.config({ virtual_text = false })
 
 local languages = {
-    'lua_ls',
+    'lua',
 }
 
 for _, language in ipairs(languages) do
