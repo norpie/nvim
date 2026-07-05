@@ -15,15 +15,15 @@ navbuddy.setup({
 require("tiny-inline-diagnostic").setup()
 vim.diagnostic.config({ virtual_text = false })
 
-local lsps = {
+local languages = {
     'lua_ls',
-    'bashls',
 }
 
-for _, lsp in ipairs(lsps) do
-    local ok, config = pcall(require, 'lsp.' .. lsp)
+for _, language in ipairs(languages) do
+    local ok, config = pcall(require, 'languages.' .. language)
+    local lsp = config.lsp()
     if ok then
-        vim.lsp.config(lsp, config)
+        vim.lsp.config(lsp, config.lspconfig())
     end
     vim.lsp.enable(lsp)
 end
