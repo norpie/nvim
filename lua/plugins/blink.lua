@@ -96,6 +96,11 @@ local opts = {
                     },
                     label = {
                         text = function(ctx)
+                            -- correct copilot source name
+                            if ctx.source_id == "copilot" then
+                                ctx.source_name = "Copilot"
+                            end
+                            -- strip any newline characters and the text after it from the label
                             ctx.label = ctx.label:gsub("↲ .*", "")
                             return require("colorful-menu").blink_components_text(ctx)
                         end,
