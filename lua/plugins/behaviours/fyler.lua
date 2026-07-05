@@ -1,7 +1,7 @@
 local M = {}
 
 function M.opts()
-    vim.autocmd("BufRead", {
+    vim.autocmd("DirEnter", {
         callback = function()
             vim.cmd('Fyler')
         end,
