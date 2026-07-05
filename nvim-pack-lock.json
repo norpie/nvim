@@ -128,6 +128,10 @@
       "rev": "c55d1dee4f099528a1853b28bb28caa802eba217",
       "src": "https://github.com/jghauser/mkdir.nvim"
     },
+    "modes.nvim": {
+      "rev": "2badf8771dbb2d1e1066fd6a5dddaad2fc836e72",
+      "src": "https://github.com/mvllow/modes.nvim"
+    },
     "modicator.nvim": {
       "rev": "7f867b4980946f115f4ccb922637d70d89a59cb4",
       "src": "https://github.com/mawkler/modicator.nvim"

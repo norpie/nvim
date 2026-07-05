@@ -57,7 +57,7 @@ set.softtabstop = 4
 set.smartindent = true
 
 -- commands
-o.cmdheight = 0
+-- o.cmdheight = 0 disabled due to modes.nvim plugin
 
 -- lang
 set.spelllang = "en_uk,fr,fi,nl"
